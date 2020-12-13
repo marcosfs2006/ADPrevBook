@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Introdução | Análise de Dados Previdenciários - ADPrev</title>
+  <meta name="description" content="Este livro tem por objetivo mostrar como fazer a análise de dados previdenciários dos RPPS usando R." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Introdução | Análise de Dados Previdenciários - ADPrev" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="figuras/work_in_progress2.jpg" />
+  <meta property="og:description" content="Este livro tem por objetivo mostrar como fazer a análise de dados previdenciários dos RPPS usando R." />
+  <meta name="github-repo" content="marcosfs2006/ADPrevBook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Introdução | Análise de Dados Previdenciários - ADPrev" />
+  
+  <meta name="twitter:description" content="Este livro tem por objetivo mostrar como fazer a análise de dados previdenciários dos RPPS usando R." />
+  <meta name="twitter:image" content="figuras/work_in_progress2.jpg" />
+
+<meta name="author" content="Marcos Ferreira da Silva" />
+
+
+<meta name="date" content="2020-08-12" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="cadastro-dos-rpps.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
+<script src="libs/tabwid-1.0.0/tabwid.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análise de Dados Previdenciários - ADPrev</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nota</a></li>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i>Introdução</a><ul>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#estrutura-do-documento"><i class="fa fa-check"></i>Estrutura do documento</a></li>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#projeto-labdadosprevrpps"><i class="fa fa-check"></i>Projeto LabDadosPrev(“RPPS”)</a></li>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#bases-de-dados-utilizadas"><i class="fa fa-check"></i>Bases de dados utilizadas</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="cadastro-dos-rpps.html"><a href="cadastro-dos-rpps.html"><i class="fa fa-check"></i><b>1</b> Cadastro dos RPPS</a></li>
+<li class="chapter" data-level="2" data-path="alíquotas-de-contribuição.html"><a href="alíquotas-de-contribuição.html"><i class="fa fa-check"></i><b>2</b> Alíquotas de Contribuição</a><ul>
+<li class="chapter" data-level="2.1" data-path="alíquotas-de-contribuição.html"><a href="alíquotas-de-contribuição.html#análise-exploratória"><i class="fa fa-check"></i><b>2.1</b> Análise exploratória</a></li>
+<li class="chapter" data-level="2.2" data-path="alíquotas-de-contribuição.html"><a href="alíquotas-de-contribuição.html#quantitativo-de-rpps-com-segregação-de-massas"><i class="fa fa-check"></i><b>2.2</b> Quantitativo de RPPS com segregação de massas</a></li>
+<li class="chapter" data-level="2.3" data-path="alíquotas-de-contribuição.html"><a href="alíquotas-de-contribuição.html#adequação-das-alíquotas-à-ec-10319"><i class="fa fa-check"></i><b>2.3</b> Adequação das alíquotas à EC 103/19</a></li>
+<li class="chapter" data-level="2.4" data-path="alíquotas-de-contribuição.html"><a href="alíquotas-de-contribuição.html#alíquota-do-ente-inferior-à-do-servidor-ativo"><i class="fa fa-check"></i><b>2.4</b> Alíquota do Ente inferior à do servidor ativo</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Feito com o pacote bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise de Dados Previdenciários - ADPrev</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introdução" class="section level1 unnumbered">
+<h1>Introdução</h1>
+<p>O objetivo deste documento é mostrar algumas formas pelas quais os dados dos Regimes Próprios de Previdência Social - RPPS disponibilizados pela Secretaria de Previdência - SPREV podem ser utilizados para ajudar tanto na compreensão dos RPPS como no acompanhamento da gestão dessas entidades.</p>
+<p>Para alcançar esse objetivo serão apresentados os <em>scripts</em> elaborados no ambiente <a href="https://www.r-project.org/">R</a> para que os leitores interessados possam não só reproduzir as análises apresentadas como também adaptá-las para seu caso particular.</p>
+<p>Diversas bases de dados e relatórios são disponibilizados pela SPREV em seu <a href="http://www.previdencia.gov.br/dados-abertos/estatisticas-e-informacoes-dos-rpps/"><em>site</em></a> e já se sabe há muito tempo que o principal problema atualmente não é tanto a disponibilidade de dados, mas a <strong>capacidade de análise dos mesmos</strong>.</p>
+<p>Pode-se, hoje, falar de uma <strong>Análise de Dados Previdenciários</strong> para designar uma área de conhecimento a ser desenvolvida nos órgãos encarregados da supervisão e controle dos RPPS com o objetivo de auxiliar na execução dessa atividade.</p>
+<p>Conhecer esses dados, suas limitações, inconsistências, analisá-los e enriquecê-los com outros dados e propor melhorias constituem o escopo dessa área.</p>
+<p>Nos capítulos que se seguem serão apresentadas algumas sugestões de análises possíveis com os dados disponibilizados. A ideia é que as análises apresentadas neste documento sejam paulatinamente incluídas no painel de dados previdenciários disponível no link <a href="https://marcosfs2006.shinyapps.io/rpps-painel/" class="uri">https://marcosfs2006.shinyapps.io/rpps-painel/</a> elaborado, também, com os dados disponibilizados pela SPREV.</p>
+<div id="estrutura-do-documento" class="section level2 unnumbered">
+<h2>Estrutura do documento</h2>
+<p>O documento está estruturado em torno dos arquivos disponibilizados pels SPREV, de forma que cada capítulo será dedicado a um arquivo, conforme descrito a seguir:</p>
+<p>O <strong>Capítulo 1</strong> trata do arquivo de dados que contém a relação dos Entes e o regime previdenciário ao qual está vinculado. Este arquivo constitui, por assim dizer, a relação oficial dos RPPS existentes no Brasil.</p>
+<p>O <strong>Capítulo 2</strong> aborda o arquivo relativo às alíquotas de contribuição. Este arquivo contém o valor e a vigência das alíquotas de contribuição de cada RPPS.</p>
+<p>O <strong>Capítulo 3</strong> trata da base de dados do certificado de regulariade previdenciária, documento que indica a situação do RPPS no que diz respeito ao cumprimento de suas obrigações junto à SPrev.</p>
+<!--
+O **Capítulo 4** traz algumas análises possíveis com os dados da carteira de investimentos do RPPS. 
+-->
+</div>
+<div id="projeto-labdadosprevrpps" class="section level2 unnumbered">
+<h2>Projeto LabDadosPrev(“RPPS”)</h2>
+<p>Também com o objetivo de “explorar” e lançar luz sobre os dados disponibilizados pela SPREV, foi criado o <strong>Laboratório de Análise de Dados Previdenciários - LabDadosPrev(“RPPS”)</strong> que consiste, basicamente, em oferecer ao usuário interessado um ambiente no qual, sem a necessidade de instalar nada nem de carregar qualquer conjunto de dados, possa executar as análises apresentadas neste documento.</p>
+<p>Para tando, as análises aqui apresentadas, bem como outras, estão contidas em notebooks do <a href="https://colab.research.google.com/notebooks/intro.ipynb">Google Colaboratory</a>. Além da sugestão de possíveis análises, o <code>LabDadosPrev("RPPS")</code> objetiva também familiarizar o leitor com as bases de dados, visto que a SPREV não disponibiliza dicionários de dados para as bases que publica.</p>
+<p>O acesso aos notebooks pode ser feito pelo seguinte <a href="https://colab.research.google.com/drive/1Myiiq8aRmoc14-IHNe5SNTNdYGjWI1tE?usp=sharing">link</a>.</p>
+</div>
+<div id="bases-de-dados-utilizadas" class="section level2 unnumbered">
+<h2>Bases de dados utilizadas</h2>
+<p>Os dados utilizados neste documento são, em sua maioria, aqueles que a SPREV publica em seu site, os quais podem ser sumarizados da seguinte forma:</p>
+<p><strong>Regimes Próprios de Previdência Social - RPPS (5 arquivos)</strong></p>
+<p>Sob essa denominação a SPREV disponibiliza um conjunto de cinco arquivos contendo informações sobre: <code>Alíquotas de contribuição praticadas</code>, <code>Quantitativo de Regimes por UF</code>, <code>Histórico de Regime Previdenciário</code>, <code>Regime Previdenciário Atual dos Entes Federativos</code> e <code>CRP</code>.</p>
+<p><strong>DAIR (12 arquivos)</strong></p>
+<p>Sob a denominação “DAIR”S a SPREV disponibiliza um conjunto de 12 arquivos. Neste documento, até o momento, foi feito uso apenas do conjunto de dados denominado <code>Carteira</code> que contém informações sobre os investimentos dos RPPS. As análises relativas ao DAIR são complementadas com outros dados também disponibilizados pela SPREV. Como exemplo desses arquivos complementares cita-se a relação de fundos de investimentos vedados e o arquivo contendo o enquadramento dos fundos de investimento.</p>
+<p><strong>DIPR (7 arquivos)</strong></p>
+<p>É disponibilizado um arquivo para cada ano e no momento, (Dez. de 2020), estão disponíveis os arquivos dos anos de 2014 a 2020.</p>
+<p><strong>DRAA (29 arquivos)</strong></p>
+<p>O DRAA é onde são disponibilizados a maior quantidade de dados. São 29 arquivos, abrangendo diversos aspectos da gestão atuarial do RPPS.</p>
+<p><strong>Parcelamento (1 arquivo)</strong></p>
+<p>Neste arquivo estão disponibilizados dados relativos aos Acordos de Parcelamento celebrados pelos RPPS com os Entes.</p>
+<p><strong>Indicador de Situação Previdenciária - ISP</strong></p>
+<p>Também será feito uso dos dados do ISP, especificamente os dados do relativos aos anos de 2019 e 2020.</p>
+<p><strong>Fluxos Atuariais</strong></p>
+<p>Os fluxos atuariais também serão objeto de análise neste documento, embora esses dados não sejam, até o momento, disponibilizados pela SPREV em seu site.</p>
+<p>Sendo um elemento que <strong>integra</strong> o relatório de avaliação atuarial (Portaria 464, art. 10), deveria ser disponibilizado também tanto pela SPREV como pelas unidades gestoras do RPPS em seus sites.</p>
+<p>Tem-se observado que a SPREV tem modificado o formato dos arquivos nas atualizações dos dados, ora disponibilizando-os em arquivos do Excel, ora disponibilizando esses mesmos dados em arquivos csv.</p>
+<p>Também o nome dos arquivos podem eventualmente sofrer modificações, assim como o <em>layout</em> dos mesmos.</p>
+<p>Espera-se que o documento seja útil a todos que necessitem utilizar os dados dos RPPS disponíbilizados pela SPREV.</p>
+<p>Boa leitura!</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="cadastro-dos-rpps.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["ADPrevBook.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
