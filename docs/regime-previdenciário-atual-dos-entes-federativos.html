@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 1 Regime Previdenciário Atual dos Entes Federativos | Análise de Dados Previdenciários - ADPrev</title>
+  <meta name="description" content="Exemplos e sugestões de análise dos dados previdenciários dos RPPS usando o software R." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 1 Regime Previdenciário Atual dos Entes Federativos | Análise de Dados Previdenciários - ADPrev" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="figuras/work_in_progress2.jpg" />
+  <meta property="og:description" content="Exemplos e sugestões de análise dos dados previdenciários dos RPPS usando o software R." />
+  <meta name="github-repo" content="marcosfs2006/ADPrevBook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 1 Regime Previdenciário Atual dos Entes Federativos | Análise de Dados Previdenciários - ADPrev" />
+  
+  <meta name="twitter:description" content="Exemplos e sugestões de análise dos dados previdenciários dos RPPS usando o software R." />
+  <meta name="twitter:image" content="figuras/work_in_progress2.jpg" />
+
+<meta name="author" content="Marcos Ferreira da Silva" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introdução.html"/>
+<link rel="next" href="alíquotas-de-contribuição-praticadas.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
+<script src="libs/tabwid-1.0.0/tabwid.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análise de Dados Previdenciários - ADPrev</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nota</a></li>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i>Introdução</a><ul>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#estrutura-do-documento"><i class="fa fa-check"></i>Estrutura do documento</a></li>
+<li><a href="introdução.html#projeto-labdadosprevrpps">Projeto <strong>LabDadosPrev(“RPPS”)</strong></a></li>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#bases-de-dados-utilizadas"><i class="fa fa-check"></i>Bases de dados utilizadas</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="regime-previdenciário-atual-dos-entes-federativos.html"><a href="regime-previdenciário-atual-dos-entes-federativos.html"><i class="fa fa-check"></i><b>1</b> Regime Previdenciário Atual dos Entes Federativos</a></li>
+<li class="chapter" data-level="2" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html"><i class="fa fa-check"></i><b>2</b> Alíquotas de contribuição praticadas</a><ul>
+<li class="chapter" data-level="2.1" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html#análise-exploratória"><i class="fa fa-check"></i><b>2.1</b> Análise exploratória</a></li>
+<li class="chapter" data-level="2.2" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html#quantitativo-de-rpps-com-segregação-de-massas"><i class="fa fa-check"></i><b>2.2</b> Quantitativo de RPPS com segregação de massas</a></li>
+<li class="chapter" data-level="2.3" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html#adequação-das-alíquotas-à-ec-10319"><i class="fa fa-check"></i><b>2.3</b> Adequação das alíquotas à EC 103/19</a></li>
+<li class="chapter" data-level="2.4" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html#alíquota-do-ente-inferior-à-do-servidor-ativo"><i class="fa fa-check"></i><b>2.4</b> Alíquota do Ente inferior à do servidor ativo</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html"><i class="fa fa-check"></i><b>3</b> CRP - Certificado de Regularidade Previdenciária</a><ul>
+<li class="chapter" data-level="3.1" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#análise-exploratória-preliminar"><i class="fa fa-check"></i><b>3.1</b> Análise exploratória preliminar</a></li>
+<li class="chapter" data-level="3.2" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#análise-restrita-aos-rpps"><i class="fa fa-check"></i><b>3.2</b> Análise restrita aos RPPS</a></li>
+<li class="chapter" data-level="3.3" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#análise-segundo-a-quantidade-de-dias-vencidos"><i class="fa fa-check"></i><b>3.3</b> Análise segundo a quantidade de dias vencidos</a></li>
+<li class="chapter" data-level="3.4" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#efeito-da-constitucionalização-do-crp"><i class="fa fa-check"></i><b>3.4</b> Efeito da constitucionalização do CRP</a></li>
+<li class="chapter" data-level="3.5" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#mapas-com-dados-dos-crp"><i class="fa fa-check"></i><b>3.5</b> Mapas com dados dos CRP</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dair-demonstrativo-das-aplicações-e-investimentos-dos-recursos.html"><a href="dair-demonstrativo-das-aplicações-e-investimentos-dos-recursos.html"><i class="fa fa-check"></i><b>4</b> DAIR - Demonstrativo das Aplicações e Investimentos dos Recursos</a></li>
+<li class="chapter" data-level="5" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><i class="fa fa-check"></i><b>5</b> DIPR - Demonstrativo de Informações Previdenciárias e Repasses</a></li>
+<li class="chapter" data-level="6" data-path="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html"><a href="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html"><i class="fa fa-check"></i><b>6</b> DRAA - Demonstrativo de Resultados da Avaliação Atuarial</a></li>
+<li class="chapter" data-level="7" data-path="parcelamentos.html"><a href="parcelamentos.html"><i class="fa fa-check"></i><b>7</b> Parcelamentos</a></li>
+<li class="chapter" data-level="8" data-path="isp-indicador-de-situação-previdenticária.html"><a href="isp-indicador-de-situação-previdenticária.html"><i class="fa fa-check"></i><b>8</b> ISP - Indicador de Situação Previdenticária</a></li>
+<li class="chapter" data-level="9" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html"><i class="fa fa-check"></i><b>9</b> Fluxo Atuarial</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Feito com o pacote bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise de Dados Previdenciários - ADPrev</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regime-previdenciário-atual-dos-entes-federativos" class="section level1">
+<h1><span class="header-section-number">Capítulo 1</span> Regime Previdenciário Atual dos Entes Federativos</h1>
+<p>Com a denominação de <code>Regime Previdenciário Atual dos Entes Federativos</code> a SPREV disponibiliza um conjunto de dados que pode ser considerado o “cadastro dos RPPS”, no sentido de que ele fornece a relação completa dos RPPS existentes no Brasil. Na realidade é uma relação completa de todos os entes federativos com a indicação do regime previdenciário ao qual estão vinculados.</p>
+<p>Este capítulo será dedicado à análise desse conjunto de dados.</p>
+<p>Por ser um arquivo de dados bem simples não possibilita a realização de muitas análises, mas é possível, por exemplo, construir uma tabela mostrando o quantitativo de entes que estão vinculados ao RPPS e ao RGPS em cada unidade da federação.</p>
+<p>Antes de se iniciar qualquer análise, é necessário carregar os pacotes que serão utilizados ao longo deste documento:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb1-1"></a><span class="kw">library</span>(tidyr)</span>
+<span id="cb1-2"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb1-2"></a><span class="kw">library</span>(readxl)</span>
+<span id="cb1-3"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb1-3"></a><span class="kw">library</span>(writexl)</span>
+<span id="cb1-4"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb1-4"></a><span class="kw">library</span>(readr)</span>
+<span id="cb1-5"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb1-5"></a><span class="kw">library</span>(dplyr, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb1-6"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb1-6"></a><span class="kw">library</span>(lubridate)</span>
+<span id="cb1-7"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb1-7"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb1-8"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb1-8"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb1-9"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb1-9"></a><span class="kw">library</span>(stringr)</span>
+<span id="cb1-10"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb1-10"></a><span class="kw">library</span>(scales)</span>
+<span id="cb1-11"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb1-11"></a><span class="kw">library</span>(flextable)</span>
+<span id="cb1-12"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb1-12"></a><span class="kw">library</span>(here)</span>
+<span id="cb1-13"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb1-13"></a><span class="kw">library</span>(purrr)</span></code></pre></div>
+<p>A importação dos dados pode ser feita da seguinte forma:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb2-1"></a>cadastro_rpps &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;dados/4-regime-entes-federativos_atualizacao_de_ago_set_2020_extracao_em_2020-10-06t18_17_11.xlsx&quot;</span>)</span></code></pre></div>
+<p>Importados os dados é sempre recomendado inspecionar os registros iniciais para se ter uma ideia do seu conteúdo e para verificar se tudo ocorreu bem com a importação:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb3-1"></a><span class="kw">head</span>(cadastro_rpps)</span></code></pre></div>
+<pre><code># A tibble: 6 x 4
+  CNPJ           UF    ENTE            REGIME
+  &lt;chr&gt;          &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt; 
+1 84306737000127 AC    Acrelândia      RGPS  
+2 04045993000179 AC    Assis Brasil    RGPS  
+3 04508933000145 AC    Brasiléia       RGPS  
+4 84306620000143 AC    Bujari          RGPS  
+5 84306604000150 AC    Capixaba        RGPS  
+6 04012548000102 AC    Cruzeiro do Sul RGPS  </code></pre>
+<p>Trata-se, como pode ser visto, de um conjunto de dados bem simples, contendo apenas quatro colunas cujo conteúdo é autoexplicativo.</p>
+<p>Um primeiro resumo que pode ser feito é mostrar quantos Entes estão vinculados a cada tipo de regime previdenciário. A resposta pode ser obtida com o seguinte código:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb5-1"></a>cadastro_rpps <span class="op">%&gt;%</span></span>
+<span id="cb5-2"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb5-2"></a><span class="st">  </span><span class="kw">count</span>(REGIME) <span class="op">%&gt;%</span></span>
+<span id="cb5-3"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb5-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="st">`</span><span class="dt">%</span><span class="st">`</span> =<span class="st">  </span><span class="kw">round</span>(n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dv">2</span>)) </span></code></pre></div>
+<pre><code># A tibble: 3 x 3
+  REGIME               n   `%`
+  &lt;chr&gt;            &lt;int&gt; &lt;dbl&gt;
+1 RGPS              3418 61.1 
+2 RPPS              2156 38.5 
+3 RPPS em Extinção    21  0.38</code></pre>
+<p>A maioria dos Entes está vinculada ao RGPS. Mas existe um quantitativo expressivo de Entes vinculados ao RPPS. Também é possível verificar alguns RPPS em extinção.</p>
+<p>Uma informação útil é saber, para cada unidade da federação, o quantitativo de Entes vinculados a cada regime previdenciário. Essa informação pode ser obtida com o código a seguir:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb7-1"></a>cadastro_rpps <span class="op">%&gt;%</span></span>
+<span id="cb7-2"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb7-2"></a><span class="st">  </span><span class="kw">count</span>(UF, REGIME) <span class="op">%&gt;%</span></span>
+<span id="cb7-3"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb7-3"></a><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from  =</span> REGIME,</span>
+<span id="cb7-4"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb7-4"></a>              <span class="dt">values_from =</span> n,</span>
+<span id="cb7-5"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb7-5"></a>              <span class="dt">values_fill =</span> <span class="kw">list</span>(<span class="dt">n=</span><span class="dv">0</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb7-6"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb7-6"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">RPPS_EXT =</span> <span class="st">`</span><span class="dt">RPPS em Extinção</span><span class="st">`</span>) <span class="op">%&gt;%</span></span>
+<span id="cb7-7"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb7-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">TOTAL =</span> RGPS <span class="op">+</span><span class="st"> </span>RPPS <span class="op">+</span><span class="st"> </span>RPPS_EXT,</span>
+<span id="cb7-8"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb7-8"></a>         <span class="st">`</span><span class="dt">%RGPS</span><span class="st">`</span> =<span class="st"> </span><span class="kw">round</span>(RGPS <span class="op">/</span><span class="st"> </span>TOTAL <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb7-9"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb7-9"></a>         <span class="st">`</span><span class="dt">%RPPS</span><span class="st">`</span> =<span class="st"> </span><span class="kw">round</span>(RPPS <span class="op">/</span><span class="st"> </span>TOTAL <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb7-10"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb7-10"></a>         <span class="st">`</span><span class="dt">%RPPS_EXT</span><span class="st">`</span> =<span class="st"> </span><span class="kw">round</span>(RPPS_EXT <span class="op">/</span><span class="st"> </span>TOTAL <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dv">1</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb7-11"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb7-11"></a><span class="st">  </span><span class="kw">select</span>(UF, RPPS, <span class="st">`</span><span class="dt">%RPPS</span><span class="st">`</span>, RGPS, <span class="st">`</span><span class="dt">%RGPS</span><span class="st">`</span>, RPPS_EXT, <span class="st">`</span><span class="dt">%RPPS_EXT</span><span class="st">`</span>) <span class="op">%&gt;%</span></span>
+<span id="cb7-12"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb7-12"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(RPPS)) <span class="op">%&gt;%</span></span>
+<span id="cb7-13"><a href="regime-previdenciário-atual-dos-entes-federativos.html#cb7-13"></a><span class="st">  </span><span class="kw">qflextable</span>() </span></code></pre></div>
+<div class="tabwid"><style>.cl-5ac1259a{border-collapse:collapse;}.cl-5a94682a{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-5a94dd78{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-5a94dd79{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-5a96d9a2{width:45pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a96d9a3{width:33pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a96d9a4{width:55pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a96d9a5{width:73pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a96d9a6{width:82pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a96d9a7{width:46pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a96d9a8{width:56pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a96d9a9{width:45pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a96d9aa{width:56pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a96d9ab{width:55pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a96d9ac{width:82pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9700bc{width:33pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9700bd{width:73pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9700be{width:46pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9700bf{width:56pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9700c0{width:82pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9700c1{width:45pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9700c2{width:33pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9700c3{width:46pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9700c4{width:73pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9700c5{width:55pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9700c6{width:73pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9727c2{width:82pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9727c3{width:45pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9727c4{width:55pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9727c5{width:33pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9727c6{width:46pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9727c7{width:56pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9727c8{width:82pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9727c9{width:56pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9727ca{width:55pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9727cb{width:73pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a9727cc{width:46pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a974edc{width:33pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a974edd{width:45pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a974ede{width:45pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a974edf{width:82pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a974ee0{width:46pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a974ee1{width:33pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a974ee2{width:56pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a974ee3{width:73pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5a974ee4{width:55pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-5ac1259a'>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-5a974ee1"><p class="cl-5a94dd78"><span class="cl-5a94682a">UF</span></p></td><td class="cl-5a974ede"><p class="cl-5a94dd79"><span class="cl-5a94682a">RPPS</span></p></td><td class="cl-5a974ee4"><p class="cl-5a94dd79"><span class="cl-5a94682a">%RPPS</span></p></td><td class="cl-5a974ee0"><p class="cl-5a94dd79"><span class="cl-5a94682a">RGPS</span></p></td><td class="cl-5a974ee2"><p class="cl-5a94dd79"><span class="cl-5a94682a">%RGPS</span></p></td><td class="cl-5a974ee3"><p class="cl-5a94dd79"><span class="cl-5a94682a">RPPS_EXT</span></p></td><td class="cl-5a974edf"><p class="cl-5a94dd79"><span class="cl-5a94682a">%RPPS_EXT</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-5a96d9a3"><p class="cl-5a94dd78"><span class="cl-5a94682a">RS</span></p></td><td class="cl-5a96d9a2"><p class="cl-5a94dd79"><span class="cl-5a94682a">332</span></p></td><td class="cl-5a96d9a4"><p class="cl-5a94dd79"><span class="cl-5a94682a">66.7</span></p></td><td class="cl-5a96d9a7"><p class="cl-5a94dd79"><span class="cl-5a94682a">165</span></p></td><td class="cl-5a96d9a8"><p class="cl-5a94dd79"><span class="cl-5a94682a">33</span></p></td><td class="cl-5a96d9a5"><p class="cl-5a94dd79"><span class="cl-5a94682a">1</span></p></td><td class="cl-5a96d9a6"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a96d9a3"><p class="cl-5a94dd78"><span class="cl-5a94682a">MG</span></p></td><td class="cl-5a96d9a2"><p class="cl-5a94dd79"><span class="cl-5a94682a">222</span></p></td><td class="cl-5a96d9a4"><p class="cl-5a94dd79"><span class="cl-5a94682a">26.0</span></p></td><td class="cl-5a96d9a7"><p class="cl-5a94dd79"><span class="cl-5a94682a">627</span></p></td><td class="cl-5a96d9a8"><p class="cl-5a94dd79"><span class="cl-5a94682a">73</span></p></td><td class="cl-5a96d9a5"><p class="cl-5a94dd79"><span class="cl-5a94682a">5</span></p></td><td class="cl-5a96d9a6"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a96d9a3"><p class="cl-5a94dd78"><span class="cl-5a94682a">SP</span></p></td><td class="cl-5a96d9a2"><p class="cl-5a94dd79"><span class="cl-5a94682a">222</span></p></td><td class="cl-5a96d9a4"><p class="cl-5a94dd79"><span class="cl-5a94682a">34.4</span></p></td><td class="cl-5a96d9a7"><p class="cl-5a94dd79"><span class="cl-5a94682a">421</span></p></td><td class="cl-5a96d9a8"><p class="cl-5a94dd79"><span class="cl-5a94682a">65</span></p></td><td class="cl-5a96d9a5"><p class="cl-5a94dd79"><span class="cl-5a94682a">3</span></p></td><td class="cl-5a96d9a6"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a9700c2"><p class="cl-5a94dd78"><span class="cl-5a94682a">PR</span></p></td><td class="cl-5a9700c1"><p class="cl-5a94dd79"><span class="cl-5a94682a">179</span></p></td><td class="cl-5a9700c5"><p class="cl-5a94dd79"><span class="cl-5a94682a">44.8</span></p></td><td class="cl-5a9700c3"><p class="cl-5a94dd79"><span class="cl-5a94682a">220</span></p></td><td class="cl-5a9700bf"><p class="cl-5a94dd79"><span class="cl-5a94682a">55</span></p></td><td class="cl-5a9700c4"><p class="cl-5a94dd79"><span class="cl-5a94682a">1</span></p></td><td class="cl-5a9700c0"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.2</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a9727c5"><p class="cl-5a94dd78"><span class="cl-5a94682a">GO</span></p></td><td class="cl-5a9727c3"><p class="cl-5a94dd79"><span class="cl-5a94682a">171</span></p></td><td class="cl-5a9727c4"><p class="cl-5a94dd79"><span class="cl-5a94682a">69.2</span></p></td><td class="cl-5a9727c6"><p class="cl-5a94dd79"><span class="cl-5a94682a">75</span></p></td><td class="cl-5a9727c7"><p class="cl-5a94dd79"><span class="cl-5a94682a">30</span></p></td><td class="cl-5a9700c6"><p class="cl-5a94dd79"><span class="cl-5a94682a">1</span></p></td><td class="cl-5a9727c2"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.4</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a9700bc"><p class="cl-5a94dd78"><span class="cl-5a94682a">PE</span></p></td><td class="cl-5a96d9a9"><p class="cl-5a94dd79"><span class="cl-5a94682a">149</span></p></td><td class="cl-5a96d9ab"><p class="cl-5a94dd79"><span class="cl-5a94682a">80.5</span></p></td><td class="cl-5a9700be"><p class="cl-5a94dd79"><span class="cl-5a94682a">36</span></p></td><td class="cl-5a96d9aa"><p class="cl-5a94dd79"><span class="cl-5a94682a">20</span></p></td><td class="cl-5a9700bd"><p class="cl-5a94dd79"><span class="cl-5a94682a">0</span></p></td><td class="cl-5a96d9ac"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a9700bc"><p class="cl-5a94dd78"><span class="cl-5a94682a">MT</span></p></td><td class="cl-5a96d9a9"><p class="cl-5a94dd79"><span class="cl-5a94682a">107</span></p></td><td class="cl-5a96d9ab"><p class="cl-5a94dd79"><span class="cl-5a94682a">75.4</span></p></td><td class="cl-5a9700be"><p class="cl-5a94dd79"><span class="cl-5a94682a">35</span></p></td><td class="cl-5a96d9aa"><p class="cl-5a94dd79"><span class="cl-5a94682a">25</span></p></td><td class="cl-5a9700bd"><p class="cl-5a94dd79"><span class="cl-5a94682a">0</span></p></td><td class="cl-5a96d9ac"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a9700bc"><p class="cl-5a94dd78"><span class="cl-5a94682a">RJ</span></p></td><td class="cl-5a96d9a9"><p class="cl-5a94dd79"><span class="cl-5a94682a">80</span></p></td><td class="cl-5a96d9ab"><p class="cl-5a94dd79"><span class="cl-5a94682a">86.0</span></p></td><td class="cl-5a9700be"><p class="cl-5a94dd79"><span class="cl-5a94682a">12</span></p></td><td class="cl-5a96d9aa"><p class="cl-5a94dd79"><span class="cl-5a94682a">13</span></p></td><td class="cl-5a9700bd"><p class="cl-5a94dd79"><span class="cl-5a94682a">1</span></p></td><td class="cl-5a96d9ac"><p class="cl-5a94dd79"><span class="cl-5a94682a">1.1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a9700c2"><p class="cl-5a94dd78"><span class="cl-5a94682a">AL</span></p></td><td class="cl-5a9700c1"><p class="cl-5a94dd79"><span class="cl-5a94682a">74</span></p></td><td class="cl-5a9700c5"><p class="cl-5a94dd79"><span class="cl-5a94682a">71.8</span></p></td><td class="cl-5a9700c3"><p class="cl-5a94dd79"><span class="cl-5a94682a">29</span></p></td><td class="cl-5a9700bf"><p class="cl-5a94dd79"><span class="cl-5a94682a">28</span></p></td><td class="cl-5a9700c4"><p class="cl-5a94dd79"><span class="cl-5a94682a">0</span></p></td><td class="cl-5a9700c0"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a9700bc"><p class="cl-5a94dd78"><span class="cl-5a94682a">PB</span></p></td><td class="cl-5a96d9a9"><p class="cl-5a94dd79"><span class="cl-5a94682a">71</span></p></td><td class="cl-5a96d9ab"><p class="cl-5a94dd79"><span class="cl-5a94682a">31.7</span></p></td><td class="cl-5a9700be"><p class="cl-5a94dd79"><span class="cl-5a94682a">153</span></p></td><td class="cl-5a96d9aa"><p class="cl-5a94dd79"><span class="cl-5a94682a">68</span></p></td><td class="cl-5a9700bd"><p class="cl-5a94dd79"><span class="cl-5a94682a">0</span></p></td><td class="cl-5a96d9ac"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a9700bc"><p class="cl-5a94dd78"><span class="cl-5a94682a">PI</span></p></td><td class="cl-5a96d9a9"><p class="cl-5a94dd79"><span class="cl-5a94682a">71</span></p></td><td class="cl-5a96d9ab"><p class="cl-5a94dd79"><span class="cl-5a94682a">31.6</span></p></td><td class="cl-5a9700be"><p class="cl-5a94dd79"><span class="cl-5a94682a">152</span></p></td><td class="cl-5a96d9aa"><p class="cl-5a94dd79"><span class="cl-5a94682a">68</span></p></td><td class="cl-5a9700bd"><p class="cl-5a94dd79"><span class="cl-5a94682a">2</span></p></td><td class="cl-5a96d9ac"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.9</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a96d9a3"><p class="cl-5a94dd78"><span class="cl-5a94682a">SC</span></p></td><td class="cl-5a96d9a2"><p class="cl-5a94dd79"><span class="cl-5a94682a">70</span></p></td><td class="cl-5a96d9a4"><p class="cl-5a94dd79"><span class="cl-5a94682a">23.6</span></p></td><td class="cl-5a96d9a7"><p class="cl-5a94dd79"><span class="cl-5a94682a">225</span></p></td><td class="cl-5a96d9a8"><p class="cl-5a94dd79"><span class="cl-5a94682a">76</span></p></td><td class="cl-5a96d9a5"><p class="cl-5a94dd79"><span class="cl-5a94682a">1</span></p></td><td class="cl-5a96d9a6"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.3</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a96d9a3"><p class="cl-5a94dd78"><span class="cl-5a94682a">CE</span></p></td><td class="cl-5a96d9a2"><p class="cl-5a94dd79"><span class="cl-5a94682a">65</span></p></td><td class="cl-5a96d9a4"><p class="cl-5a94dd79"><span class="cl-5a94682a">35.1</span></p></td><td class="cl-5a96d9a7"><p class="cl-5a94dd79"><span class="cl-5a94682a">118</span></p></td><td class="cl-5a96d9a8"><p class="cl-5a94dd79"><span class="cl-5a94682a">64</span></p></td><td class="cl-5a96d9a5"><p class="cl-5a94dd79"><span class="cl-5a94682a">2</span></p></td><td class="cl-5a96d9a6"><p class="cl-5a94dd79"><span class="cl-5a94682a">1.1</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a96d9a3"><p class="cl-5a94dd78"><span class="cl-5a94682a">MS</span></p></td><td class="cl-5a96d9a2"><p class="cl-5a94dd79"><span class="cl-5a94682a">52</span></p></td><td class="cl-5a96d9a4"><p class="cl-5a94dd79"><span class="cl-5a94682a">65.0</span></p></td><td class="cl-5a96d9a7"><p class="cl-5a94dd79"><span class="cl-5a94682a">28</span></p></td><td class="cl-5a96d9a8"><p class="cl-5a94dd79"><span class="cl-5a94682a">35</span></p></td><td class="cl-5a96d9a5"><p class="cl-5a94dd79"><span class="cl-5a94682a">0</span></p></td><td class="cl-5a96d9a6"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a9700c2"><p class="cl-5a94dd78"><span class="cl-5a94682a">MA</span></p></td><td class="cl-5a9700c1"><p class="cl-5a94dd79"><span class="cl-5a94682a">47</span></p></td><td class="cl-5a9700c5"><p class="cl-5a94dd79"><span class="cl-5a94682a">21.6</span></p></td><td class="cl-5a9700c3"><p class="cl-5a94dd79"><span class="cl-5a94682a">171</span></p></td><td class="cl-5a9700bf"><p class="cl-5a94dd79"><span class="cl-5a94682a">78</span></p></td><td class="cl-5a9700c4"><p class="cl-5a94dd79"><span class="cl-5a94682a">0</span></p></td><td class="cl-5a9700c0"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a9700c2"><p class="cl-5a94dd78"><span class="cl-5a94682a">RN</span></p></td><td class="cl-5a9700c1"><p class="cl-5a94dd79"><span class="cl-5a94682a">41</span></p></td><td class="cl-5a9700c5"><p class="cl-5a94dd79"><span class="cl-5a94682a">24.4</span></p></td><td class="cl-5a9700c3"><p class="cl-5a94dd79"><span class="cl-5a94682a">126</span></p></td><td class="cl-5a9700bf"><p class="cl-5a94dd79"><span class="cl-5a94682a">75</span></p></td><td class="cl-5a9700c4"><p class="cl-5a94dd79"><span class="cl-5a94682a">1</span></p></td><td class="cl-5a9700c0"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.6</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a9700bc"><p class="cl-5a94dd78"><span class="cl-5a94682a">BA</span></p></td><td class="cl-5a96d9a9"><p class="cl-5a94dd79"><span class="cl-5a94682a">38</span></p></td><td class="cl-5a96d9ab"><p class="cl-5a94dd79"><span class="cl-5a94682a">9.1</span></p></td><td class="cl-5a9700be"><p class="cl-5a94dd79"><span class="cl-5a94682a">378</span></p></td><td class="cl-5a96d9aa"><p class="cl-5a94dd79"><span class="cl-5a94682a">90</span></p></td><td class="cl-5a9700bd"><p class="cl-5a94dd79"><span class="cl-5a94682a">2</span></p></td><td class="cl-5a96d9ac"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.5</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a96d9a3"><p class="cl-5a94dd78"><span class="cl-5a94682a">ES</span></p></td><td class="cl-5a96d9a2"><p class="cl-5a94dd79"><span class="cl-5a94682a">35</span></p></td><td class="cl-5a96d9a4"><p class="cl-5a94dd79"><span class="cl-5a94682a">44.3</span></p></td><td class="cl-5a96d9a7"><p class="cl-5a94dd79"><span class="cl-5a94682a">44</span></p></td><td class="cl-5a96d9a8"><p class="cl-5a94dd79"><span class="cl-5a94682a">56</span></p></td><td class="cl-5a96d9a5"><p class="cl-5a94dd79"><span class="cl-5a94682a">0</span></p></td><td class="cl-5a96d9a6"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a9700bc"><p class="cl-5a94dd78"><span class="cl-5a94682a">PA</span></p></td><td class="cl-5a96d9a9"><p class="cl-5a94dd79"><span class="cl-5a94682a">30</span></p></td><td class="cl-5a96d9ab"><p class="cl-5a94dd79"><span class="cl-5a94682a">20.7</span></p></td><td class="cl-5a9700be"><p class="cl-5a94dd79"><span class="cl-5a94682a">115</span></p></td><td class="cl-5a96d9aa"><p class="cl-5a94dd79"><span class="cl-5a94682a">79</span></p></td><td class="cl-5a9700bd"><p class="cl-5a94dd79"><span class="cl-5a94682a">0</span></p></td><td class="cl-5a96d9ac"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a9727c5"><p class="cl-5a94dd78"><span class="cl-5a94682a">RO</span></p></td><td class="cl-5a9727c3"><p class="cl-5a94dd79"><span class="cl-5a94682a">30</span></p></td><td class="cl-5a9727c4"><p class="cl-5a94dd79"><span class="cl-5a94682a">56.6</span></p></td><td class="cl-5a9727c6"><p class="cl-5a94dd79"><span class="cl-5a94682a">23</span></p></td><td class="cl-5a9727c7"><p class="cl-5a94dd79"><span class="cl-5a94682a">43</span></p></td><td class="cl-5a9700c6"><p class="cl-5a94dd79"><span class="cl-5a94682a">0</span></p></td><td class="cl-5a9727c2"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a9727c5"><p class="cl-5a94dd78"><span class="cl-5a94682a">TO</span></p></td><td class="cl-5a9727c3"><p class="cl-5a94dd79"><span class="cl-5a94682a">30</span></p></td><td class="cl-5a9727c4"><p class="cl-5a94dd79"><span class="cl-5a94682a">21.4</span></p></td><td class="cl-5a9727c6"><p class="cl-5a94dd79"><span class="cl-5a94682a">110</span></p></td><td class="cl-5a9727c7"><p class="cl-5a94dd79"><span class="cl-5a94682a">79</span></p></td><td class="cl-5a9700c6"><p class="cl-5a94dd79"><span class="cl-5a94682a">0</span></p></td><td class="cl-5a9727c2"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a9700bc"><p class="cl-5a94dd78"><span class="cl-5a94682a">AM</span></p></td><td class="cl-5a96d9a9"><p class="cl-5a94dd79"><span class="cl-5a94682a">27</span></p></td><td class="cl-5a96d9ab"><p class="cl-5a94dd79"><span class="cl-5a94682a">42.9</span></p></td><td class="cl-5a9700be"><p class="cl-5a94dd79"><span class="cl-5a94682a">36</span></p></td><td class="cl-5a96d9aa"><p class="cl-5a94dd79"><span class="cl-5a94682a">57</span></p></td><td class="cl-5a9700bd"><p class="cl-5a94dd79"><span class="cl-5a94682a">0</span></p></td><td class="cl-5a96d9ac"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a9700bc"><p class="cl-5a94dd78"><span class="cl-5a94682a">AP</span></p></td><td class="cl-5a96d9a9"><p class="cl-5a94dd79"><span class="cl-5a94682a">4</span></p></td><td class="cl-5a96d9ab"><p class="cl-5a94dd79"><span class="cl-5a94682a">23.5</span></p></td><td class="cl-5a9700be"><p class="cl-5a94dd79"><span class="cl-5a94682a">13</span></p></td><td class="cl-5a96d9aa"><p class="cl-5a94dd79"><span class="cl-5a94682a">76</span></p></td><td class="cl-5a9700bd"><p class="cl-5a94dd79"><span class="cl-5a94682a">0</span></p></td><td class="cl-5a96d9ac"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a96d9a3"><p class="cl-5a94dd78"><span class="cl-5a94682a">SE</span></p></td><td class="cl-5a96d9a2"><p class="cl-5a94dd79"><span class="cl-5a94682a">4</span></p></td><td class="cl-5a96d9a4"><p class="cl-5a94dd79"><span class="cl-5a94682a">5.3</span></p></td><td class="cl-5a96d9a7"><p class="cl-5a94dd79"><span class="cl-5a94682a">71</span></p></td><td class="cl-5a96d9a8"><p class="cl-5a94dd79"><span class="cl-5a94682a">93</span></p></td><td class="cl-5a96d9a5"><p class="cl-5a94dd79"><span class="cl-5a94682a">1</span></p></td><td class="cl-5a96d9a6"><p class="cl-5a94dd79"><span class="cl-5a94682a">1.3</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a96d9a3"><p class="cl-5a94dd78"><span class="cl-5a94682a">AC</span></p></td><td class="cl-5a96d9a2"><p class="cl-5a94dd79"><span class="cl-5a94682a">2</span></p></td><td class="cl-5a96d9a4"><p class="cl-5a94dd79"><span class="cl-5a94682a">8.7</span></p></td><td class="cl-5a96d9a7"><p class="cl-5a94dd79"><span class="cl-5a94682a">21</span></p></td><td class="cl-5a96d9a8"><p class="cl-5a94dd79"><span class="cl-5a94682a">91</span></p></td><td class="cl-5a96d9a5"><p class="cl-5a94dd79"><span class="cl-5a94682a">0</span></p></td><td class="cl-5a96d9a6"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a9700c2"><p class="cl-5a94dd78"><span class="cl-5a94682a">RR</span></p></td><td class="cl-5a9700c1"><p class="cl-5a94dd79"><span class="cl-5a94682a">2</span></p></td><td class="cl-5a9700c5"><p class="cl-5a94dd79"><span class="cl-5a94682a">12.5</span></p></td><td class="cl-5a9700c3"><p class="cl-5a94dd79"><span class="cl-5a94682a">14</span></p></td><td class="cl-5a9700bf"><p class="cl-5a94dd79"><span class="cl-5a94682a">88</span></p></td><td class="cl-5a9700c4"><p class="cl-5a94dd79"><span class="cl-5a94682a">0</span></p></td><td class="cl-5a9700c0"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.0</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-5a974edc"><p class="cl-5a94dd78"><span class="cl-5a94682a">DF</span></p></td><td class="cl-5a974edd"><p class="cl-5a94dd79"><span class="cl-5a94682a">1</span></p></td><td class="cl-5a9727ca"><p class="cl-5a94dd79"><span class="cl-5a94682a">100.0</span></p></td><td class="cl-5a9727cc"><p class="cl-5a94dd79"><span class="cl-5a94682a">0</span></p></td><td class="cl-5a9727c9"><p class="cl-5a94dd79"><span class="cl-5a94682a">0</span></p></td><td class="cl-5a9727cb"><p class="cl-5a94dd79"><span class="cl-5a94682a">0</span></p></td><td class="cl-5a9727c8"><p class="cl-5a94dd79"><span class="cl-5a94682a">0.0</span></p></td></tr></tbody></table></div>
+<p>A tabela mostra, por exemplo, que UF “RJ” possui 80 entes vinculados ao RPPS (Estado + 79 municípios) e 12 entes vinculados ao RGPS. O percentual de entes vinculados ao RPPS é de 86%.</p>
+<p>A SPREV disponibiliza um conjunto de dados denominado <code>Quantitativo de Regimes por UF</code> que traz essencialmente a informação contida na tabela acima. O conjunto de dados em referência possui as seguintes colunas: <code>UF</code>, <code>Quatidade_Regime</code> e <code>Tipo_de_Regime</code>.</p>
+<p>Apresenta-se a seguir os quatro primeiros registros deste arquivo para que o leitor possa avaliar a semelhança com a tabela acima em termos de conteúdo:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">UF</th>
+<th align="center">Quatidade_Regime</th>
+<th align="center">Tipo_de_Regime</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">AC</td>
+<td align="center">21</td>
+<td align="center">RGPS</td>
+</tr>
+<tr class="even">
+<td align="center">AC</td>
+<td align="center">2</td>
+<td align="center">RPPS</td>
+</tr>
+<tr class="odd">
+<td align="center">AL</td>
+<td align="center">29</td>
+<td align="center">RGPS</td>
+</tr>
+<tr class="even">
+<td align="center">AL</td>
+<td align="center">74</td>
+<td align="center">RPPS</td>
+</tr>
+</tbody>
+</table>
+<p>Em razão de ser possível obter o conteúdo do conjunto de dados <code>Quantitativo de Regimes por UF</code> a partir dos dados da relação dos Entes e regimes aos quais estão vinculados, o referido arquivo não será objeto de análise neste documento.</p>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introdução.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="alíquotas-de-contribuição-praticadas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["ADPrevBook.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

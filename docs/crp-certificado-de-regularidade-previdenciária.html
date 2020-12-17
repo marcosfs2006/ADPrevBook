@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 3 CRP - Certificado de Regularidade Previdenciária | Análise de Dados Previdenciários - ADPrev</title>
+  <meta name="description" content="Exemplos e sugestões de análise dos dados previdenciários dos RPPS usando o software R." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 3 CRP - Certificado de Regularidade Previdenciária | Análise de Dados Previdenciários - ADPrev" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="figuras/work_in_progress2.jpg" />
+  <meta property="og:description" content="Exemplos e sugestões de análise dos dados previdenciários dos RPPS usando o software R." />
+  <meta name="github-repo" content="marcosfs2006/ADPrevBook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 3 CRP - Certificado de Regularidade Previdenciária | Análise de Dados Previdenciários - ADPrev" />
+  
+  <meta name="twitter:description" content="Exemplos e sugestões de análise dos dados previdenciários dos RPPS usando o software R." />
+  <meta name="twitter:image" content="figuras/work_in_progress2.jpg" />
+
+<meta name="author" content="Marcos Ferreira da Silva" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="alíquotas-de-contribuição-praticadas.html"/>
+<link rel="next" href="dair-demonstrativo-das-aplicações-e-investimentos-dos-recursos.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
+<script src="libs/tabwid-1.0.0/tabwid.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análise de Dados Previdenciários - ADPrev</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nota</a></li>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i>Introdução</a><ul>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#estrutura-do-documento"><i class="fa fa-check"></i>Estrutura do documento</a></li>
+<li><a href="introdução.html#projeto-labdadosprevrpps">Projeto <strong>LabDadosPrev(“RPPS”)</strong></a></li>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#bases-de-dados-utilizadas"><i class="fa fa-check"></i>Bases de dados utilizadas</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="regime-previdenciário-atual-dos-entes-federativos.html"><a href="regime-previdenciário-atual-dos-entes-federativos.html"><i class="fa fa-check"></i><b>1</b> Regime Previdenciário Atual dos Entes Federativos</a></li>
+<li class="chapter" data-level="2" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html"><i class="fa fa-check"></i><b>2</b> Alíquotas de contribuição praticadas</a><ul>
+<li class="chapter" data-level="2.1" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html#análise-exploratória"><i class="fa fa-check"></i><b>2.1</b> Análise exploratória</a></li>
+<li class="chapter" data-level="2.2" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html#quantitativo-de-rpps-com-segregação-de-massas"><i class="fa fa-check"></i><b>2.2</b> Quantitativo de RPPS com segregação de massas</a></li>
+<li class="chapter" data-level="2.3" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html#adequação-das-alíquotas-à-ec-10319"><i class="fa fa-check"></i><b>2.3</b> Adequação das alíquotas à EC 103/19</a></li>
+<li class="chapter" data-level="2.4" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html#alíquota-do-ente-inferior-à-do-servidor-ativo"><i class="fa fa-check"></i><b>2.4</b> Alíquota do Ente inferior à do servidor ativo</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html"><i class="fa fa-check"></i><b>3</b> CRP - Certificado de Regularidade Previdenciária</a><ul>
+<li class="chapter" data-level="3.1" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#análise-exploratória-preliminar"><i class="fa fa-check"></i><b>3.1</b> Análise exploratória preliminar</a></li>
+<li class="chapter" data-level="3.2" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#análise-restrita-aos-rpps"><i class="fa fa-check"></i><b>3.2</b> Análise restrita aos RPPS</a></li>
+<li class="chapter" data-level="3.3" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#análise-segundo-a-quantidade-de-dias-vencidos"><i class="fa fa-check"></i><b>3.3</b> Análise segundo a quantidade de dias vencidos</a></li>
+<li class="chapter" data-level="3.4" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#efeito-da-constitucionalização-do-crp"><i class="fa fa-check"></i><b>3.4</b> Efeito da constitucionalização do CRP</a></li>
+<li class="chapter" data-level="3.5" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#mapas-com-dados-dos-crp"><i class="fa fa-check"></i><b>3.5</b> Mapas com dados dos CRP</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dair-demonstrativo-das-aplicações-e-investimentos-dos-recursos.html"><a href="dair-demonstrativo-das-aplicações-e-investimentos-dos-recursos.html"><i class="fa fa-check"></i><b>4</b> DAIR - Demonstrativo das Aplicações e Investimentos dos Recursos</a></li>
+<li class="chapter" data-level="5" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><i class="fa fa-check"></i><b>5</b> DIPR - Demonstrativo de Informações Previdenciárias e Repasses</a></li>
+<li class="chapter" data-level="6" data-path="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html"><a href="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html"><i class="fa fa-check"></i><b>6</b> DRAA - Demonstrativo de Resultados da Avaliação Atuarial</a></li>
+<li class="chapter" data-level="7" data-path="parcelamentos.html"><a href="parcelamentos.html"><i class="fa fa-check"></i><b>7</b> Parcelamentos</a></li>
+<li class="chapter" data-level="8" data-path="isp-indicador-de-situação-previdenticária.html"><a href="isp-indicador-de-situação-previdenticária.html"><i class="fa fa-check"></i><b>8</b> ISP - Indicador de Situação Previdenticária</a></li>
+<li class="chapter" data-level="9" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html"><i class="fa fa-check"></i><b>9</b> Fluxo Atuarial</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Feito com o pacote bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise de Dados Previdenciários - ADPrev</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="crp---certificado-de-regularidade-previdenciária" class="section level1">
+<h1><span class="header-section-number">Capítulo 3</span> CRP - Certificado de Regularidade Previdenciária</h1>
+<p>Este capítulo objetiva mostrar algumas possibilidades de análise em relação aos dados do <a href="http://www.previdencia.gov.br/perguntas-frequentes/v-certificado-de-regularidade-previdenciaria/">CRP</a></p>
+<p>A primeira coisa a ser feita, como sempre, é realizar a importação e o pré-processamento dos dados:</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb58-1"></a>crp &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;dados/5-validade-crp_atualizacao_de_ago_set_2020_extracao_em_2020-10-06t18_25_59.xlsx&quot;</span>)</span>
+<span id="cb58-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb58-2"></a></span>
+<span id="cb58-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb58-3"></a><span class="kw">head</span>(crp)</span></code></pre></div>
+<pre><code># A tibble: 6 x 8
+  UF    ENTE            `NR CRP`      `DATA DE EMISSÃO` `DATA DE VALIDADE` `CRP JUDICIAL` `TIPO DE REGIME` `SITUAÇÃO DO CRP`
+  &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;         &lt;chr&gt;             &lt;chr&gt;              &lt;chr&gt;          &lt;chr&gt;            &lt;chr&gt;            
+1 AC    Acrelândia      980643-185126 17/04/2020        14/10/2020         NÃO            RGPS             VÁLIDO           
+2 AC    Assis Brasil    980157-186981 24/06/2020        21/12/2020         NÃO            RGPS             VÁLIDO           
+3 AC    Brasiléia       980105-185377 28/04/2020        25/10/2020         NÃO            RGPS             VÁLIDO           
+4 AC    Bujari          980645-188197 15/08/2020        11/02/2021         NÃO            RGPS             VÁLIDO           
+5 AC    Capixaba        980647-188445 19/08/2020        15/02/2021         NÃO            RGPS             VÁLIDO           
+6 AC    Cruzeiro do Sul 980107-187340 07/07/2020        03/01/2021         NÃO            RGPS             VÁLIDO           </code></pre>
+<p>O conjunto de dados contempla tanto os entes vinculados ao RGPS quanto ao RPPS e fornece algumas informações sobre o CRP.</p>
+<p>Para facilitar a análise posterior dos dados as colunas serão renomeadas e as variáveis indicativas de datas serão convertidas para um formato de data.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb60-1"></a><span class="co"># Alterar nomes das variáveis</span></span>
+<span id="cb60-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb60-2"></a></span>
+<span id="cb60-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb60-3"></a>crp &lt;-<span class="st"> </span>crp <span class="op">%&gt;%</span></span>
+<span id="cb60-4"><a href="crp-certificado-de-regularidade-previdenciária.html#cb60-4"></a><span class="st">        </span><span class="kw">rename</span>(<span class="dt">uf =</span> UF,</span>
+<span id="cb60-5"><a href="crp-certificado-de-regularidade-previdenciária.html#cb60-5"></a>               <span class="dt">ente =</span> ENTE,</span>
+<span id="cb60-6"><a href="crp-certificado-de-regularidade-previdenciária.html#cb60-6"></a>               <span class="dt">num_crp =</span> <span class="st">`</span><span class="dt">NR CRP</span><span class="st">`</span>,</span>
+<span id="cb60-7"><a href="crp-certificado-de-regularidade-previdenciária.html#cb60-7"></a>               <span class="dt">dt_emissao =</span> <span class="st">`</span><span class="dt">DATA DE EMISSÃO</span><span class="st">`</span>,</span>
+<span id="cb60-8"><a href="crp-certificado-de-regularidade-previdenciária.html#cb60-8"></a>               <span class="dt">dt_validade =</span> <span class="st">`</span><span class="dt">DATA DE VALIDADE</span><span class="st">`</span>,</span>
+<span id="cb60-9"><a href="crp-certificado-de-regularidade-previdenciária.html#cb60-9"></a>               <span class="dt">judicial =</span> <span class="st">`</span><span class="dt">CRP JUDICIAL</span><span class="st">`</span>,</span>
+<span id="cb60-10"><a href="crp-certificado-de-regularidade-previdenciária.html#cb60-10"></a>               <span class="dt">tipo_regime =</span> <span class="st">`</span><span class="dt">TIPO DE REGIME</span><span class="st">`</span>,</span>
+<span id="cb60-11"><a href="crp-certificado-de-regularidade-previdenciária.html#cb60-11"></a>               <span class="dt">situacao =</span> <span class="st">`</span><span class="dt">SITUAÇÃO DO CRP</span><span class="st">`</span>)</span>
+<span id="cb60-12"><a href="crp-certificado-de-regularidade-previdenciária.html#cb60-12"></a></span>
+<span id="cb60-13"><a href="crp-certificado-de-regularidade-previdenciária.html#cb60-13"></a><span class="co"># Converter datas para o formato de datas</span></span>
+<span id="cb60-14"><a href="crp-certificado-de-regularidade-previdenciária.html#cb60-14"></a>crp &lt;-<span class="st"> </span>crp <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb60-15"><a href="crp-certificado-de-regularidade-previdenciária.html#cb60-15"></a><span class="st">        </span><span class="kw">mutate</span>(<span class="dt">dt_emissao  =</span> <span class="kw">dmy</span>(dt_emissao),</span>
+<span id="cb60-16"><a href="crp-certificado-de-regularidade-previdenciária.html#cb60-16"></a>               <span class="dt">dt_validade =</span> <span class="kw">dmy</span>(dt_validade))</span>
+<span id="cb60-17"><a href="crp-certificado-de-regularidade-previdenciária.html#cb60-17"></a></span>
+<span id="cb60-18"><a href="crp-certificado-de-regularidade-previdenciária.html#cb60-18"></a><span class="kw">head</span>(crp)</span></code></pre></div>
+<pre><code># A tibble: 6 x 8
+  uf    ente            num_crp       dt_emissao dt_validade judicial tipo_regime situacao
+  &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;         &lt;date&gt;     &lt;date&gt;      &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;   
+1 AC    Acrelândia      980643-185126 2020-04-17 2020-10-14  NÃO      RGPS        VÁLIDO  
+2 AC    Assis Brasil    980157-186981 2020-06-24 2020-12-21  NÃO      RGPS        VÁLIDO  
+3 AC    Brasiléia       980105-185377 2020-04-28 2020-10-25  NÃO      RGPS        VÁLIDO  
+4 AC    Bujari          980645-188197 2020-08-15 2021-02-11  NÃO      RGPS        VÁLIDO  
+5 AC    Capixaba        980647-188445 2020-08-19 2021-02-15  NÃO      RGPS        VÁLIDO  
+6 AC    Cruzeiro do Sul 980107-187340 2020-07-07 2021-01-03  NÃO      RGPS        VÁLIDO  </code></pre>
+<p>Como é possível verificar, a base de dados possui 8 variáveis. Embora os nomes das varáveis dêem uma boa indicação de seu conteúdo apresenta-se, a seguir, a descrição do conteúdo de cada coluna.</p>
+<table>
+<colgroup>
+<col width="23%" />
+<col width="76%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>variável</th>
+<th>descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>uf</strong></td>
+<td>sigla da unidade da federação na qual o RPPS está localizado</td>
+</tr>
+<tr class="even">
+<td><strong>ente</strong></td>
+<td>nome do Ente (Estados, Municipios ou Distrito Federal)</td>
+</tr>
+<tr class="odd">
+<td><strong>num_crp</strong></td>
+<td>número do CRP</td>
+</tr>
+<tr class="even">
+<td><strong>dt_emissao</strong></td>
+<td>data de emissão do CRP</td>
+</tr>
+<tr class="odd">
+<td><strong>dt_validade</strong></td>
+<td>data de validade do CRP (o CRP tem validade de 6 meses a partir de sua emissão)</td>
+</tr>
+<tr class="even">
+<td><strong>judicial</strong></td>
+<td>indica se o CRP foi obtido por via judicial - <code>SIM</code>, <code>NÂO</code></td>
+</tr>
+<tr class="odd">
+<td><strong>tipo_regime</strong></td>
+<td>tipo de regime previdenciário ao qual o Ente está vinculado - <code>RGPS</code> ou <code>RPPS</code></td>
+</tr>
+<tr class="even">
+<td><strong>situacao</strong></td>
+<td>situação do CRP - <code>VÁLIDO</code> ou <code>VENCIDO</code></td>
+</tr>
+</tbody>
+</table>
+<p>Com essa base de dados é possível identificar a situação do Ente com relação à validade do CRP e também de calcular algumas estatísticas.</p>
+<div id="análise-exploratória-preliminar" class="section level2">
+<h2><span class="header-section-number">3.1</span> Análise exploratória preliminar</h2>
+<p>Pode-se começar por verificar quais valores as variáveis <code>judicial</code>, <code>tipo_regime</code> e <code>situacao</code> podem assumir.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb62-1"></a>crp <span class="op">%&gt;%</span></span>
+<span id="cb62-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb62-2"></a><span class="st">  </span><span class="kw">select</span>(tipo_regime, situacao, judicial) <span class="op">%&gt;%</span></span>
+<span id="cb62-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb62-3"></a><span class="st">  </span><span class="kw">map</span>(unique)</span></code></pre></div>
+<pre><code>$tipo_regime
+[1] &quot;RGPS&quot;             &quot;RPPS&quot;             &quot;RPPS em extincao&quot;
+
+$situacao
+[1] &quot;VÁLIDO&quot;  &quot;VENCIDO&quot;
+
+$judicial
+[1] &quot;NÃO&quot; &quot;SIM&quot;</code></pre>
+<p>A saída indica os possíveis valores de cada uma das três variáveis.</p>
+<p>Um ponto importante é que a classificação do CRP em <code>VÁLIDO</code> ou <code>VENCIDO</code> é feita tomando-se como referência a data de extração dos dados no sistema CADPREV. Os dados do CRP ora em análise foi extraído em <strong>2020-10-06</strong> conforme indicado no nome do arquivo. Assim, se a data de validade do CRP é posterior ou igual a essa data, ele é classificado como <code>VÁLIDO</code> caso contrário como <code>VENCIDO</code>.</p>
+<p>No Capítulo 1 foi apresentado o quantitativo dos Entes vinculados ao RGPS e ao RPPS. Talvez seja interessante verificar se, proporcionalmente, tem-se mais CRP vencidos no RGPS ou no RPPS.</p>
+<p>Antes de prosseguir, vale a pena verificar a distribuição dos Entes entre os regimes e comparar com o que foi obtido no Capítulo 1:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb64-1"></a>crp <span class="op">%&gt;%</span></span>
+<span id="cb64-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb64-2"></a><span class="st">  </span><span class="kw">count</span>(tipo_regime) <span class="op">%&gt;%</span></span>
+<span id="cb64-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb64-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="st">`</span><span class="dt">%</span><span class="st">`</span> =<span class="st">  </span><span class="kw">round</span>(n <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dv">2</span>)) </span></code></pre></div>
+<pre><code># A tibble: 3 x 3
+  tipo_regime          n   `%`
+  &lt;chr&gt;            &lt;int&gt; &lt;dbl&gt;
+1 RGPS              3418 61.1 
+2 RPPS              2152 38.5 
+3 RPPS em extincao    21  0.38</code></pre>
+<p>Neste arquivo, tem-se 3.418 Entes vinculados ao RGPS o que confere com o valor obtido no Capítulo 1, Mas o quantitativo de Entes vinculados ao RPPS diverge um pouco: 2.152 contra 2.156 do Capítulo 1. Tem-se aqui 4 RPPS a menos. O quantitativo de RPPS em extinção também confere.</p>
+<p>A seguir calcula-se o quantitativo de entes vinculados a cada regime (<code>n</code>), a quantidade de entes com CRP vencido em cada regime (<code>n_vencido</code>) e o percentual (<code>%_vencido</code>):</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb66-1"></a>crp <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb66-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb66-2"></a><span class="st">  </span><span class="kw">group_by</span>(tipo_regime) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb66-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb66-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
+<span id="cb66-4"><a href="crp-certificado-de-regularidade-previdenciária.html#cb66-4"></a>            <span class="dt">n_vencido =</span> <span class="kw">sum</span>(<span class="kw">ifelse</span>(situacao <span class="op">==</span><span class="st"> &quot;VENCIDO&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)),</span>
+<span id="cb66-5"><a href="crp-certificado-de-regularidade-previdenciária.html#cb66-5"></a>            <span class="st">`</span><span class="dt">%_vencido</span><span class="st">`</span> =<span class="st"> </span><span class="kw">round</span>( n_vencido <span class="op">/</span><span class="st"> </span>n <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dv">2</span>))</span></code></pre></div>
+<pre><code># A tibble: 3 x 4
+  tipo_regime          n n_vencido `%_vencido`
+  &lt;chr&gt;            &lt;int&gt;     &lt;dbl&gt;       &lt;dbl&gt;
+1 RGPS              3418       726        21.2
+2 RPPS              2152       663        30.8
+3 RPPS em extincao    21         7        33.3</code></pre>
+<p>O resultado indica que o percentual de entes com CRP vencido é elevado em ambos os regimes, mas o maior percentual está no RPPS (30,81%).</p>
+<p>Uma checagem sempre oportuna é verificar se não existe duplicidade de CRP:</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb68-1"></a><span class="kw">any</span>(<span class="kw">duplicated</span>(crp<span class="op">$</span>num_crp))</span></code></pre></div>
+<pre><code>[1] FALSE</code></pre>
+<p>O resultado indica não existir CRP duplicado na base. Em extrações mais antigas desta base de dados essa situação ocorria.</p>
+<p>Uma coisa que se sabe em relação a esta base de dados é que, se a data de validade do CRP coincide com a data de extração dos dados, o CRP é considerado vencido o que não é correto. A conferência pode ser feita da seguinte forma:</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb70-1"></a>dt_extracao_dados &lt;-<span class="st"> &quot;2020-10-06&quot;</span></span>
+<span id="cb70-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb70-2"></a></span>
+<span id="cb70-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb70-3"></a>crp <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb70-4"><a href="crp-certificado-de-regularidade-previdenciária.html#cb70-4"></a><span class="st">  </span><span class="kw">filter</span>(dt_validade <span class="op">==</span><span class="st"> </span><span class="kw">ymd</span>(dt_extracao_dados)) </span></code></pre></div>
+<pre><code># A tibble: 0 x 8
+# ... with 8 variables: uf &lt;chr&gt;, ente &lt;chr&gt;, num_crp &lt;chr&gt;, dt_emissao &lt;date&gt;, dt_validade &lt;date&gt;, judicial &lt;chr&gt;, tipo_regime &lt;chr&gt;, situacao &lt;chr&gt;</code></pre>
+<p>Nenhuma data de validade coincidiu com a data de extração da base de dados que, como já mencionado acima, deu-se em <code>06/10/2020</code>.</p>
+</div>
+<div id="análise-restrita-aos-rpps" class="section level2">
+<h2><span class="header-section-number">3.2</span> Análise restrita aos RPPS</h2>
+<p>Nesta seção as análises serão restritas aos RPPS <strong>ativos</strong>, sendo então necessário excluir da base de dados os registros relativos ao RGPS e aos RPPS em extinção.</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb72-1"></a>crp_rpps &lt;-<span class="st"> </span>crp <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb72-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb72-2"></a><span class="st">              </span><span class="kw">filter</span>(tipo_regime <span class="op">==</span><span class="st"> &quot;RPPS&quot;</span>)</span></code></pre></div>
+<p>Agora é possível responder a algumas questões: por exemplo: quantos entes com CRP vencido existe em cada UF? Quanto esse quantitativo representa do total de RPPS existentes na UF?</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb73-1"></a>crp_rpps <span class="op">%&gt;%</span></span>
+<span id="cb73-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb73-2"></a><span class="st">  </span><span class="kw">group_by</span>(uf) <span class="op">%&gt;%</span></span>
+<span id="cb73-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb73-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n_rpps =</span> <span class="kw">n</span>(),</span>
+<span id="cb73-4"><a href="crp-certificado-de-regularidade-previdenciária.html#cb73-4"></a>            <span class="dt">n_crp_vencido =</span> <span class="kw">sum</span>(situacao <span class="op">==</span><span class="st"> &quot;VENCIDO&quot;</span>),</span>
+<span id="cb73-5"><a href="crp-certificado-de-regularidade-previdenciária.html#cb73-5"></a>            <span class="st">`</span><span class="dt">%_crp_vencido</span><span class="st">`</span> =<span class="st"> </span><span class="kw">round</span>(n_crp_vencido <span class="op">/</span><span class="st"> </span>n_rpps <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb73-6"><a href="crp-certificado-de-regularidade-previdenciária.html#cb73-6"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(<span class="st">`</span><span class="dt">%_crp_vencido</span><span class="st">`</span>)) </span></code></pre></div>
+<pre><code># A tibble: 27 x 4
+   uf    n_rpps n_crp_vencido `%_crp_vencido`
+   &lt;chr&gt;  &lt;int&gt;         &lt;int&gt;           &lt;dbl&gt;
+ 1 PA        28            17            60.7
+ 2 RN        41            22            53.7
+ 3 AL        74            39            52.7
+ 4 RR         2             1            50  
+ 5 BA        38            18            47.4
+ 6 GO       171            81            47.4
+ 7 RJ        79            37            46.8
+ 8 TO        30            12            40  
+ 9 PI        71            28            39.4
+10 MG       221            84            38.0
+# ... with 17 more rows</code></pre>
+<p>Em boa parte dos estados tem-se um elevado percentual de entes com o CRP vencido.</p>
+<p>Também poderíamos incluir na tabela acima a quantidade de entes com CRP obtido pela via judicial e qual o percentual em relação ao total de entes na UF.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb75-1"></a>crp_rpps <span class="op">%&gt;%</span></span>
+<span id="cb75-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb75-2"></a><span class="st">  </span><span class="kw">group_by</span>(uf) <span class="op">%&gt;%</span></span>
+<span id="cb75-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb75-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n_rpps =</span> <span class="kw">n</span>(),</span>
+<span id="cb75-4"><a href="crp-certificado-de-regularidade-previdenciária.html#cb75-4"></a>            <span class="dt">n_crp_vencido =</span> <span class="kw">sum</span>(situacao <span class="op">==</span><span class="st"> &quot;VENCIDO&quot;</span>),</span>
+<span id="cb75-5"><a href="crp-certificado-de-regularidade-previdenciária.html#cb75-5"></a>            <span class="st">`</span><span class="dt">%_crp_vencido</span><span class="st">`</span> =<span class="st"> </span><span class="kw">round</span>(n_crp_vencido <span class="op">/</span><span class="st"> </span>n_rpps <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb75-6"><a href="crp-certificado-de-regularidade-previdenciária.html#cb75-6"></a>            <span class="dt">n_crp_judicial =</span> <span class="kw">sum</span>(judicial <span class="op">==</span><span class="st"> &quot;SIM&quot;</span>),</span>
+<span id="cb75-7"><a href="crp-certificado-de-regularidade-previdenciária.html#cb75-7"></a>            <span class="st">`</span><span class="dt">%_crp_judicial</span><span class="st">`</span> =<span class="st"> </span><span class="kw">round</span>(n_crp_judicial <span class="op">/</span><span class="st"> </span>n_rpps <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb75-8"><a href="crp-certificado-de-regularidade-previdenciária.html#cb75-8"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(<span class="st">`</span><span class="dt">%_crp_judicial</span><span class="st">`</span>)) </span></code></pre></div>
+<pre><code># A tibble: 27 x 6
+   uf    n_rpps n_crp_vencido `%_crp_vencido` n_crp_judicial `%_crp_judicial`
+   &lt;chr&gt;  &lt;int&gt;         &lt;int&gt;           &lt;dbl&gt;          &lt;int&gt;            &lt;dbl&gt;
+ 1 DF         1             0             0                1            100  
+ 2 SE         4             0             0                4            100  
+ 3 AM        27             6            22.2             23             85.2
+ 4 MA        47            16            34.0             39             83.0
+ 5 PE       149            33            22.2            120             80.5
+ 6 AP         4             1            25                3             75  
+ 7 PB        71            24            33.8             48             67.6
+ 8 BA        38            18            47.4             24             63.2
+ 9 AL        74            39            52.7             43             58.1
+10 CE        65            19            29.2             36             55.4
+# ... with 17 more rows</code></pre>
+<p>Na tabela acima apresenta-se apenas um resumo quantitativo mostrando a quantidade de entes com CRP vencido e judicial.</p>
+<p>Caso haja a necessidade de identificar os Entes em uma Unidade da Federação com o CRP vencido ou com CRP judicial, basta aplicar um filtro. Exemplo: RPPS do ERJ com CRP vencido:</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb77-1"></a>crp_rpps <span class="op">%&gt;%</span></span>
+<span id="cb77-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb77-2"></a><span class="st">  </span><span class="kw">filter</span>(uf <span class="op">==</span><span class="st"> &quot;RJ&quot;</span>, situacao <span class="op">==</span><span class="st"> &quot;VENCIDO&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb77-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb77-3"></a><span class="st">  </span><span class="kw">select</span>(ente, num_crp, dt_emissao, dt_validade) <span class="op">%&gt;%</span></span>
+<span id="cb77-4"><a href="crp-certificado-de-regularidade-previdenciária.html#cb77-4"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(dt_validade))</span></code></pre></div>
+<pre><code># A tibble: 37 x 4
+   ente                                num_crp       dt_emissao dt_validade
+   &lt;chr&gt;                               &lt;chr&gt;         &lt;date&gt;     &lt;date&gt;     
+ 1 Resende                             985883-184152 2020-03-29 2020-09-25 
+ 2 Cantagalo                           985821-184096 2020-03-24 2020-09-20 
+ 3 Cardoso Moreira                     982915-184095 2020-03-24 2020-09-20 
+ 4 Governo do Estado do Rio de Janeiro 953001-183938 2020-03-16 2020-09-12 
+ 5 São Pedro da Aldeia                 985903-183455 2020-02-28 2020-08-26 
+ 6 Pinheiral                           980778-182628 2020-01-30 2020-07-28 
+ 7 Cabo Frio                           985813-181873 2019-12-27 2020-06-24 
+ 8 Rio das Ostras                      982921-181607 2019-12-16 2020-06-13 
+ 9 Quissamã                            986007-180222 2019-10-25 2020-04-22 
+10 Saquarema                           985909-179861 2019-10-15 2020-04-12 
+# ... with 27 more rows</code></pre>
+<p>Outro exemplo: RPPS do ERJ com CRP válido mas judicial:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb79-1"></a>crp_rpps <span class="op">%&gt;%</span></span>
+<span id="cb79-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb79-2"></a><span class="st">  </span><span class="kw">filter</span>(uf <span class="op">==</span><span class="st"> &quot;RJ&quot;</span>, judicial <span class="op">==</span><span class="st"> &quot;SIM&quot;</span>, situacao <span class="op">==</span><span class="st"> &quot;VÁLIDO&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb79-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb79-3"></a><span class="st">  </span><span class="kw">select</span>(ente, num_crp, dt_emissao, dt_validade) <span class="op">%&gt;%</span></span>
+<span id="cb79-4"><a href="crp-certificado-de-regularidade-previdenciária.html#cb79-4"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(dt_validade)) </span></code></pre></div>
+<pre><code># A tibble: 16 x 4
+   ente                 num_crp       dt_emissao dt_validade
+   &lt;chr&gt;                &lt;chr&gt;         &lt;date&gt;     &lt;date&gt;     
+ 1 Teresópolis          985915-189024 2020-09-11 2021-03-10 
+ 2 Miracema             985859-188827 2020-09-02 2021-03-01 
+ 3 Angra dos Reis       985801-188695 2020-08-30 2021-02-26 
+ 4 São Gonçalo          985897-188148 2020-08-12 2021-02-08 
+ 5 Itaguaí              985839-187743 2020-07-29 2021-01-25 
+ 6 Rio de Janeiro       986001-187398 2020-07-09 2021-01-05 
+ 7 Aperibé              982919-187295 2020-07-07 2021-01-03 
+ 8 Nilópolis            985863-186855 2020-06-18 2020-12-15 
+ 9 Volta Redonda        985925-186497 2020-06-06 2020-12-03 
+10 Barra Mansa          985807-186110 2020-05-26 2020-11-22 
+11 Seropédica           980786-186140 2020-05-26 2020-11-22 
+12 Barra do Piraí       985805-185508 2020-05-03 2020-10-30 
+13 Itaboraí             985837-185370 2020-04-28 2020-10-25 
+14 São Fidélis          985895-185382 2020-04-28 2020-10-25 
+15 Cachoeiras de Macacu 985815-185169 2020-04-19 2020-10-16 
+16 Mangaratiba          985851-185064 2020-04-15 2020-10-12 </code></pre>
+<p>Para fechar esta seção, pode-se verificar se existe alguma relação entre as variáveis <code>situacao</code> e <code>judicial</code>. Sendo estas variáveis qualitativas uma tabela de contingência pode ajudar nessa investigação:</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb81-1"></a><span class="kw">with</span>(crp_rpps,</span>
+<span id="cb81-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb81-2"></a>     <span class="kw">table</span>(judicial, situacao)) </span></code></pre></div>
+<pre><code>        situacao
+judicial VÁLIDO VENCIDO
+     NÃO    970     547
+     SIM    519     116</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb83-1"></a><span class="kw">with</span>(crp_rpps,</span>
+<span id="cb83-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb83-2"></a>     <span class="kw">table</span>(judicial, situacao)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb83-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb83-3"></a><span class="kw">mosaicplot</span>(<span class="dt">color =</span> <span class="kw">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;lightgreen&quot;</span>))  </span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<p>Para visualizar a tabela de contingência elaborada acima, apresenta-se um gráfico de mosaico, que confirma que a judicialização é uma boa estratégia para evitar o CRP vencido.</p>
+<p>A proporção de CRP vencidos (em verde) é maior (praticamente o dobro) entre os não judicializados que nos judicializados.</p>
+</div>
+<div id="análise-segundo-a-quantidade-de-dias-vencidos" class="section level2">
+<h2><span class="header-section-number">3.3</span> Análise segundo a quantidade de dias vencidos</h2>
+<p>A partir da variável <code>dt_validade</code> e da data de extração dos dados, pode-se criar na base de dados uma nova variável contendo a quantidade de dias decorridos da data de validade do CRP até a data de extração dos dados. Isso é feito no código a seguir:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb84-1"></a>crp_rpps &lt;-<span class="st"> </span>crp_rpps <span class="op">%&gt;%</span></span>
+<span id="cb84-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb84-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">n_dias =</span> <span class="kw">as.numeric</span>(<span class="kw">difftime</span>(<span class="kw">ymd</span>(dt_extracao_dados), dt_validade, <span class="dt">units =</span> <span class="st">&quot;days&quot;</span>)))</span>
+<span id="cb84-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb84-3"></a></span>
+<span id="cb84-4"><a href="crp-certificado-de-regularidade-previdenciária.html#cb84-4"></a><span class="kw">head</span>(crp_rpps)</span></code></pre></div>
+<pre><code># A tibble: 6 x 9
+  uf    ente                      num_crp       dt_emissao dt_validade judicial tipo_regime situacao n_dias
+  &lt;chr&gt; &lt;chr&gt;                     &lt;chr&gt;         &lt;date&gt;     &lt;date&gt;      &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt;
+1 AC    Governo do Estado do Acre 931001-185475 2020-04-30 2020-10-27  SIM      RPPS        VÁLIDO      -21
+2 AC    Rio Branco                980139-185330 2020-04-23 2020-10-20  NÃO      RPPS        VÁLIDO      -14
+3 AL    Arapiraca                 982705-187383 2020-07-09 2021-01-05  NÃO      RPPS        VÁLIDO      -91
+4 AL    Atalaia                   982707-112197 2013-03-18 2013-09-14  NÃO      RPPS        VENCIDO    2579
+5 AL    Barra de Santo Antônio    982709-186655 2020-06-13 2020-12-10  SIM      RPPS        VÁLIDO      -65
+6 AL    Batalha                   982713-11816  2002-11-29 2003-05-28  NÃO      RPPS        VENCIDO    6341</code></pre>
+<p>Essa nova variável apresenta valores inteiros positivos para os CRP vencidos, indicando a quantidade de dias decorridos da data de vencimento até a data de extração dos dados. Por outro lado, os inteiros negativos indicam a quantidade de dias a decorrer da data de extração até a data de validade, estando assim associados aos RPPS em situação regular.</p>
+<p>Pode-se fazer algumas análises com essa nova variável. Por exemplo, pode-se observar a distribuição da quantidade de dias para os CRP vencidos <strong>a mais de 30 dias</strong>.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb86-1"></a>crp_rpps <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb86-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb86-2"></a><span class="st">  </span><span class="kw">filter</span>(n_dias <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>) <span class="op">%&gt;%</span><span class="st">   </span><span class="co"># Acima de 30 dias de vencimento</span></span>
+<span id="cb86-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb86-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>n_dias)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb86-4"><a href="crp-certificado-de-regularidade-previdenciária.html#cb86-4"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color=</span><span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;lightblue&quot;</span>) <span class="op">+</span></span>
+<span id="cb86-5"><a href="crp-certificado-de-regularidade-previdenciária.html#cb86-5"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p>E por UF?</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb87-1"></a>crp_rpps <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb87-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb87-2"></a><span class="st">  </span><span class="kw">filter</span>(n_dias <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>) <span class="op">%&gt;%</span><span class="st">    </span><span class="co"># Acima de 30 dias de vencimento</span></span>
+<span id="cb87-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb87-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>uf, <span class="dt">y=</span>n_dias)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb87-4"><a href="crp-certificado-de-regularidade-previdenciária.html#cb87-4"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">outlier.shape =</span> <span class="ot">NA</span>) <span class="op">+</span></span>
+<span id="cb87-5"><a href="crp-certificado-de-regularidade-previdenciária.html#cb87-5"></a><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">color=</span><span class="st">&quot;gray&quot;</span>) <span class="op">+</span></span>
+<span id="cb87-6"><a href="crp-certificado-de-regularidade-previdenciária.html#cb87-6"></a><span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">365</span>, <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
+<span id="cb87-7"><a href="crp-certificado-de-regularidade-previdenciária.html#cb87-7"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p>O gráfico apresenta os dias de atraso (superiores a 30 dias) do CRP por unidade da federação. A linha azul indica a marca dos 365 dias.</p>
+<p>É possível ver que os CRP vencidos a mais tempo estão na casa dos 6000 dias.</p>
+<p>A base de dados não contém informações sobre o porte do RPPS de forma a que se possa avaliar se o CRP vencido tem alguma relação com essa variável. Não seria difícil trazer essa informação para a base de dados, mas considerando que o objetivo aqui é trabalhar apenas os dados do CRP, essa verificação será deixada para capítulo posterior.</p>
+<p>Para identificar os RPPS que estão com determinada quantidade de dias em atraso, é só aplicar um filtro na base de dados. Quais os RPPS que integram os 10% que estão com os maiores dias de atraso?</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb88-1"></a>percentil_<span class="dv">90</span> &lt;-<span class="st"> </span><span class="kw">quantile</span>(crp_rpps<span class="op">$</span>n_dias[crp_rpps<span class="op">$</span>n_dias <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>], <span class="dt">probs =</span> <span class="fl">0.9</span>)</span>
+<span id="cb88-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb88-2"></a></span>
+<span id="cb88-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb88-3"></a>crp_rpps <span class="op">%&gt;%</span></span>
+<span id="cb88-4"><a href="crp-certificado-de-regularidade-previdenciária.html#cb88-4"></a><span class="st">  </span><span class="kw">filter</span>(n_dias <span class="op">&gt;=</span><span class="st"> </span>percentil_<span class="dv">90</span>) <span class="op">%&gt;%</span></span>
+<span id="cb88-5"><a href="crp-certificado-de-regularidade-previdenciária.html#cb88-5"></a><span class="st">  </span><span class="kw">select</span>(ente, uf, dt_emissao, dt_validade, n_dias) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb88-6"><a href="crp-certificado-de-regularidade-previdenciária.html#cb88-6"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(n_dias))</span></code></pre></div>
+<pre><code># A tibble: 45 x 5
+   ente                  uf    dt_emissao dt_validade n_dias
+   &lt;chr&gt;                 &lt;chr&gt; &lt;date&gt;     &lt;date&gt;       &lt;dbl&gt;
+ 1 Barreiras do Piauí    PI    2001-07-24 2002-01-20    6834
+ 2 Rochedo de Minas      MG    2002-06-17 2002-12-14    6506
+ 3 Miraí                 MG    2002-11-28 2003-05-27    6342
+ 4 Batalha               AL    2002-11-29 2003-05-28    6341
+ 5 Santo Antônio do Tauá PA    2002-12-02 2003-05-31    6338
+ 6 Belém                 AL    2002-12-06 2003-06-04    6334
+ 7 Antônio Gonçalves     BA    2003-01-20 2003-07-19    6289
+ 8 Pinheiro Machado      RS    2003-01-29 2003-07-28    6280
+ 9 Piau                  MG    2003-04-07 2003-10-04    6212
+10 Palestina             AL    2003-06-01 2003-11-28    6157
+# ... with 35 more rows</code></pre>
+<p>A partir da nova variável, pode-se criar uma outra variável contendo um escalonamento da variável <code>n_dias</code> de forma a classificar os Entes em função da quantidade de dias em que os CRP estão vencidos.</p>
+<p>Por exemplo, seria possível adotar a seguinte classificação: “a vencer”, “1 a 30 dias”, “31 a 60 dias”, “61 a 90 dias”, “91 a 180 dias”, “181 a 365 dias”, “1 a 5 anos” e “mais de 5 anos”.</p>
+<p>Para fazer esse escalonamento, será criada uma nova variável cujo nome será <code>categoria</code> que irá classificar o Ente de acordo com o nível de “severidade” do vencimento do CRP.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb90-1"></a>crp_rpps &lt;-<span class="st"> </span>crp_rpps <span class="op">%&gt;%</span></span>
+<span id="cb90-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb90-2"></a><span class="st">        </span><span class="kw">mutate</span>(<span class="dt">categoria =</span> <span class="kw">cut</span>(n_dias,</span>
+<span id="cb90-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb90-3"></a>                               <span class="dt">breaks =</span><span class="kw">c</span>(<span class="op">-</span><span class="ot">Inf</span>, <span class="dv">0</span>, <span class="dv">30</span>, <span class="dv">60</span>, <span class="dv">90</span>, <span class="dv">180</span>, <span class="dv">365</span>, <span class="dv">5</span><span class="op">*</span><span class="dv">365</span>, <span class="ot">Inf</span>) ,</span>
+<span id="cb90-4"><a href="crp-certificado-de-regularidade-previdenciária.html#cb90-4"></a>                               <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;a vencer&quot;</span>,</span>
+<span id="cb90-5"><a href="crp-certificado-de-regularidade-previdenciária.html#cb90-5"></a>                                          <span class="st">&quot;1 a 30 dias&quot;</span>,</span>
+<span id="cb90-6"><a href="crp-certificado-de-regularidade-previdenciária.html#cb90-6"></a>                                          <span class="st">&quot;31 a 60 dias&quot;</span>,</span>
+<span id="cb90-7"><a href="crp-certificado-de-regularidade-previdenciária.html#cb90-7"></a>                                          <span class="st">&quot;61 a 90 dias&quot;</span>,</span>
+<span id="cb90-8"><a href="crp-certificado-de-regularidade-previdenciária.html#cb90-8"></a>                                          <span class="st">&quot;91 a 180 dias&quot;</span>,</span>
+<span id="cb90-9"><a href="crp-certificado-de-regularidade-previdenciária.html#cb90-9"></a>                                          <span class="st">&quot;181 a 365 dias&quot;</span>,</span>
+<span id="cb90-10"><a href="crp-certificado-de-regularidade-previdenciária.html#cb90-10"></a>                                          <span class="st">&quot;1 a 5 anos&quot;</span>,</span>
+<span id="cb90-11"><a href="crp-certificado-de-regularidade-previdenciária.html#cb90-11"></a>                                          <span class="st">&quot;mais de 5 anos&quot;</span>)))</span>
+<span id="cb90-12"><a href="crp-certificado-de-regularidade-previdenciária.html#cb90-12"></a></span>
+<span id="cb90-13"><a href="crp-certificado-de-regularidade-previdenciária.html#cb90-13"></a><span class="kw">head</span>(crp_rpps)</span></code></pre></div>
+<pre><code># A tibble: 6 x 10
+  uf    ente                      num_crp       dt_emissao dt_validade judicial tipo_regime situacao n_dias categoria     
+  &lt;chr&gt; &lt;chr&gt;                     &lt;chr&gt;         &lt;date&gt;     &lt;date&gt;      &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;     &lt;dbl&gt; &lt;fct&gt;         
+1 AC    Governo do Estado do Acre 931001-185475 2020-04-30 2020-10-27  SIM      RPPS        VÁLIDO      -21 a vencer      
+2 AC    Rio Branco                980139-185330 2020-04-23 2020-10-20  NÃO      RPPS        VÁLIDO      -14 a vencer      
+3 AL    Arapiraca                 982705-187383 2020-07-09 2021-01-05  NÃO      RPPS        VÁLIDO      -91 a vencer      
+4 AL    Atalaia                   982707-112197 2013-03-18 2013-09-14  NÃO      RPPS        VENCIDO    2579 mais de 5 anos
+5 AL    Barra de Santo Antônio    982709-186655 2020-06-13 2020-12-10  SIM      RPPS        VÁLIDO      -65 a vencer      
+6 AL    Batalha                   982713-11816  2002-11-29 2003-05-28  NÃO      RPPS        VENCIDO    6341 mais de 5 anos</code></pre>
+<p>A distribuição dos RPPS segundo essa classificação pode ser feita da seguinte forma:</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb92-1"></a>crp_rpps <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb92-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb92-2"></a><span class="st">  </span><span class="kw">group_by</span>(categoria) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb92-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb92-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n_rpps =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb92-4"><a href="crp-certificado-de-regularidade-previdenciária.html#cb92-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="st">`</span><span class="dt">%</span><span class="st">`</span> =<span class="st"> </span><span class="kw">round</span>( n_rpps <span class="op">/</span><span class="st"> </span><span class="kw">sum</span>(n_rpps) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb92-5"><a href="crp-certificado-de-regularidade-previdenciária.html#cb92-5"></a>         <span class="st">`</span><span class="dt">%_acum</span><span class="st">`</span> =<span class="st"> </span><span class="kw">cumsum</span>(<span class="st">`</span><span class="dt">%</span><span class="st">`</span>))</span></code></pre></div>
+<pre><code># A tibble: 8 x 4
+  categoria      n_rpps   `%` `%_acum`
+  &lt;fct&gt;           &lt;int&gt; &lt;dbl&gt;    &lt;dbl&gt;
+1 a vencer         1489 69.2      69.2
+2 1 a 30 dias       220 10.2      79.4
+3 31 a 60 dias       39  1.81     81.2
+4 61 a 90 dias       19  0.88     82.1
+5 91 a 180 dias      43  2        84.1
+6 181 a 365 dias     53  2.46     86.6
+7 1 a 5 anos        150  6.97     93.5
+8 mais de 5 anos    139  6.46    100. </code></pre>
+<p>Para visualizar a distribuição de frequência apresentada acima, será feito uso de um gráfico de barras:.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb94-1"></a>crp_rpps <span class="op">%&gt;%</span></span>
+<span id="cb94-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb94-2"></a><span class="st">  </span><span class="kw">group_by</span>(categoria) <span class="op">%&gt;%</span></span>
+<span id="cb94-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb94-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">frequencia =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span></span>
+<span id="cb94-4"><a href="crp-certificado-de-regularidade-previdenciária.html#cb94-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>categoria, <span class="dt">y=</span>frequencia)) <span class="op">+</span></span>
+<span id="cb94-5"><a href="crp-certificado-de-regularidade-previdenciária.html#cb94-5"></a><span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;orange&quot;</span>) <span class="op">+</span></span>
+<span id="cb94-6"><a href="crp-certificado-de-regularidade-previdenciária.html#cb94-6"></a><span class="st">    </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>frequencia), <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">vjust =</span> <span class="dv">0</span>, <span class="dt">size=</span><span class="dv">4</span>) <span class="op">+</span></span>
+<span id="cb94-7"><a href="crp-certificado-de-regularidade-previdenciária.html#cb94-7"></a><span class="st">    </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<p>O mesmo gráfico pode ser feito para cada UF, bastando simplesmente inserir no código acima um filtro para pegar os dados da UF selecionada. Por exemplo, o gráfico para o <code>RJ</code> seria feito da seguinte forma:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb95-1"></a>crp_rpps <span class="op">%&gt;%</span></span>
+<span id="cb95-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb95-2"></a><span class="st">  </span><span class="kw">filter</span>(uf <span class="op">==</span><span class="st"> &quot;RJ&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb95-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb95-3"></a><span class="st">  </span><span class="kw">group_by</span>(categoria) <span class="op">%&gt;%</span></span>
+<span id="cb95-4"><a href="crp-certificado-de-regularidade-previdenciária.html#cb95-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">frequencia =</span> <span class="kw">n</span>()) <span class="op">%&gt;%</span></span>
+<span id="cb95-5"><a href="crp-certificado-de-regularidade-previdenciária.html#cb95-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>categoria, <span class="dt">y=</span>frequencia)) <span class="op">+</span></span>
+<span id="cb95-6"><a href="crp-certificado-de-regularidade-previdenciária.html#cb95-6"></a><span class="st">    </span><span class="kw">geom_bar</span>(<span class="dt">stat=</span><span class="st">&quot;identity&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;orange&quot;</span>) <span class="op">+</span></span>
+<span id="cb95-7"><a href="crp-certificado-de-regularidade-previdenciária.html#cb95-7"></a><span class="st">    </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>frequencia), <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">vjust =</span> <span class="dv">0</span>,  <span class="dt">size=</span><span class="dv">4</span>) <span class="op">+</span></span>
+<span id="cb95-8"><a href="crp-certificado-de-regularidade-previdenciária.html#cb95-8"></a><span class="st">    </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<p>Infelizmente a base de dados não possui informações sobre os critérios do CRP. Essas seriam informações interessantes de constar da base de dados.</p>
+</div>
+<div id="efeito-da-constitucionalização-do-crp" class="section level2">
+<h2><span class="header-section-number">3.4</span> Efeito da constitucionalização do CRP</h2>
+<p>A partir da EC 103/19, diz-se que houve a “constitucionalização” do CRP e que, em função desse fato, tornar-se-ia mais difícil para os Entes obterem CRP pela via judicial. Se, de fato, isso ocorrer é possível que junto com uma redução dos CRP judiciais ocorra um aumento no quantitativo de CRP vencidos. Ou pode ser que a “constitucionalização” em nada influa na quantidade de CRP judicial.</p>
+<p>Assim, uma análise possível com os dados do CRP é verificar como evoluiu, a cada atualização da base de dados, o quantitativo de RPPS com CRP judicial e com CRP vencido. Essa análise pode ser feita de forma global, considerando todos os RPPS brasileiros, ou uma análise por unidade da federação.</p>
+<p>Durante o ano de 2020, tem-se o registro de que ocorreram cinco atualizações/publicações da base de dados do CRP no site da SPREV:</p>
+<ul>
+<li>Ago-Set/2020 (base objeto de análise nesse documento)<br />
+</li>
+<li>Jul-Ago/2020<br />
+</li>
+<li>Jun/2020<br />
+</li>
+<li>Abr/2020 e<br />
+</li>
+<li>Fev/2020</li>
+</ul>
+<p>Será que nesse período é possível notar alguma redução significativa na quantidade de CRP judicial?</p>
+<p>Para iniciar essa análise será feita análise dos arquivos de Fev/2020 e Ago-Set/2020. A seguir será feita a importação dos dados do CRP relativos à atualização de Fev/2020:</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb96-1"></a>crp_rpps_fev20 &lt;-<span class="st"> </span><span class="kw">readRDS</span>(<span class="st">&quot;dados/crp_DtRef_FEV2020.Rds&quot;</span>)</span>
+<span id="cb96-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb96-2"></a><span class="kw">head</span>(crp_rpps_fev20)</span></code></pre></div>
+<pre><code># A tibble: 6 x 9
+  cnpj           ente                      uf    num_crp       dt_emissao          dt_validade         judicial situacao regime
+  &lt;chr&gt;          &lt;chr&gt;                     &lt;chr&gt; &lt;chr&gt;         &lt;dttm&gt;              &lt;dttm&gt;              &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt; 
+1 63606479000124 Governo do Estado do Acre AC    931001-180304 2019-10-31 00:00:00 2020-04-28 00:00:00 SIM      VÁLIDO   RPPS  
+2 04034583000122 Rio Branco                AC    980139-180260 2019-10-26 00:00:00 2020-04-23 00:00:00 NÃO      VÁLIDO   RPPS  
+3 12198693000158 Arapiraca                 AL    982705-179730 2019-10-06 00:00:00 2020-04-03 00:00:00 NÃO      VÁLIDO   RPPS  
+4 12200143000126 Atalaia                   AL    982707-112197 2013-03-18 00:00:00 2013-09-14 00:00:00 NÃO      VENCIDO  RPPS  
+5 12262713000102 Barra de Santo Antônio    AL    982709-181523 2019-12-13 00:00:00 2020-06-10 00:00:00 SIM      VÁLIDO   RPPS  
+6 12250056000183 Batalha                   AL    982713-11816  2002-11-29 00:00:00 2003-05-28 00:00:00 NÃO      VENCIDO  RPPS  </code></pre>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb98-1"></a>crp_rpps_fev20 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb98-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb98-2"></a><span class="st">  </span><span class="kw">count</span>(regime)</span></code></pre></div>
+<pre><code># A tibble: 1 x 2
+  regime     n
+  &lt;chr&gt;  &lt;int&gt;
+1 RPPS    2135</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb100-1"></a>crp_rpps <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb100-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb100-2"></a><span class="st">  </span><span class="kw">count</span>(tipo_regime)</span></code></pre></div>
+<pre><code># A tibble: 1 x 2
+  tipo_regime     n
+  &lt;chr&gt;       &lt;int&gt;
+1 RPPS         2152</code></pre>
+<p>A base de dados de CRP de Fev/20 continha 2.135 RPPS enquanto a de Ago-Set/20 possui 2.152 e ambas referem apenas a RPPS. Verifica-se um aumento de 17 RPPS na base de dados no período considerado.</p>
+<p>A quantidade de RPPS com CRP judicial em ambas as bases é obtida a seguir:</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb102-1"></a><span class="kw">with</span>(crp_rpps_fev20, </span>
+<span id="cb102-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb102-2"></a>  <span class="kw">table</span>(judicial,situacao))</span></code></pre></div>
+<pre><code>        situacao
+judicial VÁLIDO VENCIDO
+     NÃO    942     572
+     SIM    538      83</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb104-1"></a><span class="kw">with</span>(crp_rpps, </span>
+<span id="cb104-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb104-2"></a>  <span class="kw">table</span>(judicial, situacao))</span></code></pre></div>
+<pre><code>        situacao
+judicial VÁLIDO VENCIDO
+     NÃO    970     547
+     SIM    519     116</code></pre>
+<p>Os resultados indicam que o quantitativo de CRP vencidos entre os judiciais aumentou de 83 para 116. Por outro lado, os CRP válidos entre os judiciais caiu de 538 para 519.</p>
+</div>
+<div id="mapas-com-dados-dos-crp" class="section level2">
+<h2><span class="header-section-number">3.5</span> Mapas com dados dos CRP</h2>
+<p>Pode ser interessante visualizar em um mapa da UF a situação do CRP dos entes municipais, ou num mapa do Brasil a situação do CRP dos estados. Para executar essa tarefa será necessário utilizar pacotes adicionais que facilitem a obtenção e elaboração de mapas. Esses pacotes são o <code>geobr</code> e o <code>sf</code>, que junto com o <code>ggplot2</code> irão fazer esse trabalho.</p>
+<p>Carregando os pacotes adicionais:</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb106-1"></a><span class="kw">library</span>(sf)</span>
+<span id="cb106-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb106-2"></a><span class="kw">library</span>(geobr)</span></code></pre></div>
+<p>O primeiro passo será importar o arquivo contendo o mapa do ERJ. O pacote <code>geobr</code> facilita a obtenção dos arquivos “shape” necessários.</p>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb107-1"></a>mapa_rj &lt;-<span class="st"> </span><span class="kw">read_municipality</span>(<span class="dt">code_muni =</span> <span class="st">&quot;RJ&quot;</span>, <span class="dt">year=</span><span class="dv">2018</span>, <span class="dt">showProgress =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<p>Para a obtenção do mapa de outro estado basta substituir o “RJ” no código acima pela sigla da UF desejada.</p>
+<p>Obtidos os dados para a confecção do mapa, já é possivel fazer um gráfico básico sem quaisquer dados sendo apresentados:</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb108-1"></a><span class="kw">ggplot</span>(mapa_rj) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb108-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb108-2"></a><span class="st">  </span><span class="kw">geom_sf</span>() <span class="op">+</span></span>
+<span id="cb108-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb108-3"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb108-4"><a href="crp-certificado-de-regularidade-previdenciária.html#cb108-4"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text =</span> <span class="kw">element_blank</span>())</span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-63-1.png" width="672" /></p>
+<p>Faz-se necessário agora associar uma ou mais variáveis à base de dados <code>mapa_rj</code> para que estas variáveis possam ser visualizadas no mapa.</p>
+<p>Deve-se observar que as duas bases de dados (<code>mapa_rj</code> e <code>crp</code>) tem em comum apenas a variável contendo o nome dos entes. Fazer a junção dos dois conjuntos de dados com base nessa variável é arriscado em razão dos nomes dos municípios poderem estar diferentes.</p>
+<p>A estratégia seguida foi é incluir na base do CRP uma variável contendo o código IBGE dos entes, os quais foram obtidos no site <code>https://www.ibge.gov.br/explica/codigos-dos-municipios.php</code></p>
+<p>O arquivo contendo a base do CRP e com os códigos do IBGE (combinadas manualmente) chama-se <code>codigo_ibge.xlsx</code> e sua importação é feita a seguir:</p>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb109-1"></a>ibge &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;dados/codigo_ibge.xlsx&quot;</span>)</span>
+<span id="cb109-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb109-2"></a><span class="kw">head</span>(ibge)</span></code></pre></div>
+<pre><code># A tibble: 6 x 8
+  uf    ente            cod_uf nm_estado cod_ibge cnpj           regime dif_ibge_sprev
+  &lt;chr&gt; &lt;chr&gt;           &lt;chr&gt;  &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;          &lt;chr&gt;  &lt;lgl&gt;         
+1 AC    Acrelândia      12     Acre      1200013  84306737000127 RGPS   NA            
+2 AC    Assis Brasil    12     Acre      1200054  04045993000179 RGPS   NA            
+3 AC    Brasiléia       12     Acre      1200104  04508933000145 RGPS   NA            
+4 AC    Bujari          12     Acre      1200138  84306620000143 RGPS   NA            
+5 AC    Capixaba        12     Acre      1200179  84306604000150 RGPS   NA            
+6 AC    Cruzeiro do Sul 12     Acre      1200203  04012548000102 RGPS   NA            </code></pre>
+<p>Como pode ser visto, a base de dados contém o nome do ente (com a <strong>mesma grafia</strong> da base de CRP), o código IBGE e o CNPJ além de outras variáveis. Em especial deve-se notar a variável <code>dif_ibge_sprev</code>.</p>
+<p>Durante o processo de montagem do arquivo observou-se que na relação de Entes elaborada pela SPREV, objeto de análise no capítulo 1, existe 2 municípios que constam da base do IBGE e não têm correspondência na base da SPREV e, da mesma forma, dois municípios da base da SPREV não possuiam correspondência na base do IBGE.</p>
+<p>Após alguma investigação restou evidenciada divergência de nomes dos municípios. O quadro a seguir elenca os municípios em questão:</p>
+<table>
+<thead>
+<tr class="header">
+<th>CNPJ Ente</th>
+<th>UF</th>
+<th>Nome SPREV</th>
+<th>Nome IBGE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>08.787.392/0001-92</td>
+<td>PB</td>
+<td>Campo de Santana</td>
+<td>Tacima</td>
+</tr>
+<tr class="even">
+<td>01.613.283/0001-00</td>
+<td>PB</td>
+<td>Santarém</td>
+<td>Joca Claudino</td>
+</tr>
+</tbody>
+</table>
+<p>Para prosseguir, será necessário excluir esses registros mais o registro relativo a Fernando de Noronha - PE:</p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb111-1"></a>ibge <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb111-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb111-2"></a><span class="st">  </span><span class="kw">filter</span>(dif_ibge_sprev <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</span></code></pre></div>
+<pre><code># A tibble: 3 x 8
+  uf    ente                cod_uf nm_estado  cod_ibge cnpj           regime dif_ibge_sprev
+  &lt;chr&gt; &lt;chr&gt;               &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;          &lt;chr&gt;  &lt;lgl&gt;         
+1 PB    Joca Claudino       25     Paraíba    2513653  01613283000100 RGPS   TRUE          
+2 PB    Tacima              25     Paraíba    2516409  08787392000192 RGPS   TRUE          
+3 PE    Fernando de Noronha 26     Pernambuco 2605459  NA             NA     TRUE          </code></pre>
+<p>Exclusão dos registros acima:</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb113-1"></a>ibge &lt;-<span class="st"> </span>ibge <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb113-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb113-2"></a><span class="st">          </span><span class="kw">filter</span>(<span class="kw">is.na</span>(dif_ibge_sprev))</span></code></pre></div>
+<p>A base de dados do mapa (<code>mapa_rj</code>) pode agora ser combinada com essa base de dados (<code>ibge</code>) para, depois, serem juntados os dados da base de CRP (<code>crp_rpps</code>) essa última contendo os dados a serem visualizados.</p>
+<p>Juntar ao mapa os dados do ibge:</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb114-1"></a>ibge<span class="op">$</span>cod_ibge &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(ibge<span class="op">$</span>cod_ibge)</span>
+<span id="cb114-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb114-2"></a>mapa_rj &lt;-<span class="st"> </span><span class="kw">left_join</span>(mapa_rj, ibge, <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;code_muni&quot;</span> =<span class="st"> &quot;cod_ibge&quot;</span>))</span></code></pre></div>
+<p>Juntar ao mapa os dados do crp:</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb115-1"></a>mapa_rj =<span class="st"> </span><span class="kw">left_join</span>(mapa_rj, crp_rpps, <span class="dt">by=</span><span class="kw">c</span>(<span class="st">&quot;ente&quot;</span> =<span class="st"> &quot;ente&quot;</span>, <span class="st">&quot;abbrev_state&quot;</span> =<span class="st"> &quot;uf&quot;</span>))</span></code></pre></div>
+<p>Agora já é possível apresentar os dados da base do CRP no mapa. Em especial o interesse está em plotar os dias de atraso (<code>n_dias</code>).</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb116-1"></a><span class="kw">ggplot</span>(mapa_rj) <span class="op">+</span></span>
+<span id="cb116-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb116-2"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>n_dias)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb116-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb116-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Dias Decorridos do Vencimento do CRP&quot;</span>,</span>
+<span id="cb116-4"><a href="crp-certificado-de-regularidade-previdenciária.html#cb116-4"></a>       <span class="dt">caption=</span><span class="st">&#39;Fonte: base de dados da SPREV&#39;</span>, <span class="dt">size=</span><span class="dv">8</span>) <span class="op">+</span></span>
+<span id="cb116-5"><a href="crp-certificado-de-regularidade-previdenciária.html#cb116-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb116-6"><a href="crp-certificado-de-regularidade-previdenciária.html#cb116-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text =</span> <span class="kw">element_blank</span>()) <span class="op">+</span></span>
+<span id="cb116-7"><a href="crp-certificado-de-regularidade-previdenciária.html#cb116-7"></a><span class="st">  </span><span class="kw">scale_fill_distiller</span>(<span class="dt">palette =</span> <span class="st">&quot;PuOr&quot;</span>)</span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-69-1.png" width="672" /></p>
+<p>Quanto mais claro o azul, a mais dias vencidos está o CRP. Os municípios em cinza estão vinculados ao RGPS.</p>
+<p>Também é possível mostrar a variável <code>judicial</code>:</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb117-1"></a><span class="kw">ggplot</span>(mapa_rj) <span class="op">+</span></span>
+<span id="cb117-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb117-2"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>judicial), <span class="dt">size=</span>.<span class="dv">15</span>) <span class="op">+</span></span>
+<span id="cb117-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb117-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Judicialização do CRP&quot;</span>,</span>
+<span id="cb117-4"><a href="crp-certificado-de-regularidade-previdenciária.html#cb117-4"></a>       <span class="dt">caption=</span><span class="st">&#39;Fonte: base de dados da SPREV&#39;</span>, <span class="dt">size=</span><span class="dv">8</span>) <span class="op">+</span></span>
+<span id="cb117-5"><a href="crp-certificado-de-regularidade-previdenciária.html#cb117-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb117-6"><a href="crp-certificado-de-regularidade-previdenciária.html#cb117-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text =</span> <span class="kw">element_blank</span>()) <span class="op">+</span></span>
+<span id="cb117-7"><a href="crp-certificado-de-regularidade-previdenciária.html#cb117-7"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;tomato&quot;</span>))</span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-70-1.png" width="672" /></p>
+<p>Mais um mapa. Agora mostrando a situação do CRP:</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="crp-certificado-de-regularidade-previdenciária.html#cb118-1"></a><span class="kw">ggplot</span>(mapa_rj) <span class="op">+</span></span>
+<span id="cb118-2"><a href="crp-certificado-de-regularidade-previdenciária.html#cb118-2"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>situacao)) <span class="op">+</span></span>
+<span id="cb118-3"><a href="crp-certificado-de-regularidade-previdenciária.html#cb118-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Validade do CRP&quot;</span>,</span>
+<span id="cb118-4"><a href="crp-certificado-de-regularidade-previdenciária.html#cb118-4"></a>       <span class="dt">caption=</span><span class="st">&#39;Fonte: base de dados da SPREV&#39;</span>, <span class="dt">size=</span><span class="dv">8</span>) <span class="op">+</span></span>
+<span id="cb118-5"><a href="crp-certificado-de-regularidade-previdenciária.html#cb118-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span></span>
+<span id="cb118-6"><a href="crp-certificado-de-regularidade-previdenciária.html#cb118-6"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text =</span> <span class="kw">element_blank</span>()) <span class="op">+</span></span>
+<span id="cb118-7"><a href="crp-certificado-de-regularidade-previdenciária.html#cb118-7"></a><span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;lightblue&quot;</span>, <span class="st">&quot;tomato&quot;</span>))</span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-71-1.png" width="672" /></p>
+<p>Os gráficos podem ser melhorados, mas a ideia é só mostrar como fazê-los.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="alíquotas-de-contribuição-praticadas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dair-demonstrativo-das-aplicações-e-investimentos-dos-recursos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["ADPrevBook.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
