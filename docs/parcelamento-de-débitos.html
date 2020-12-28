@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 7 Parcelamento de Débitos | Análise de Dados Previdenciários - ADPrev</title>
+  <meta name="description" content="Exemplos e sugestões de análise dos dados previdenciários dos RPPS usando o software R." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 7 Parcelamento de Débitos | Análise de Dados Previdenciários - ADPrev" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="figuras/work_in_progress2.jpg" />
+  <meta property="og:description" content="Exemplos e sugestões de análise dos dados previdenciários dos RPPS usando o software R." />
+  <meta name="github-repo" content="marcosfs2006/ADPrevBook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 7 Parcelamento de Débitos | Análise de Dados Previdenciários - ADPrev" />
+  
+  <meta name="twitter:description" content="Exemplos e sugestões de análise dos dados previdenciários dos RPPS usando o software R." />
+  <meta name="twitter:image" content="figuras/work_in_progress2.jpg" />
+
+<meta name="author" content="Marcos Ferreira da Silva" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html"/>
+<link rel="next" href="isp-indicador-de-situação-previdenticária.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
+<script src="libs/tabwid-1.0.0/tabwid.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análise de Dados Previdenciários - ADPrev</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nota</a></li>
+<li class="chapter" data-level="" data-path="prefácio.html"><a href="prefácio.html"><i class="fa fa-check"></i>Prefácio</a></li>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i>Introdução</a><ul>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#estrutura-do-documento"><i class="fa fa-check"></i>Estrutura do documento</a></li>
+<li><a href="introdução.html#projeto-labdadosprevrpps">Projeto <strong>LabDadosPrev(“RPPS”)</strong></a></li>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#bases-de-dados-utilizadas"><i class="fa fa-check"></i>Bases de dados utilizadas</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="regime-previdenciário-atual-dos-entes-federativos.html"><a href="regime-previdenciário-atual-dos-entes-federativos.html"><i class="fa fa-check"></i><b>1</b> Regime Previdenciário Atual dos Entes Federativos</a></li>
+<li class="chapter" data-level="2" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html"><i class="fa fa-check"></i><b>2</b> Alíquotas de Contribuição Praticadas</a><ul>
+<li class="chapter" data-level="2.1" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html#análise-exploratória"><i class="fa fa-check"></i><b>2.1</b> Análise Exploratória</a></li>
+<li class="chapter" data-level="2.2" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html#rpps-com-segregação-de-massas"><i class="fa fa-check"></i><b>2.2</b> RPPS com Segregação de Massas</a></li>
+<li class="chapter" data-level="2.3" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html#adequação-das-alíquotas-à-ec-10319"><i class="fa fa-check"></i><b>2.3</b> Adequação das Alíquotas à EC 103/19</a></li>
+<li class="chapter" data-level="2.4" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html#alíquota-do-ente-inferior-à-do-servidor-ativo"><i class="fa fa-check"></i><b>2.4</b> Alíquota do Ente Inferior à do Servidor Ativo</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html"><i class="fa fa-check"></i><b>3</b> CRP - Certificado de Regularidade Previdenciária</a><ul>
+<li class="chapter" data-level="3.1" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#análise-exploratória-preliminar"><i class="fa fa-check"></i><b>3.1</b> Análise exploratória preliminar</a></li>
+<li class="chapter" data-level="3.2" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#análise-restrita-aos-rpps"><i class="fa fa-check"></i><b>3.2</b> Análise restrita aos RPPS</a></li>
+<li class="chapter" data-level="3.3" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#análise-segundo-a-quantidade-de-dias-vencidos"><i class="fa fa-check"></i><b>3.3</b> Análise segundo a quantidade de dias vencidos</a></li>
+<li class="chapter" data-level="3.4" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#efeito-da-constitucionalização-do-crp"><i class="fa fa-check"></i><b>3.4</b> Efeito da constitucionalização do CRP</a></li>
+<li class="chapter" data-level="3.5" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#mapas-com-dados-dos-crp"><i class="fa fa-check"></i><b>3.5</b> Mapas com dados dos CRP</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dair-demonstrativo-das-aplicações-e-investimentos-dos-recursos.html"><a href="dair-demonstrativo-das-aplicações-e-investimentos-dos-recursos.html"><i class="fa fa-check"></i><b>4</b> DAIR - Demonstrativo das Aplicações e Investimentos dos Recursos</a></li>
+<li class="chapter" data-level="5" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><i class="fa fa-check"></i><b>5</b> DIPR - Demonstrativo de Informações Previdenciárias e Repasses</a><ul>
+<li class="chapter" data-level="5.1" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html#importação-e-pré-processamento-dos-dados"><i class="fa fa-check"></i><b>5.1</b> Importação e pré-processamento dos dados</a></li>
+<li class="chapter" data-level="5.2" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html#seleção-do-rpps-para-análise"><i class="fa fa-check"></i><b>5.2</b> Seleção do RPPS para análise</a></li>
+<li class="chapter" data-level="5.3" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html#quantidade-de-beneficiários"><i class="fa fa-check"></i><b>5.3</b> Quantidade de Beneficiários</a></li>
+<li class="chapter" data-level="5.4" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html#manutenção-dos-pagamentos-dos-auxílios"><i class="fa fa-check"></i><b>5.4</b> Manutenção dos pagamentos dos auxílios</a></li>
+<li class="chapter" data-level="5.5" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html#recebimento-das-contribuições"><i class="fa fa-check"></i><b>5.5</b> Recebimento das contribuições</a></li>
+<li class="chapter" data-level="5.6" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html#recebimento-dos-parcelamentos"><i class="fa fa-check"></i><b>5.6</b> Recebimento dos parcelamentos</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html"><a href="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html"><i class="fa fa-check"></i><b>6</b> DRAA - Demonstrativo de Resultados da Avaliação Atuarial</a><ul>
+<li class="chapter" data-level="6.1" data-path="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html"><a href="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html#importação-dos-dados"><i class="fa fa-check"></i><b>6.1</b> Importação dos dados</a></li>
+<li class="chapter" data-level="6.2" data-path="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html"><a href="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html#análise-exploratória-1"><i class="fa fa-check"></i><b>6.2</b> Análise exploratória</a></li>
+<li class="chapter" data-level="6.3" data-path="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html"><a href="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html#evolução-de-variáveis"><i class="fa fa-check"></i><b>6.3</b> Evolução de variáveis</a></li>
+<li class="chapter" data-level="6.4" data-path="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html"><a href="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html#encaminhamento-do-draa-à-sprev"><i class="fa fa-check"></i><b>6.4</b> Encaminhamento do DRAA à SPREV</a></li>
+<li class="chapter" data-level="6.5" data-path="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html"><a href="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html#balanço-atuarial"><i class="fa fa-check"></i><b>6.5</b> Balanço atuarial</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="parcelamento-de-débitos.html"><a href="parcelamento-de-débitos.html"><i class="fa fa-check"></i><b>7</b> Parcelamento de Débitos</a><ul>
+<li class="chapter" data-level="7.1" data-path="parcelamento-de-débitos.html"><a href="parcelamento-de-débitos.html#importação-e-limpeza-dos-dados"><i class="fa fa-check"></i><b>7.1</b> Importação e limpeza dos dados</a></li>
+<li class="chapter" data-level="7.2" data-path="parcelamento-de-débitos.html"><a href="parcelamento-de-débitos.html#análise-exploratória-2"><i class="fa fa-check"></i><b>7.2</b> Análise exploratória</a></li>
+<li class="chapter" data-level="7.3" data-path="parcelamento-de-débitos.html"><a href="parcelamento-de-débitos.html#parcelamentos-ativos"><i class="fa fa-check"></i><b>7.3</b> Parcelamentos ativos</a></li>
+<li class="chapter" data-level="7.4" data-path="parcelamento-de-débitos.html"><a href="parcelamento-de-débitos.html#agregação-dos-parcelamentos"><i class="fa fa-check"></i><b>7.4</b> Agregação dos parcelamentos</a></li>
+<li class="chapter" data-level="7.5" data-path="parcelamento-de-débitos.html"><a href="parcelamento-de-débitos.html#cobrança-de-juros-simples"><i class="fa fa-check"></i><b>7.5</b> Cobrança de juros simples</a></li>
+<li class="chapter" data-level="7.6" data-path="parcelamento-de-débitos.html"><a href="parcelamento-de-débitos.html#adimplência-dos-parcelamentos"><i class="fa fa-check"></i><b>7.6</b> Adimplência dos parcelamentos</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="isp-indicador-de-situação-previdenticária.html"><a href="isp-indicador-de-situação-previdenticária.html"><i class="fa fa-check"></i><b>8</b> ISP - Indicador de Situação Previdenticária</a></li>
+<li class="chapter" data-level="9" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html"><i class="fa fa-check"></i><b>9</b> Fluxo Atuarial</a><ul>
+<li class="chapter" data-level="9.1" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html#fluxo-atuarial-utilizado-no-capítulo"><i class="fa fa-check"></i><b>9.1</b> Fluxo atuarial utilizado no capítulo</a></li>
+<li class="chapter" data-level="9.2" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html#importação-e-pré-processamento-dos-dados-1"><i class="fa fa-check"></i><b>9.2</b> Importação e pré-processamento dos dados</a></li>
+<li class="chapter" data-level="9.3" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html#dicionário-de-variáveis"><i class="fa fa-check"></i><b>9.3</b> Dicionário de variáveis</a></li>
+<li class="chapter" data-level="9.4" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html#análise-gráfica-das-variáveis-do-fluxo-atuarial"><i class="fa fa-check"></i><b>9.4</b> Análise gráfica das variáveis do fluxo atuarial</a></li>
+<li class="chapter" data-level="9.5" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html#cálculo-dos-principais-números-da-avaliação-atuarial"><i class="fa fa-check"></i><b>9.5</b> Cálculo dos principais números da avaliação atuarial</a></li>
+<li class="chapter" data-level="9.6" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html#anexo-10-do-rreo"><i class="fa fa-check"></i><b>9.6</b> Anexo 10 do RREO</a></li>
+<li class="chapter" data-level="9.7" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html#verificação-da-consistência-interna-do-fluxo-atuarial"><i class="fa fa-check"></i><b>9.7</b> Verificação da consistência interna do fluxo atuarial</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="msc-matriz-de-saldos-contábeis.html"><a href="msc-matriz-de-saldos-contábeis.html"><i class="fa fa-check"></i><b>10</b> MSC - Matriz de Saldos Contábeis</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Feito com o pacote bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise de Dados Previdenciários - ADPrev</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="parcelamento-de-débitos" class="section level1">
+<h1><span class="header-section-number">Capítulo 7</span> Parcelamento de Débitos</h1>
+<p>Este capítulo trata da base de dados dos acordos de parcelamento de débito, na qual estão contidas informações sobre os termos de parcelamento de débitos celebrados pelos RPPS com os entes aos quais estão vinculados.</p>
+<p>O objetivo do capítulo é explorar os dados e as possíbilidades de análise fornecidas por esse conjunto de dados, podendo-se destacar a identificação dos entes que estejam com parcelamentos de débito ativos junto ao seu RPPS, a quantidade de parcelamentos ativos, o valor consolidado dos parcelamentos o saldo a pagar.</p>
+<p>A SPREV disponiliza <a href="https://www.gov.br/previdencia/pt-br/assuntos/previdencia-no-servico-publico/mais-servicos/parcelamentos-rpps">uma página</a> em seu site inteiramente dedicada ao parcelamento de débitos na qual são disponibilizados alguns materiais sobre o assunto.</p>
+<div id="importação-e-limpeza-dos-dados" class="section level2">
+<h2><span class="header-section-number">7.1</span> Importação e limpeza dos dados</h2>
+<p>A importação da base de dados pode ser feita da seguinte forma:</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="parcelamento-de-débitos.html#cb185-1"></a>parcel &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;dados/6-rg-ap-acor-parc_atualizacao_jan_de_1999-a-ago_2020_extracao_em_20201002.xlsx&quot;</span>,</span>
+<span id="cb185-2"><a href="parcelamento-de-débitos.html#cb185-2"></a>                     <span class="dt">skip =</span> <span class="dv">3</span>,</span>
+<span id="cb185-3"><a href="parcelamento-de-débitos.html#cb185-3"></a>                     <span class="dt">col_names =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb185-4"><a href="parcelamento-de-débitos.html#cb185-4"></a></span>
+<span id="cb185-5"><a href="parcelamento-de-débitos.html#cb185-5"></a><span class="kw">names</span>(parcel) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ente&quot;</span>, <span class="st">&quot;uf&quot;</span>, <span class="st">&quot;tipo&quot;</span>, <span class="st">&quot;situacao&quot;</span>, <span class="st">&quot;num_acordo&quot;</span>, <span class="st">&quot;rubrica&quot;</span>,</span>
+<span id="cb185-6"><a href="parcelamento-de-débitos.html#cb185-6"></a>                   <span class="st">&quot;lei&quot;</span>, <span class="st">&quot;dt_consol&quot;</span>, <span class="st">&quot;dt_assin&quot;</span>, <span class="st">&quot;dt_venc1a&quot;</span>, <span class="st">&quot;compet_ini&quot;</span>,</span>
+<span id="cb185-7"><a href="parcelamento-de-débitos.html#cb185-7"></a>                   <span class="st">&quot;compet_fin&quot;</span>, <span class="st">&quot;vlr_consol&quot;</span>, <span class="st">&quot;qtd_parc&quot;</span>, <span class="st">&quot;vlr_parc_ini&quot;</span>,</span>
+<span id="cb185-8"><a href="parcelamento-de-débitos.html#cb185-8"></a>                   <span class="st">&quot;sd_estim_satualiz&quot;</span>, <span class="st">&quot;sd_estim_catualiz&quot;</span>, <span class="st">&quot;comp_indice&quot;</span>,</span>
+<span id="cb185-9"><a href="parcelamento-de-débitos.html#cb185-9"></a>                   <span class="st">&quot;comp_tp_juros&quot;</span>, <span class="st">&quot;comp_txjuros&quot;</span>, <span class="st">&quot;comp_multa&quot;</span>, <span class="st">&quot;parcvinc_indice&quot;</span>,</span>
+<span id="cb185-10"><a href="parcelamento-de-débitos.html#cb185-10"></a>                   <span class="st">&quot;parcvinc_tpjuros&quot;</span>, <span class="st">&quot;parcvinc_txjuros&quot;</span>, <span class="st">&quot;parcvinc_multa&quot;</span>,</span>
+<span id="cb185-11"><a href="parcelamento-de-débitos.html#cb185-11"></a>                   <span class="st">&quot;parcatraso_indice&quot;</span>, <span class="st">&quot;parcatraso_tpjuros&quot;</span>,</span>
+<span id="cb185-12"><a href="parcelamento-de-débitos.html#cb185-12"></a>                   <span class="st">&quot;parcatraso_txjuros&quot;</span>, <span class="st">&quot;parcatraso_multa&quot;</span>)</span></code></pre></div>
+<p>Importados os dados convém inspecioná-los para verificar se tudo correu bem no processo de importação:</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="parcelamento-de-débitos.html#cb186-1"></a><span class="kw">head</span>(parcel)</span></code></pre></div>
+<pre><code># A tibble: 6 x 29
+  ente  uf    tipo  situacao num_acordo rubrica lei   dt_consol dt_assin dt_venc1a compet_ini compet_fin vlr_consol qtd_parc vlr_parc_ini sd_estim_satual~ sd_estim_catual~
+  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;        &lt;chr&gt;            &lt;chr&gt;           
+1 Abad~ GO    P     Aceito   00198/2009 OUTR    LEI ~ 27/03/20~ 27/03/2~ 30/04/20~ 02/2007    12/2008    216.084,06 240      900,35       91.835,70        218.568,97      
+2 Abad~ GO    P     Aceito   01121/2016 CP60    Lei ~ 21/12/20~ 21/12/2~ 30/12/20~ 02/2016    10/2016    585.393,82 60       9.756,56     136.591,84       199.424,09      
+3 Abad~ GO    P     Aceito   00138/2017 CP60    Lei ~ 03/02/20~ 06/02/2~ 01/03/20~ 10/2016    10/2016    45.123,45  60       752,06       12.785,02        18.282,58       
+4 Abad~ GO    P     Aceito   00645/2017 CP60    Lei ~ 24/07/20~ 24/07/2~ 31/08/20~ 02/2017    06/2017    461.544,36 60       7.692,41     169.233,02       233.541,57      
+5 Abad~ GO    P     Aceito   01426/2018 CP60    Lei ~ 21/12/20~ 21/12/2~ 30/01/20~ 02/2018    10/2018    1.172.611~ 24       48.858,83    146.576,49       177.357,55      
+6 Abad~ GO    P     Aceito   00143/2019 CP60    Lei ~ 08/02/20~ 11/02/2~ 31/03/20~ 11/2018    12/2018    396.962,34 22       18.043,74    54.131,22        64.416,15       
+# ... with 12 more variables: comp_indice &lt;chr&gt;, comp_tp_juros &lt;chr&gt;, comp_txjuros &lt;chr&gt;, comp_multa &lt;chr&gt;, parcvinc_indice &lt;chr&gt;, parcvinc_tpjuros &lt;chr&gt;, parcvinc_txjuros &lt;chr&gt;,
+#   parcvinc_multa &lt;lgl&gt;, parcatraso_indice &lt;chr&gt;, parcatraso_tpjuros &lt;chr&gt;, parcatraso_txjuros &lt;chr&gt;, parcatraso_multa &lt;chr&gt;</code></pre>
+<p>Feita a importação, quase sempre será necessário realizar o pré-processamento da base de dados.</p>
+<p>Da mesma forma que os dados do DIPR, os dados dos parcelamentos foram estruturados pela SPREV para serem visualizados e impressos e não para serem consumidos por aplicativos com vistas à sua análise informatizada.</p>
+<p>Esse fato é reflexo da falta de cultura de análise de dados ainda existente na administração pública onde a regra em geral é a análise de varejo, RPPS a RPPS, tendo por base frequentemente relatórios impressos em papel.</p>
+<p>Para que o trabalho posterior com esta base de dados seja facilitado, será necessário converter algumas variáveis para o formato numérico e outras para o formato de data:</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="parcelamento-de-débitos.html#cb188-1"></a><span class="co"># Converter dados para o formato numérico e para datas</span></span>
+<span id="cb188-2"><a href="parcelamento-de-débitos.html#cb188-2"></a>convNum &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb188-3"><a href="parcelamento-de-débitos.html#cb188-3"></a>  <span class="kw">as.numeric</span>(<span class="kw">gsub</span>(<span class="st">&quot;,&quot;</span>, <span class="st">&quot;.&quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>, <span class="st">&quot;&quot;</span>, x)))</span>
+<span id="cb188-4"><a href="parcelamento-de-débitos.html#cb188-4"></a>}</span>
+<span id="cb188-5"><a href="parcelamento-de-débitos.html#cb188-5"></a></span>
+<span id="cb188-6"><a href="parcelamento-de-débitos.html#cb188-6"></a>convData &lt;-<span class="st"> </span><span class="cf">function</span>(x){</span>
+<span id="cb188-7"><a href="parcelamento-de-débitos.html#cb188-7"></a>  <span class="kw">as.Date</span>(<span class="kw">parse_date_time2</span>(x, <span class="dt">orders =</span> <span class="st">&quot;d/m/Y&quot;</span>))  </span>
+<span id="cb188-8"><a href="parcelamento-de-débitos.html#cb188-8"></a>}</span>
+<span id="cb188-9"><a href="parcelamento-de-débitos.html#cb188-9"></a></span>
+<span id="cb188-10"><a href="parcelamento-de-débitos.html#cb188-10"></a>colunas_converter_num &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;vlr_consol&quot;</span>, <span class="st">&quot;qtd_parc&quot;</span>, <span class="st">&quot;vlr_parc_ini&quot;</span>, <span class="st">&quot;sd_estim_satualiz&quot;</span>, <span class="st">&quot;sd_estim_catualiz&quot;</span>, <span class="st">&quot;comp_txjuros&quot;</span>, <span class="st">&quot;comp_multa&quot;</span>, <span class="st">&quot;parcvinc_txjuros&quot;</span>, <span class="st">&quot;parcvinc_multa&quot;</span>, <span class="st">&quot;parcatraso_txjuros&quot;</span>, <span class="st">&quot;parcatraso_multa&quot;</span>)</span>
+<span id="cb188-11"><a href="parcelamento-de-débitos.html#cb188-11"></a></span>
+<span id="cb188-12"><a href="parcelamento-de-débitos.html#cb188-12"></a>colunas_converter_dt &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;dt_consol&quot;</span>, <span class="st">&quot;dt_assin&quot;</span>, <span class="st">&quot;dt_venc1a&quot;</span>)</span>
+<span id="cb188-13"><a href="parcelamento-de-débitos.html#cb188-13"></a></span>
+<span id="cb188-14"><a href="parcelamento-de-débitos.html#cb188-14"></a>parcel &lt;-<span class="st"> </span>parcel <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb188-15"><a href="parcelamento-de-débitos.html#cb188-15"></a><span class="st">            </span><span class="kw">mutate</span>(<span class="dt">compet_ini =</span> <span class="kw">as.Date</span>(<span class="kw">parse_date_time</span>(compet_ini, <span class="dt">orders =</span> <span class="st">&quot;m/Y&quot;</span>)),</span>
+<span id="cb188-16"><a href="parcelamento-de-débitos.html#cb188-16"></a>                   <span class="dt">compet_fin =</span> <span class="kw">as.Date</span>(<span class="kw">parse_date_time</span>(compet_fin, <span class="dt">orders =</span> <span class="st">&quot;m/Y&quot;</span>)),</span>
+<span id="cb188-17"><a href="parcelamento-de-débitos.html#cb188-17"></a>                   <span class="dt">ente =</span> <span class="kw">gsub</span>(<span class="st">&quot;^Governo do &quot;</span>, <span class="st">&quot;&quot;</span>, ente))</span>
+<span id="cb188-18"><a href="parcelamento-de-débitos.html#cb188-18"></a></span>
+<span id="cb188-19"><a href="parcelamento-de-débitos.html#cb188-19"></a><span class="co"># Conversão dos valores numéricos</span></span>
+<span id="cb188-20"><a href="parcelamento-de-débitos.html#cb188-20"></a>parcel &lt;-<span class="st"> </span>parcel <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb188-21"><a href="parcelamento-de-débitos.html#cb188-21"></a><span class="st">            </span><span class="kw">mutate</span>(<span class="kw">across</span>(<span class="dt">.cols=</span><span class="kw">all_of</span>(colunas_converter_num), convNum))</span>
+<span id="cb188-22"><a href="parcelamento-de-débitos.html#cb188-22"></a></span>
+<span id="cb188-23"><a href="parcelamento-de-débitos.html#cb188-23"></a><span class="co"># Conversão das datas</span></span>
+<span id="cb188-24"><a href="parcelamento-de-débitos.html#cb188-24"></a>parcel &lt;-<span class="st"> </span>parcel <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb188-25"><a href="parcelamento-de-débitos.html#cb188-25"></a><span class="st">            </span><span class="kw">mutate</span>(<span class="kw">across</span>(<span class="dt">.cols=</span><span class="kw">all_of</span>(colunas_converter_dt), convData))</span></code></pre></div>
+<p>Como pode ser visto, a base de dados traz um conjunto amplo de informações (29 colunas) sobre os termos de parcelamento de débitos.</p>
+<p>As colunas 1 a 17 contém informações sobre as caracteristicas do termo de parcelamentos. As 4 colunas seguinte traz informações sobre os parâmetros utilizados para a consolidação do débito, o mesmo ocorrendo com as 8 colunas finais que trazem os parâmetros para a atualização das parcelas a vencer e das parcelas vencidas.</p>
+</div>
+<div id="análise-exploratória-2" class="section level2">
+<h2><span class="header-section-number">7.2</span> Análise exploratória</h2>
+<p>Agora já é possível explorar algumas variáveis com o objetivo de conhecer as informações que as mesmas contém.</p>
+<p>Começa-se com a variável <code>tipo</code>. Quais a distribuição de frequência dessa variável?</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="parcelamento-de-débitos.html#cb189-1"></a>parcel <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb189-2"><a href="parcelamento-de-débitos.html#cb189-2"></a><span class="st">  </span><span class="kw">tabyl</span>(tipo) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb189-3"><a href="parcelamento-de-débitos.html#cb189-3"></a><span class="st">  </span><span class="kw">adorn_pct_formatting</span>(<span class="dt">digits =</span> <span class="dv">0</span>,</span>
+<span id="cb189-4"><a href="parcelamento-de-débitos.html#cb189-4"></a>                       <span class="dt">affix_sign =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code> tipo    n percent
+    P 9705     82%
+    R 2126     18%</code></pre>
+<p>São apenas dois valores indicando tratar-se de parcelamento ou reparcelamento.</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="parcelamento-de-débitos.html#cb191-1"></a>parcel <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb191-2"><a href="parcelamento-de-débitos.html#cb191-2"></a><span class="st">  </span><span class="kw">tabyl</span>(situacao) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb191-3"><a href="parcelamento-de-débitos.html#cb191-3"></a><span class="st">  </span><span class="kw">adorn_pct_formatting</span>(<span class="dt">digits =</span> <span class="dv">0</span>,</span>
+<span id="cb191-4"><a href="parcelamento-de-débitos.html#cb191-4"></a>                       <span class="dt">affix_sign =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>                 situacao    n percent
+                   Aceito 5754     49%
+       Aguardando análise  299      3%
+ Aguardando doc. assinado  754      6%
+               Não aceito 1467     12%
+                  Quitado 1483     13%
+               Repactuado 2074     18%</code></pre>
+<p>Algumas possibilidades para a variável <code>situação</code>. Vê-se que alguns termos estão quitados, outros não foram aceitos pela SPREV, etc.</p>
+<p>Essa variável parece ser importante quando da realização de algumas análises. Por exemplo, termos já quitados talvez não devam ser inseridos na análise caso o interesse seja determinar o volume de dívida dos entes com os RPPS. O mesmo se aplica aos termos não aceitos.</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="parcelamento-de-débitos.html#cb193-1"></a>parcel <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb193-2"><a href="parcelamento-de-débitos.html#cb193-2"></a><span class="st">  </span><span class="kw">tabyl</span>(rubrica) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb193-3"><a href="parcelamento-de-débitos.html#cb193-3"></a><span class="st">  </span><span class="kw">adorn_pct_formatting</span>(<span class="dt">digits =</span> <span class="dv">2</span>,</span>
+<span id="cb193-4"><a href="parcelamento-de-débitos.html#cb193-4"></a>                       <span class="dt">affix_sign =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code> rubrica    n percent
+    C240 1181   9.98%
+    CP60 4669  39.46%
+    CSEG  626   5.29%
+    OUTR 3040  25.70%
+    P200 1259  10.64%
+    S200  511   4.32%
+    U200  196   1.66%
+    U240   27   0.23%
+    UIRP  322   2.72%</code></pre>
+<p>Os valores da variável <code>rubrica</code> são uns códigos cripticos mas que informam a origem do débito e a quantidade de parcelas. Assim, <code>CP60</code> refere-se a débito com origem no não repasse da contribuição patronal, parcelado em até 60 meses. <code>UIRP</code> refere-se a parcelamento de débitos originados da utilização irregular de recursos previdenciários e por aí vai.</p>
+<p>Interessante observar que a rubrica com a segunda maior quantidade de acordos seja <code>OUTR</code>. Isso porque o esperado é que as situações mais frequentes já tenham sido mapeadas pela SPREV e disponibilizadas como opção de escolha no CADPREV.</p>
+<p>Outro fato interessane é o código <code>CSEG</code> que indica débito oriundo do não recolhimento ao RPPS das contribuiçãoes dos segurados, o que em tese constitui crime de apropriação indébita. Mas é uma possibilidade oficialmente reconhecida.</p>
+<p>As demais variáveis são mais ou menos autoexplicativas.</p>
+<p>Para a obtenção de um sumário estatístico da variável <code>qtd_parc</code> pode-se fazer:</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="parcelamento-de-débitos.html#cb195-1"></a><span class="kw">summary</span>(parcel<span class="op">$</span>qtd_parc) </span></code></pre></div>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    1.0    60.0    60.0   113.4   200.0   540.0 </code></pre>
+<p>O resultado indica a existência de acordos de parcelamento passuindo apenas 1 parcela, até o máximo de 540 parcelas! Para identificar esses casos extremos pode-se utilizar os seguintes comandos:</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="parcelamento-de-débitos.html#cb197-1"></a><span class="co"># Valores mínimos</span></span>
+<span id="cb197-2"><a href="parcelamento-de-débitos.html#cb197-2"></a>parcel <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb197-3"><a href="parcelamento-de-débitos.html#cb197-3"></a><span class="st">  </span><span class="kw">slice_min</span>(<span class="dt">order_by=</span>qtd_parc, <span class="dt">n=</span><span class="dv">1</span>)</span></code></pre></div>
+<pre><code># A tibble: 31 x 29
+   ente  uf    tipo  situacao num_acordo rubrica lei   dt_consol  dt_assin   dt_venc1a  compet_ini compet_fin vlr_consol qtd_parc vlr_parc_ini sd_estim_satual~ sd_estim_catual~
+   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt; &lt;date&gt;     &lt;date&gt;     &lt;date&gt;     &lt;date&gt;     &lt;date&gt;          &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+ 1 Abae~ PA    P     Quitado  01571/2017 U200    Lei ~ 2017-10-20 2017-11-01 2017-12-30 2009-01-01 2009-12-01    146765.        1      146765.                0                0
+ 2 Açai~ MA    P     Não ace~ 00562/2019 CP60    &lt;NA&gt;  2019-07-15 2019-07-15 2019-07-19 2013-12-01 2017-12-01      6943.        1        6943.                0                0
+ 3 Açai~ MA    P     Aguarda~ 00070/2020 OUTR    &lt;NA&gt;  2020-01-01 2020-01-24 2020-01-24 2019-01-01 2019-07-01   3633908.        1     3633908.                0                0
+ 4 Água~ SP    P     Quitado  00853/2014 OUTR    LEI ~ 2014-12-18 2014-12-18 2015-01-15 2013-03-01 2014-03-01    216232.        1      216232.                0                0
+ 5 Apar~ SP    P     Aceito   00051/2020 CP60    LEI ~ 2020-01-17 2020-01-17 2020-02-28 2019-07-01 NA            423729.        1      423729.                0                0
+ 6 Arra~ RJ    P     Aceito   00916/2019 CP60    &lt;NA&gt;  2019-12-16 2019-12-20 2020-01-30 2014-03-01 2019-04-01     31413.        1       31413.                0                0
+ 7 Arra~ RJ    P     Aguarda~ 00921/2019 OUTR    &lt;NA&gt;  2020-05-25 2020-07-22 2020-08-31 2014-02-01 2019-02-01      5066.        1        5066.                0                0
+ 8 Arra~ RJ    P     Aguarda~ 00301/2020 CP60    &lt;NA&gt;  2020-05-26 2020-07-22 2020-08-31 2019-01-01 2019-04-01     28640.        1       28640.                0                0
+ 9 Arra~ RJ    P     Aguarda~ 00302/2020 OUTR    &lt;NA&gt;  2020-05-26 2020-07-22 2020-08-31 2019-01-01 2019-04-01     14493.        1       14493.                0                0
+10 Arra~ RJ    P     Aguarda~ 00373/2020 OUTR    &lt;NA&gt;  2020-08-10 2020-08-11 2020-08-30 2014-01-01 2019-04-01    129700.        1      129700.                0                0
+# ... with 21 more rows, and 12 more variables: comp_indice &lt;chr&gt;, comp_tp_juros &lt;chr&gt;, comp_txjuros &lt;dbl&gt;, comp_multa &lt;dbl&gt;, parcvinc_indice &lt;chr&gt;, parcvinc_tpjuros &lt;chr&gt;,
+#   parcvinc_txjuros &lt;dbl&gt;, parcvinc_multa &lt;dbl&gt;, parcatraso_indice &lt;chr&gt;, parcatraso_tpjuros &lt;chr&gt;, parcatraso_txjuros &lt;dbl&gt;, parcatraso_multa &lt;dbl&gt;</code></pre>
+<p>Tem-se 31 acordos nesta situação.</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="parcelamento-de-débitos.html#cb199-1"></a><span class="co"># Valores máximos </span></span>
+<span id="cb199-2"><a href="parcelamento-de-débitos.html#cb199-2"></a>parcel <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb199-3"><a href="parcelamento-de-débitos.html#cb199-3"></a><span class="st">  </span><span class="kw">slice_max</span>(<span class="dt">order_by=</span>qtd_parc, <span class="dt">n=</span><span class="dv">1</span>)</span></code></pre></div>
+<pre><code># A tibble: 1 x 29
+  ente  uf    tipo  situacao num_acordo rubrica lei   dt_consol  dt_assin   dt_venc1a  compet_ini compet_fin vlr_consol qtd_parc vlr_parc_ini sd_estim_satual~ sd_estim_catual~
+  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt; &lt;date&gt;     &lt;date&gt;     &lt;date&gt;     &lt;date&gt;     &lt;date&gt;          &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+1 Pass~ MG    P     Aceito   00053/2007 OUTR    AÇÃO~ 2007-04-18 2007-04-18 2007-05-10 2004-09-01 2006-12-01   2140939.      540        3965.         1502621.         3921842.
+# ... with 12 more variables: comp_indice &lt;chr&gt;, comp_tp_juros &lt;chr&gt;, comp_txjuros &lt;dbl&gt;, comp_multa &lt;dbl&gt;, parcvinc_indice &lt;chr&gt;, parcvinc_tpjuros &lt;chr&gt;, parcvinc_txjuros &lt;dbl&gt;,
+#   parcvinc_multa &lt;dbl&gt;, parcatraso_indice &lt;chr&gt;, parcatraso_tpjuros &lt;chr&gt;, parcatraso_txjuros &lt;dbl&gt;, parcatraso_multa &lt;dbl&gt;</code></pre>
+<p>Apenas um acordo com o valor máximo e possui débito originário de ação de cobrança.</p>
+<p>Pode-se fazer um gráfico mostrando a quantidade de acordos celebrados por ano.</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="parcelamento-de-débitos.html#cb201-1"></a>parcel <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb201-2"><a href="parcelamento-de-débitos.html#cb201-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">ano_assinatura =</span> <span class="kw">format</span>(dt_assin, <span class="st">&quot;%Y&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb201-3"><a href="parcelamento-de-débitos.html#cb201-3"></a><span class="st">  </span><span class="kw">count</span>(ano_assinatura, <span class="dt">name =</span> <span class="st">&quot;qtd&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb201-4"><a href="parcelamento-de-débitos.html#cb201-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y=</span>ano_assinatura, <span class="dt">x=</span>qtd, <span class="dt">label =</span> qtd)) <span class="op">+</span></span>
+<span id="cb201-5"><a href="parcelamento-de-débitos.html#cb201-5"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">size=</span><span class="fl">2.3</span>) <span class="op">+</span></span>
+<span id="cb201-6"><a href="parcelamento-de-débitos.html#cb201-6"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">xend=</span><span class="dv">0</span>, <span class="dt">yend=</span>ano_assinatura), <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
+<span id="cb201-7"><a href="parcelamento-de-débitos.html#cb201-7"></a><span class="st">  </span><span class="kw">geom_text</span>(<span class="dt">hjust=</span><span class="op">-</span><span class="fl">0.5</span>, <span class="dt">size=</span><span class="dv">2</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb201-8"><a href="parcelamento-de-débitos.html#cb201-8"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb201-9"><a href="parcelamento-de-débitos.html#cb201-9"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Quantidade de Acordos de Parcelamento </span><span class="ch">\n</span><span class="st"> Celebrados por Ano&quot;</span>,</span>
+<span id="cb201-10"><a href="parcelamento-de-débitos.html#cb201-10"></a>       <span class="dt">x =</span> <span class="st">&quot;Quantidade de Acordos&quot;</span>,</span>
+<span id="cb201-11"><a href="parcelamento-de-débitos.html#cb201-11"></a>       <span class="dt">y =</span> <span class="st">&quot;Ano de Assinatura do Termo&quot;</span>) <span class="op">+</span></span>
+<span id="cb201-12"><a href="parcelamento-de-débitos.html#cb201-12"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">panel.grid.major =</span> <span class="kw">element_blank</span>(),</span>
+<span id="cb201-13"><a href="parcelamento-de-débitos.html#cb201-13"></a>        <span class="dt">panel.grid.minor =</span> <span class="kw">element_blank</span>())</span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
+<p>Até 2008 não não eram celebrados muitos acordos. A partir de 2009 há um acréscimo e em 2013 houve uma explosão na quantidade de acordos celebrados, mantando-se elevados esse quantitativo a partir de então.</p>
+<p>Uma outra verificação importante ainda na fase de análise exploratária é verificar qual o percentual de valores não preenchidos em cada variável.</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="parcelamento-de-débitos.html#cb202-1"></a>parcel <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb202-2"><a href="parcelamento-de-débitos.html#cb202-2"></a><span class="st">  </span><span class="kw">summarize</span>(<span class="kw">across</span>(<span class="dt">.fns =</span> <span class="op">~</span><span class="kw">round</span>(<span class="kw">sum</span>(<span class="kw">is.na</span>(.))<span class="op">/</span><span class="kw">length</span>(.) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dv">1</span>))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb202-3"><a href="parcelamento-de-débitos.html#cb202-3"></a><span class="st">  </span><span class="kw">t</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb202-4"><a href="parcelamento-de-débitos.html#cb202-4"></a><span class="st">  </span><span class="kw">as.data.frame</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb202-5"><a href="parcelamento-de-débitos.html#cb202-5"></a><span class="st">  </span><span class="kw">filter</span>(V1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb202-6"><a href="parcelamento-de-débitos.html#cb202-6"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(V1))</span></code></pre></div>
+<pre><code>                      V1
+parcvinc_multa     100.0
+comp_multa          56.8
+compet_fin          21.9
+parcatraso_multa    12.0
+lei                 11.0
+comp_txjuros         3.3
+parcvinc_txjuros     3.1
+parcvinc_tpjuros     3.0
+parcatraso_tpjuros   3.0
+parcatraso_txjuros   3.0
+comp_tp_juros        2.9
+compet_ini           0.8</code></pre>
+<p>A variável <code>compet_fin</code> apresenta um valor de aproximadamente 22% de valores faltantes. Ao investigar a razão desse valor verificou-se que o processo de importação dos dados estava gerando os <code>NA</code> visto que a função de conversão de datas não reconhece situações como <code>13/2014</code> que indica a inclusão do 13<sup>o</sup> salário. Esse fato irá ensejar uma forma alternativa de lidar com essa situação durante o processo de importação dos dados.</p>
+<p>As variáveis indicativas do percentual de multa também apresentam valores elevados de não preenchimento.</p>
+</div>
+<div id="parcelamentos-ativos" class="section level2">
+<h2><span class="header-section-number">7.3</span> Parcelamentos ativos</h2>
+<p>A variável <code>situacao</code> indica, como visto, a situação do parcelamento na data da geração da base de dados. Os valores possíveis dessa variável foram vistos acima.</p>
+<p>Para adotar uma postura conservadora em relação ao montante de dívida oriunda de parcelamentos que os entes possuem com seus RPPS serão excluídos da base de dados todos os acordos que não possuam a situação <code>Aceito</code> e <code>Repactuado</code>.</p>
+<p>Será criada uma nova base de dados <code>parcel_ativos</code>, contendo apenas os acordos de interesse.</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="parcelamento-de-débitos.html#cb204-1"></a>parcel_ativos &lt;-<span class="st"> </span>parcel <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb204-2"><a href="parcelamento-de-débitos.html#cb204-2"></a><span class="st">                  </span><span class="kw">filter</span>(situacao <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Aceito&quot;</span>, <span class="st">&quot;Repactuado&quot;</span>))</span></code></pre></div>
+<p>A base de dados reduz de 11.831 observações para 7.828.</p>
+<p>Qual a quantidade de <code>Aceitos</code> e <code>Repactuados</code>?</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="parcelamento-de-débitos.html#cb205-1"></a>parcel <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb205-2"><a href="parcelamento-de-débitos.html#cb205-2"></a><span class="st">  </span><span class="kw">tabyl</span>(situacao) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb205-3"><a href="parcelamento-de-débitos.html#cb205-3"></a><span class="st">  </span><span class="kw">adorn_pct_formatting</span>(<span class="dt">digits =</span> <span class="dv">2</span>,</span>
+<span id="cb205-4"><a href="parcelamento-de-débitos.html#cb205-4"></a>                       <span class="dt">affix_sign =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>                 situacao    n percent
+                   Aceito 5754  48.63%
+       Aguardando análise  299   2.53%
+ Aguardando doc. assinado  754   6.37%
+               Não aceito 1467  12.40%
+                  Quitado 1483  12.53%
+               Repactuado 2074  17.53%</code></pre>
+<p>Como pode ser visto, a base agora contém apenas os parcelamentos aceitos e os repactuados.</p>
+</div>
+<div id="agregação-dos-parcelamentos" class="section level2">
+<h2><span class="header-section-number">7.4</span> Agregação dos parcelamentos</h2>
+<p>Neste tópico será feita uma agregação dos dados com vistas a mostrar para cada ente o quantitativo de acordos e correspondente valor, considerando-se apenas os acordos aceitos e repactuados.</p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="parcelamento-de-débitos.html#cb207-1"></a>tab_qtd_acordos_ente &lt;-<span class="st"> </span>parcel_ativos <span class="op">%&gt;%</span></span>
+<span id="cb207-2"><a href="parcelamento-de-débitos.html#cb207-2"></a><span class="st">  </span><span class="kw">group_by</span>(ente) <span class="op">%&gt;%</span></span>
+<span id="cb207-3"><a href="parcelamento-de-débitos.html#cb207-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">qtd_acordos =</span> <span class="kw">n</span>(),</span>
+<span id="cb207-4"><a href="parcelamento-de-débitos.html#cb207-4"></a>            <span class="dt">vlr_consolidado =</span> <span class="kw">sum</span>(vlr_consol, <span class="dt">na.rm=</span><span class="ot">TRUE</span>),</span>
+<span id="cb207-5"><a href="parcelamento-de-débitos.html#cb207-5"></a>            <span class="dt">sd_sem_atualiz =</span> <span class="kw">sum</span>(sd_estim_satualiz, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb207-6"><a href="parcelamento-de-débitos.html#cb207-6"></a>            <span class="dt">sd_com_atualiz =</span> <span class="kw">sum</span>(sd_estim_catualiz, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb207-7"><a href="parcelamento-de-débitos.html#cb207-7"></a>            <span class="st">`</span><span class="dt">%_sd_sem_atualiz</span><span class="st">`</span>  =<span class="st"> </span><span class="kw">round</span>(sd_sem_atualiz <span class="op">/</span><span class="st"> </span>vlr_consolidado <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dv">2</span>),</span>
+<span id="cb207-8"><a href="parcelamento-de-débitos.html#cb207-8"></a>            <span class="st">`</span><span class="dt">%_sd_com_atualiz</span><span class="st">`</span>  =<span class="st"> </span><span class="kw">round</span>(sd_com_atualiz <span class="op">/</span><span class="st"> </span>vlr_consolidado <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb207-9"><a href="parcelamento-de-débitos.html#cb207-9"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(vlr_consolidado))</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="parcelamento-de-débitos.html#cb208-1"></a><span class="kw">head</span>(tab_qtd_acordos_ente)</span></code></pre></div>
+<pre><code># A tibble: 6 x 7
+  ente                  qtd_acordos vlr_consolidado sd_sem_atualiz sd_com_atualiz `%_sd_sem_atualiz` `%_sd_com_atualiz`
+  &lt;chr&gt;                       &lt;int&gt;           &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;              &lt;dbl&gt;              &lt;dbl&gt;
+1 Curitiba                        5      766061169.     437908053.     595705732.               57.2               77.8
+2 Betim                          14      660917411.     392294258.     611880378.               59.4               92.6
+3 Florianópolis                  20      655221375.     364905999.     502711269.               55.7               76.7
+4 Estado do Tocantins             6      625112375.     170074534.     237037997.               27.2               37.9
+5 Campos dos Goytacazes          14      528714449.     287508688.     383896245.               54.4               72.6
+6 Manaus                         12      450433945.     312709216.     474798435.               69.4              105. </code></pre>
+<p>Tem-se agora um novo conjunto de dados que mostra, para cada ente, a quantidade de acordos celebrados o valor consolidado correspondente, o valor do saldo a pagar sem atualização e com atualização e os percentuais que esses valores representam da consolidação.</p>
+<p>Sumário da quantidade de acordos e valores consolidados:</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="parcelamento-de-débitos.html#cb210-1"></a>tab_qtd_acordos_ente <span class="op">%&gt;%</span></span>
+<span id="cb210-2"><a href="parcelamento-de-débitos.html#cb210-2"></a><span class="st">    </span><span class="kw">select</span>(<span class="op">-</span>ente) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb210-3"><a href="parcelamento-de-débitos.html#cb210-3"></a><span class="st">    </span><span class="kw">summary</span>()</span></code></pre></div>
+<pre><code>  qtd_acordos     vlr_consolidado     sd_sem_atualiz      sd_com_atualiz      %_sd_sem_atualiz %_sd_com_atualiz
+ Min.   : 1.000   Min.   :    19939   Min.   :        0   Min.   :        0   Min.   : 0.00    Min.   :  0.00  
+ 1st Qu.: 2.000   1st Qu.:  1245751   1st Qu.:   332230   1st Qu.:   608469   1st Qu.:26.48    1st Qu.: 44.14  
+ Median : 4.000   Median :  3957559   Median :  1584543   Median :  2678750   Median :46.63    Median : 74.97  
+ Mean   : 5.672   Mean   : 21616000   Mean   : 11493585   Mean   : 16910681   Mean   :43.26    Mean   : 69.06  
+ 3rd Qu.: 8.000   3rd Qu.: 13229078   3rd Qu.:  6959524   3rd Qu.: 10219905   3rd Qu.:61.28    3rd Qu.: 96.04  
+ Max.   :94.000   Max.   :766061169   Max.   :437908053   Max.   :611880378   Max.   :99.50    Max.   :173.33  </code></pre>
+<p>Os entes com menos acordos possuem 1 acordo mas tem-se um campeão com 94 acordos de parcelamento!</p>
+<p>A mediana é de 4 acordos, indicando que metade dos RPPS possuem de 1 a 4 acordos.</p>
+<p>A seguir elabora-se um histograma para mostrar a distribuição da variável <code>qtd_acordos</code>:</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="parcelamento-de-débitos.html#cb212-1"></a><span class="kw">ggplot</span>(tab_qtd_acordos_ente, <span class="kw">aes</span>(<span class="dt">x=</span>qtd_acordos)) <span class="op">+</span></span>
+<span id="cb212-2"><a href="parcelamento-de-débitos.html#cb212-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color=</span><span class="st">&#39;black&#39;</span>, <span class="dt">fill=</span><span class="st">&#39;lightgreen&#39;</span>, <span class="dt">binwidth =</span> <span class="dv">2</span>, <span class="dt">boundary=</span><span class="dv">0</span>) <span class="op">+</span></span>
+<span id="cb212-3"><a href="parcelamento-de-débitos.html#cb212-3"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Distribuição da Quantidade de Acordos&quot;</span>,</span>
+<span id="cb212-4"><a href="parcelamento-de-débitos.html#cb212-4"></a>       <span class="dt">x =</span> <span class="st">&quot;Quantidade de Acordos&quot;</span>,</span>
+<span id="cb212-5"><a href="parcelamento-de-débitos.html#cb212-5"></a>       <span class="dt">y =</span> <span class="st">&quot;Freq. Absoluta&quot;</span>) <span class="op">+</span></span>
+<span id="cb212-6"><a href="parcelamento-de-débitos.html#cb212-6"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
+<p>Com quase quinhentos registros, tem os entes com até 2 acordos, com a frequência decrescendo à medida que a quantidade de acordos por ente vai aumentando. Existem alguns valores bem elevados, acima de 50 acordos de parcelamento. Pode-se perguntar quem são os top 5 em quantidade de acordos?</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="parcelamento-de-débitos.html#cb213-1"></a>tab_qtd_acordos_ente <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb213-2"><a href="parcelamento-de-débitos.html#cb213-2"></a><span class="st">  </span><span class="kw">slice_max</span>(qtd_acordos, <span class="dt">n =</span> <span class="dv">5</span>)</span></code></pre></div>
+<pre><code># A tibble: 5 x 7
+  ente                   qtd_acordos vlr_consolidado sd_sem_atualiz sd_com_atualiz `%_sd_sem_atualiz` `%_sd_com_atualiz`
+  &lt;chr&gt;                        &lt;int&gt;           &lt;dbl&gt;          &lt;dbl&gt;          &lt;dbl&gt;              &lt;dbl&gt;              &lt;dbl&gt;
+1 São Leopoldo                    94      350607427.     232622410.     335294406.               66.4               95.6
+2 São Domingos                    51       17902053.      12173178.      16537416.               68                 92.4
+3 Caldas Novas                    40       82449581.      43791345.      56376090.               53.1               68.4
+4 Goiatuba                        30       56247076.      45170631.      59801790.               80.3              106. 
+5 Campo Novo de Rondônia          30       44400218.      27169628.      39744311.               61.2               89.5</code></pre>
+<p>A relação acima mostra os 5 entes com a maior quantidade de acordos, o que não significa serem os maiores devedores.</p>
+</div>
+<div id="cobrança-de-juros-simples" class="section level2">
+<h2><span class="header-section-number">7.5</span> Cobrança de juros simples</h2>
+<p>É comum acordos de parcelamento nos quais são adotadas taxas de juros incompatíveis com a meta atuarial, seja nos valores dos juros, seja no regime de capitalização, ou seja, adoção de juros simples em fez dos juros compostos.</p>
+<p>Para as parcelas vincendas, a base de dados contém as seguintes variáveis: <code>parcvinc_indice</code>, <code>parcvinc_tpjuros</code>, <code>parcvinc_txjuros</code> e <code>parcvinc_multas</code>.</p>
+<p>Mostra-se, a seguir, a distribuição de frequência do tipo de juros encontrados nos parcelamentos ativos:</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="parcelamento-de-débitos.html#cb215-1"></a>parcel_ativos <span class="op">%&gt;%</span></span>
+<span id="cb215-2"><a href="parcelamento-de-débitos.html#cb215-2"></a><span class="st">  </span><span class="kw">count</span>( parcvinc_indice, parcvinc_tpjuros) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb215-3"><a href="parcelamento-de-débitos.html#cb215-3"></a><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span>parcvinc_indice , <span class="dt">values_from=</span>n)</span></code></pre></div>
+<pre><code># A tibble: 3 x 8
+  parcvinc_tpjuros `IGP-DI` `IGP-M`  INPC `IPC-FIPE`  IPCA Outros SELIC
+  &lt;chr&gt;               &lt;int&gt;   &lt;int&gt; &lt;int&gt;      &lt;int&gt; &lt;int&gt;  &lt;int&gt; &lt;int&gt;
+1 Composto                1     134   574         12   438     30    18
+2 Simples                25     304  2777         73  2893    166   118
+3 &lt;NA&gt;                   NA      NA    NA         NA     1      3   261</code></pre>
+<p>Além do uso de juros simples também existe a adoção da taxa <code>SELIC</code> como indexador da inflação!</p>
+<p>Parece que existe um bom estímulo a que os entes não repassem as constribuições aos RPPS! É um ótimo negócio o ente se financiar junto ao RPPS pagando juros simples!</p>
+<p>Além disso, atuarialmente essa é uma prática contrária ao princípio constitucional do equilíbrio financeiro e atuarial visto que induz a formação de deficts atuariais.</p>
+</div>
+<div id="adimplência-dos-parcelamentos" class="section level2">
+<h2><span class="header-section-number">7.6</span> Adimplência dos parcelamentos</h2>
+<blockquote>
+<p><strong>Nota:</strong> O contéudo desta seção baseia-se em muitas suposições sobre as variáveis que precisam ser cofirmadas junto à SPREV.</p>
+</blockquote>
+<p>Monitorar se os parcelamentos de débitos vem sendo adimplidos com regularidade é algo que as pessoas interessadas na saúde financeira dos RPPS podem querer fazer. Assim, uma questão que surge é a seguinte: os dados contidos nessa base permitem avaliar se o ente vem pagando com regularidade sua dívida junto ao RPPS?</p>
+<p>A base contém algumas variáveis que podem ajudar a responder a questão. A variável <code>vlr_consol</code> informa o valor total do débito consolidado, a variável <code>qtd_parc</code> indica a quantidade de parcelas do débito, a variável <code>vlr_parc_ini</code> indica o valor da parcela inicial (essa variável é o quociente entre as variáveis <code>vlr_consol</code> e <code>qtd_parc</code>), a variável <code>dt_venc1a</code> informa a data de vencimento da primeira parcela e a variável <code>sd_estim_satualiz</code> informa o saldo estimado da dívida sem atualização.</p>
+<p>Para a metodologia proposta para checagem do regular adimplemento do parecelamento, assume-se que a variável <code>sd_estim_satualiz</code> reflita o saldo a pagar na data de geração dos dados, ou seja, é a diferença entre o valor consolidado e o valor já pago.</p>
+<p>Ocorre que o valor já pago não consta da base de dados, mas pode ser determinado multiplicando-se o valor da primeira parcela pela quantidade de meses decorridos da data de vencimento da primeira parcela até a data de geração dos dados.</p>
+<p>Assume-se a hipótese (a ser confirmada junto à SPREV) de que o valor da variável <code>sd_estim_satualiz</code> seja gerado pela SPREV a partir de informações colhidas no DIPR, de forma que cada parcela informada naquele demonstrativo seja subtraída do valor consolidado do débito de forma que decorrido o prazo do parcelamento (<code>qtd_parc</code>) o débito esteja quitado.</p>
+<p>Com essas suposições, uma verificação que talvez possa fornecer alguma indicação quanto a regularidade do pagamento dos acordos seria dividir o saldo estimado sem atualização pelo valor da parcela inicial. Isso daria a quantidade de parcelas que ainda faltam a ser pagas.</p>
+<p>Diminuindo esse valor da quantidade de parcelas, obtem-se a quantidade de parcelas pagas. Tomando a data de vencimento da primeira parcela e adicionando-se a quantidade de meses iqual à quantidade de parcelas pagas espera-se obter uma data próxima à data de extração dos dados que se deu em <code>02/10/2020</code> conforme consta no nome do arquivo contendo os dados.</p>
+<p>O código a seguir implementa essa ideia, calculando a data referente à última parcela na data de extração dos dados.</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="parcelamento-de-débitos.html#cb217-1"></a>parcel_ativos2 &lt;-<span class="st"> </span>parcel_ativos <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb217-2"><a href="parcelamento-de-débitos.html#cb217-2"></a><span class="st">                  </span><span class="kw">mutate</span>(<span class="dt">qtd_parc_apagar =</span> sd_estim_satualiz <span class="op">/</span><span class="st"> </span>vlr_parc_ini,</span>
+<span id="cb217-3"><a href="parcelamento-de-débitos.html#cb217-3"></a>                         <span class="dt">qtd_parc_pagas =</span> qtd_parc <span class="op">-</span><span class="st"> </span>qtd_parc_apagar,</span>
+<span id="cb217-4"><a href="parcelamento-de-débitos.html#cb217-4"></a>                         <span class="dt">dt_parc_atual =</span> dt_venc1a <span class="op">+</span><span class="st"> </span><span class="kw">months</span>(<span class="kw">as.integer</span>(qtd_parc_pagas)))</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="parcelamento-de-débitos.html#cb218-1"></a><span class="kw">head</span>(parcel_ativos2)</span></code></pre></div>
+<pre><code># A tibble: 6 x 32
+  ente  uf    tipo  situacao num_acordo rubrica lei   dt_consol  dt_assin   dt_venc1a  compet_ini compet_fin vlr_consol qtd_parc vlr_parc_ini sd_estim_satual~ sd_estim_catual~
+  &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt; &lt;date&gt;     &lt;date&gt;     &lt;date&gt;     &lt;date&gt;     &lt;date&gt;          &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+1 Abad~ GO    P     Aceito   00198/2009 OUTR    LEI ~ 2009-03-27 2009-03-27 2009-04-30 2007-02-01 2008-12-01    216084.      240         900.           91836.          218569.
+2 Abad~ GO    P     Aceito   01121/2016 CP60    Lei ~ 2016-12-21 2016-12-21 2016-12-30 2016-02-01 2016-10-01    585394.       60        9757.          136592.          199424.
+3 Abad~ GO    P     Aceito   00138/2017 CP60    Lei ~ 2017-02-03 2017-02-06 2017-03-01 2016-10-01 2016-10-01     45123.       60         752.           12785.           18283.
+4 Abad~ GO    P     Aceito   00645/2017 CP60    Lei ~ 2017-07-24 2017-07-24 2017-08-31 2017-02-01 2017-06-01    461544.       60        7692.          169233.          233542.
+5 Abad~ GO    P     Aceito   01426/2018 CP60    Lei ~ 2018-12-21 2018-12-21 2019-01-30 2018-02-01 2018-10-01   1172612.       24       48859.          146576.          177358.
+6 Abad~ GO    P     Aceito   00143/2019 CP60    Lei ~ 2019-02-08 2019-02-11 2019-03-31 2018-11-01 2018-12-01    396962.       22       18044.           54131.           64416.
+# ... with 15 more variables: comp_indice &lt;chr&gt;, comp_tp_juros &lt;chr&gt;, comp_txjuros &lt;dbl&gt;, comp_multa &lt;dbl&gt;, parcvinc_indice &lt;chr&gt;, parcvinc_tpjuros &lt;chr&gt;, parcvinc_txjuros &lt;dbl&gt;,
+#   parcvinc_multa &lt;dbl&gt;, parcatraso_indice &lt;chr&gt;, parcatraso_tpjuros &lt;chr&gt;, parcatraso_txjuros &lt;dbl&gt;, parcatraso_multa &lt;dbl&gt;, qtd_parc_apagar &lt;dbl&gt;, qtd_parc_pagas &lt;dbl&gt;,
+#   dt_parc_atual &lt;date&gt;</code></pre>
+<p>Caso os entes tenham realizado os pagamentos com regularidade, espera-se que os valores da variável <code>dt_parc_atual</code> estejam próximas a Out/2020, visto que a data de extração dos dados foi em 02/10/2020.</p>
+<p>Uma rápida verificação do range da variável irá confirmar se de fato isto está ocorrendo:</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="parcelamento-de-débitos.html#cb220-1"></a><span class="kw">range</span>(parcel_ativos2<span class="op">$</span>dt_parc_atual, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>[1] &quot;2011-02-15&quot; &quot;2032-05-01&quot;</code></pre>
+<p>Diferentemente do esperado, tem-se datas que vão do ano de 2011 a 2032. O que pode ter acontecido?</p>
+<p>O código a seguir faz a contagem das datas no mês de outubro de 2020.</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="parcelamento-de-débitos.html#cb222-1"></a>parcel_ativos2 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb222-2"><a href="parcelamento-de-débitos.html#cb222-2"></a><span class="st">  </span><span class="kw">count</span>(<span class="dt">out2020 =</span> dt_parc_atual <span class="op">%within%</span><span class="st"> </span><span class="kw">interval</span>(<span class="kw">dmy</span>(<span class="st">&quot;01102020&quot;</span>), <span class="kw">dmy</span>(<span class="st">&quot;31102020&quot;</span>)))</span></code></pre></div>
+<pre><code># A tibble: 3 x 2
+  out2020     n
+  &lt;lgl&gt;   &lt;int&gt;
+1 FALSE    2513
+2 TRUE     5251
+3 NA         64</code></pre>
+<p>O resultado mostra que 5251 registros possuem a data da parcela atual no mês de outubro de 2020 e que 2513 não.</p>
+<p>Deve-se olhar com mais cuidado para esses 2513 registros. O código a seguir aplica um filtro para captuar esse registros.</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="parcelamento-de-débitos.html#cb224-1"></a>nao_conformes &lt;-<span class="st"> </span>parcel_ativos2 <span class="op">%&gt;%</span></span>
+<span id="cb224-2"><a href="parcelamento-de-débitos.html#cb224-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>dt_parc_atual <span class="op">%within%</span><span class="st"> </span><span class="kw">interval</span>(<span class="kw">dmy</span>(<span class="st">&quot;01102020&quot;</span>), <span class="kw">dmy</span>(<span class="st">&quot;31102020&quot;</span>)))</span></code></pre></div>
+<p>Inspecionando os dados, verifica-se que parte deles possuem o valor da variável <code>sd_estim_satualiz</code> zerado, o que não é algo que seria esperado de ocorrer, visto que os parcelamentos já quitados foram excluídos da base de dados. Deve-se obter mais informações junto à SPREV quanto as possíveis causas desse fato.</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="parcelamento-de-débitos.html#cb225-1"></a>sd_zero &lt;-<span class="st"> </span>nao_conformes <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb225-2"><a href="parcelamento-de-débitos.html#cb225-2"></a><span class="st">  </span><span class="kw">filter</span>(sd_estim_satualiz <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)</span>
+<span id="cb225-3"><a href="parcelamento-de-débitos.html#cb225-3"></a></span>
+<span id="cb225-4"><a href="parcelamento-de-débitos.html#cb225-4"></a>nao_conformes <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb225-5"><a href="parcelamento-de-débitos.html#cb225-5"></a><span class="st">  </span><span class="kw">count</span>(<span class="dt">sd_zerado =</span> sd_estim_satualiz <span class="op">==</span><span class="st"> </span><span class="dv">0</span>) </span></code></pre></div>
+<pre><code># A tibble: 2 x 2
+  sd_zerado     n
+  &lt;lgl&gt;     &lt;int&gt;
+1 FALSE       403
+2 TRUE       2110</code></pre>
+<p>Dos 2513 acordos, 2110 estão nessa situação. Os demais 403 não estão conforme o esperado por outra razão ainda a ser determinada.</p>
+<p>O códido a seguir cria uma nova base com esses 403 registros para investigação posterior.</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="parcelamento-de-débitos.html#cb227-1"></a>nao_conformes2 &lt;-<span class="st"> </span>nao_conformes <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb227-2"><a href="parcelamento-de-débitos.html#cb227-2"></a><span class="st">  </span><span class="kw">filter</span>(sd_estim_satualiz <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) </span></code></pre></div>
+<p>Inspecionando a base de dados, verifica-se que muitos registros possuem a data da última parcela em Set/2020 que é próximo do esperado, não representando uma não conformidade, de forma que serão excluídos da base.</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="parcelamento-de-débitos.html#cb228-1"></a>nao_conformes3 &lt;-<span class="st"> </span>nao_conformes2 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb228-2"><a href="parcelamento-de-débitos.html#cb228-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>dt_parc_atual <span class="op">%within%</span><span class="st"> </span><span class="kw">interval</span>(<span class="kw">dmy</span>(<span class="dv">01092020</span>), <span class="kw">dmy</span>(<span class="dv">30092020</span>))) </span></code></pre></div>
+<p>Com esse filtro, a quantidade de registros “não conformes” cai para 52.</p>
+<p>O código a seguir obtém a quantidade de datas em cada ano:</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="parcelamento-de-débitos.html#cb229-1"></a>nao_conformes3 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb229-2"><a href="parcelamento-de-débitos.html#cb229-2"></a><span class="st">  </span><span class="kw">count</span>(<span class="dt">ano_data =</span> <span class="kw">format</span>(dt_parc_atual, <span class="st">&quot;%Y&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb229-3"><a href="parcelamento-de-débitos.html#cb229-3"></a><span class="st">  </span><span class="kw">arrange</span>(ano_data)</span></code></pre></div>
+<pre><code># A tibble: 11 x 2
+   ano_data     n
+   &lt;chr&gt;    &lt;int&gt;
+ 1 2020         2
+ 2 2021        15
+ 3 2022         7
+ 4 2023         9
+ 5 2024         7
+ 6 2025         5
+ 7 2026         2
+ 8 2027         1
+ 9 2028         1
+10 2031         2
+11 2032         1</code></pre>
+<p>Tem-se duas datas em 2020 (Nov e Dez) e as demais em anos posteriores.</p>
+<p>Uma possível justificativa para isso (mas que deve ser confirmado junto à SPREV) seria o pagamento de mais de uma parcela no mês, o que levaria a um valor de <code>sd_estim_satuliz</code> inferior ao que seria esperadoe e a uma quantidade de parcelas a serem pagas maior que o correto. Isso implica datas da parcela atual posteriores a Out/2020.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="isp-indicador-de-situação-previdenticária.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["ADPrevBook.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

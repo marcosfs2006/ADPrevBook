@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 8 ISP - Indicador de Situação Previdenticária | Análise de Dados Previdenciários - ADPrev</title>
+  <title>Prefácio | Análise de Dados Previdenciários - ADPrev</title>
   <meta name="description" content="Exemplos e sugestões de análise dos dados previdenciários dos RPPS usando o software R." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 8 ISP - Indicador de Situação Previdenticária | Análise de Dados Previdenciários - ADPrev" />
+  <meta property="og:title" content="Prefácio | Análise de Dados Previdenciários - ADPrev" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="figuras/work_in_progress2.jpg" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="marcosfs2006/ADPrevBook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 8 ISP - Indicador de Situação Previdenticária | Análise de Dados Previdenciários - ADPrev" />
+  <meta name="twitter:title" content="Prefácio | Análise de Dados Previdenciários - ADPrev" />
   
   <meta name="twitter:description" content="Exemplos e sugestões de análise dos dados previdenciários dos RPPS usando o software R." />
   <meta name="twitter:image" content="figuras/work_in_progress2.jpg" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="parcelamento-de-débitos.html"/>
-<link rel="next" href="fluxo-atuarial.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="introdução.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -213,23 +213,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="isp---indicador-de-situação-previdenticária" class="section level1">
-<h1><span class="header-section-number">Capítulo 8</span> ISP - Indicador de Situação Previdenticária</h1>
-<center>
-<p><img src="figuras/work_in_progress2.jpg" /></p>
-</center>
-<blockquote>
-<p><strong>NOTA:</strong> Este é um trabalho em progresso. Novos capítulos serão adicionados à medida que o tempo permitir. Volte em breve!</p>
-</blockquote>
+<div id="prefácio" class="section level1 unnumbered">
+<h1>Prefácio</h1>
+<p>Já a algum tempo se diz que os dados são o novo petróleo, mas aparentemente os dados dos RPPS ainda são uma fonte quase inexplorada de conhecimento.</p>
+<p>Essa situação decorre de um lado, do fato de se referir a um assunto que não é de amplo conhecimento do público em geral. De outro, porque os que militam na área muitas vezes não dispõem dos recursos necessários à sua ampla utilização.</p>
+<p>Há ainda uma forte cultura no setor público para a análise individualizada, isto é, RPPS a RPPS, baseada em documentos físicos. Isso justifica a SPREV divulgar, no CADPREV, os dados dos RPPS em relatórios em pdf, não legíveis por máquina, em vez de disponibilizar uma API<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> para consumo dos dados.</p>
+<p>Este documento objetiva mostrar possíveis usos desses dados e com isso estimular o leitor a buscar os conhecimentos e recursos de tecnologia necessários a que ele mesmo possa realizar suas análises.</p>
+<p>A boa notícia é que ambos, conhecimento e recursos de tecnologia, estão amplamente disponíveis na internet e com frequência gratuitamente.</p>
+<p>Por vezes ainda se ouve alegações de que os dados disponibilizados não seriam confiáveis e que portanto sua utilização não seria justificada.</p>
+<p>As eventuais inconsistências das bases de dados antes de gerar desestímulo à sua utilização deve motivar a que sejam melhoradas e para isso é fundamental que sejam utilizadas.</p>
+<p>Quanto mais os dados forem utilizados mais provável que as eventuais inconsistências sejam identificadas e maiores são as possibilidade de serem corrigidas, levando a uma melhor qualidade dos dados e das análises realizadas com os mesmos. As bases de dados dos RPPS são um bem público e é responsabilidade de todos cuidar desse bem.</p>
+<p>Mas para que os dados sejam utilizados ou para que se estimule sua utilização, parece importante dar “o pontabé inicial”, mostrar exemplos de sua utilização e dos resultados que podem ser obtidos.</p>
+<p>Deve-se ter em mente que esses dados podem ser utilizados pela sociedade e pelo governo para os fins mais diversos: elaboração de estudos acadêmicos, fiscalização e monitoramento dos RPPS, proposição de políticas públicas e proposição de leis, para citar apenas alguns.</p>
+<p>Assim, é grande a responsabilidade dos gestores na geração desses dados, da SPREV em melhorar continuamente sua qualidade, dos Tribunais de Contas em comunicar as inconsistências e divergências detectadas tanto ao gestor quanto à SPREV para as devidas correções. Aqui vale o ditado: “<em>mais vale acender uma vela do que maldizer a escuridão</em>”.</p>
+<p>Espera-se que as sugestões de análise apresentadas neste documento contribuam para lançar um pouco mais de luz sobre essa rica fonte de informações dos RPPS brasileiros e ajude/estimule outras pessoas a realizar suas próprias análises.</p>
+<!--
+Até prova em contrário, os dados publicados são a expressão da verdade e não deveria ser uma grande preocupação do usuário final sua qualidade.
 
+Não é ônus do usuário mostrar que os dados estão errados. É, antes, obrigação dos gestores de RPPS mostrar que estão corretos, visto é sua obrigação prestar contas à sociedade.  
+-->
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>API é um conjunto de rotinas e padrões de programação para acesso a um aplicativo de software ou plataforma baseado na Web. A sigla API refere-se ao termo em inglês “Application Programming Interface” que significa em tradução para o português “Interface de Programação de Aplicativos”. Fonte: <a href="https://canaltech.com.br/software/o-que-e-api/" class="uri">https://canaltech.com.br/software/o-que-e-api/</a><a href="prefácio.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="parcelamento-de-débitos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="fluxo-atuarial.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introdução.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
