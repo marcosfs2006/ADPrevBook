@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 8 ISP - Indicador de Situação Previdenciária | Análise de Dados Previdenciários - ADPrev</title>
+  <meta name="description" content="Exemplos e sugestões de análise dos dados previdenciários dos RPPS usando o software R." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 8 ISP - Indicador de Situação Previdenciária | Análise de Dados Previdenciários - ADPrev" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="figuras/work_in_progress2.jpg" />
+  <meta property="og:description" content="Exemplos e sugestões de análise dos dados previdenciários dos RPPS usando o software R." />
+  <meta name="github-repo" content="marcosfs2006/ADPrevBook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 8 ISP - Indicador de Situação Previdenciária | Análise de Dados Previdenciários - ADPrev" />
+  
+  <meta name="twitter:description" content="Exemplos e sugestões de análise dos dados previdenciários dos RPPS usando o software R." />
+  <meta name="twitter:image" content="figuras/work_in_progress2.jpg" />
+
+<meta name="author" content="Marcos Ferreira da Silva" />
+
+
+<meta name="date" content="2021-06-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="parcelamento-de-débitos.html"/>
+<link rel="next" href="fluxo-atuarial.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
+<script src="libs/tabwid-1.0.0/tabwid.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Análise de Dados Previdenciários - ADPrev</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nota</a></li>
+<li class="chapter" data-level="" data-path="prefácio.html"><a href="prefácio.html"><i class="fa fa-check"></i>Prefácio</a></li>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i>Introdução</a><ul>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#estrutura-do-documento"><i class="fa fa-check"></i>Estrutura do Documento</a></li>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#projeto-labdadosprevrpps"><i class="fa fa-check"></i>Projeto LabDadosPrev(“RPPS”)</a></li>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#bases-de-dados-utilizadas"><i class="fa fa-check"></i>Bases de Dados Utilizadas</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="regime-previdenciário-atual-dos-entes-federativos.html"><a href="regime-previdenciário-atual-dos-entes-federativos.html"><i class="fa fa-check"></i><b>1</b> Regime Previdenciário Atual dos Entes Federativos</a></li>
+<li class="chapter" data-level="2" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html"><i class="fa fa-check"></i><b>2</b> Alíquotas de Contribuição Praticadas</a><ul>
+<li class="chapter" data-level="2.1" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html#análise-exploratória"><i class="fa fa-check"></i><b>2.1</b> Análise Exploratória</a></li>
+<li class="chapter" data-level="2.2" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html#rpps-com-segregação-de-massas"><i class="fa fa-check"></i><b>2.2</b> RPPS com Segregação de Massas</a></li>
+<li class="chapter" data-level="2.3" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html#adequação-das-alíquotas-à-ec-10319"><i class="fa fa-check"></i><b>2.3</b> Adequação das Alíquotas à EC 103/19</a></li>
+<li class="chapter" data-level="2.4" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html#alíquota-do-ente-inferior-à-do-servidor-ativo"><i class="fa fa-check"></i><b>2.4</b> Alíquota do Ente Inferior à do Servidor Ativo</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html"><i class="fa fa-check"></i><b>3</b> CRP - Certificado de Regularidade Previdenciária</a><ul>
+<li class="chapter" data-level="3.1" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#análise-exploratória-preliminar"><i class="fa fa-check"></i><b>3.1</b> Análise exploratória preliminar</a></li>
+<li class="chapter" data-level="3.2" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#análise-dos-rpps"><i class="fa fa-check"></i><b>3.2</b> Análise dos RPPS</a></li>
+<li class="chapter" data-level="3.3" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#análise-segundo-a-quantidade-de-dias-vencidos"><i class="fa fa-check"></i><b>3.3</b> Análise segundo a quantidade de dias vencidos</a></li>
+<li class="chapter" data-level="3.4" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#efeito-da-constitucionalização-do-crp"><i class="fa fa-check"></i><b>3.4</b> Efeito da constitucionalização do CRP</a></li>
+<li class="chapter" data-level="3.5" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#mapas-com-dados-dos-crp"><i class="fa fa-check"></i><b>3.5</b> Mapas com dados dos CRP</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html"><a href="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html"><i class="fa fa-check"></i><b>4</b> DAIR - Demonstrativo das Aplicações e Investimento de Recursos</a><ul>
+<li class="chapter" data-level="4.1" data-path="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html"><a href="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html#importação-e-pré-processamento-dos-dados"><i class="fa fa-check"></i><b>4.1</b> Importação e Pré-Processamento dos Dados</a></li>
+<li class="chapter" data-level="4.2" data-path="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html"><a href="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html#análise-exploratória-preliminar-1"><i class="fa fa-check"></i><b>4.2</b> Análise Exploratória Preliminar</a></li>
+<li class="chapter" data-level="4.3" data-path="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html"><a href="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html#evolução-da-carteira-de-um-rpps"><i class="fa fa-check"></i><b>4.3</b> Evolução da Carteira de um RPPS</a></li>
+<li class="chapter" data-level="4.4" data-path="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html"><a href="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html#aplicações-em-fundos-vedados"><i class="fa fa-check"></i><b>4.4</b> Aplicações em Fundos Vedados</a></li>
+<li class="chapter" data-level="4.5" data-path="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html"><a href="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html#enquadramento-de-fundos-de-investimentos"><i class="fa fa-check"></i><b>4.5</b> Enquadramento de Fundos de Investimentos</a></li>
+<li class="chapter" data-level="4.6" data-path="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html"><a href="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html#encaminhamento-do-dair-à-sprev"><i class="fa fa-check"></i><b>4.6</b> Encaminhamento do DAIR à SPREV</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><i class="fa fa-check"></i><b>5</b> DIPR - Demonstrativo de Informações Previdenciárias e Repasses</a><ul>
+<li class="chapter" data-level="5.1" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html#importação-e-pré-processamento-dos-dados-1"><i class="fa fa-check"></i><b>5.1</b> Importação e pré-processamento dos dados</a></li>
+<li class="chapter" data-level="5.2" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html#seleção-do-rpps-para-análise"><i class="fa fa-check"></i><b>5.2</b> Seleção do RPPS para análise</a></li>
+<li class="chapter" data-level="5.3" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html#quantidade-de-beneficiários"><i class="fa fa-check"></i><b>5.3</b> Quantidade de Beneficiários</a></li>
+<li class="chapter" data-level="5.4" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html#manutenção-dos-pagamentos-dos-auxílios"><i class="fa fa-check"></i><b>5.4</b> Manutenção dos pagamentos dos auxílios</a></li>
+<li class="chapter" data-level="5.5" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html#recebimento-das-contribuições"><i class="fa fa-check"></i><b>5.5</b> Recebimento das contribuições</a></li>
+<li class="chapter" data-level="5.6" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html#recebimento-dos-parcelamentos"><i class="fa fa-check"></i><b>5.6</b> Recebimento dos parcelamentos</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html"><a href="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html"><i class="fa fa-check"></i><b>6</b> DRAA - Demonstrativo de Resultados da Avaliação Atuarial</a><ul>
+<li class="chapter" data-level="6.1" data-path="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html"><a href="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html#importação-dos-dados"><i class="fa fa-check"></i><b>6.1</b> Importação dos dados</a></li>
+<li class="chapter" data-level="6.2" data-path="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html"><a href="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html#análise-exploratória-1"><i class="fa fa-check"></i><b>6.2</b> Análise exploratória</a></li>
+<li class="chapter" data-level="6.3" data-path="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html"><a href="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html#evolução-de-variáveis"><i class="fa fa-check"></i><b>6.3</b> Evolução de variáveis</a></li>
+<li class="chapter" data-level="6.4" data-path="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html"><a href="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html#encaminhamento-do-draa-à-sprev"><i class="fa fa-check"></i><b>6.4</b> Encaminhamento do DRAA à SPREV</a></li>
+<li class="chapter" data-level="6.5" data-path="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html"><a href="draa-demonstrativo-de-resultados-da-avaliação-atuarial.html#balanço-atuarial"><i class="fa fa-check"></i><b>6.5</b> Balanço atuarial</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="parcelamento-de-débitos.html"><a href="parcelamento-de-débitos.html"><i class="fa fa-check"></i><b>7</b> Parcelamento de Débitos</a><ul>
+<li class="chapter" data-level="7.1" data-path="parcelamento-de-débitos.html"><a href="parcelamento-de-débitos.html#importação-e-limpeza-dos-dados"><i class="fa fa-check"></i><b>7.1</b> Importação e limpeza dos dados</a></li>
+<li class="chapter" data-level="7.2" data-path="parcelamento-de-débitos.html"><a href="parcelamento-de-débitos.html#análise-exploratória-2"><i class="fa fa-check"></i><b>7.2</b> Análise exploratória</a></li>
+<li class="chapter" data-level="7.3" data-path="parcelamento-de-débitos.html"><a href="parcelamento-de-débitos.html#parcelamentos-ativos"><i class="fa fa-check"></i><b>7.3</b> Parcelamentos ativos</a></li>
+<li class="chapter" data-level="7.4" data-path="parcelamento-de-débitos.html"><a href="parcelamento-de-débitos.html#agregação-dos-parcelamentos"><i class="fa fa-check"></i><b>7.4</b> Agregação dos parcelamentos</a></li>
+<li class="chapter" data-level="7.5" data-path="parcelamento-de-débitos.html"><a href="parcelamento-de-débitos.html#cobrança-de-juros-simples"><i class="fa fa-check"></i><b>7.5</b> Cobrança de juros simples</a></li>
+<li class="chapter" data-level="7.6" data-path="parcelamento-de-débitos.html"><a href="parcelamento-de-débitos.html#adimplência-dos-parcelamentos"><i class="fa fa-check"></i><b>7.6</b> Adimplência dos parcelamentos</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="isp-indicador-de-situação-previdenciária.html"><a href="isp-indicador-de-situação-previdenciária.html"><i class="fa fa-check"></i><b>8</b> ISP - Indicador de Situação Previdenciária</a><ul>
+<li class="chapter" data-level="8.1" data-path="isp-indicador-de-situação-previdenciária.html"><a href="isp-indicador-de-situação-previdenciária.html#importação-dos-dados-1"><i class="fa fa-check"></i><b>8.1</b> Importação dos Dados</a></li>
+<li class="chapter" data-level="8.2" data-path="isp-indicador-de-situação-previdenciária.html"><a href="isp-indicador-de-situação-previdenciária.html#análise-exploratória-preliminar-2"><i class="fa fa-check"></i><b>8.2</b> Análise Exploratória Preliminar</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html"><i class="fa fa-check"></i><b>9</b> Fluxo Atuarial</a><ul>
+<li class="chapter" data-level="9.1" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html#fluxo-atuarial-utilizado-no-capítulo"><i class="fa fa-check"></i><b>9.1</b> Fluxo atuarial utilizado no capítulo</a></li>
+<li class="chapter" data-level="9.2" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html#importação-e-pré-processamento-dos-dados-2"><i class="fa fa-check"></i><b>9.2</b> Importação e pré-processamento dos dados</a></li>
+<li class="chapter" data-level="9.3" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html#dicionário-de-variáveis"><i class="fa fa-check"></i><b>9.3</b> Dicionário de variáveis</a></li>
+<li class="chapter" data-level="9.4" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html#análise-gráfica-das-variáveis-do-fluxo-atuarial"><i class="fa fa-check"></i><b>9.4</b> Análise gráfica das variáveis do fluxo atuarial</a></li>
+<li class="chapter" data-level="9.5" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html#cálculo-dos-principais-números-da-avaliação-atuarial"><i class="fa fa-check"></i><b>9.5</b> Cálculo dos principais números da avaliação atuarial</a></li>
+<li class="chapter" data-level="9.6" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html#anexo-10-do-rreo"><i class="fa fa-check"></i><b>9.6</b> Anexo 10 do RREO</a></li>
+<li class="chapter" data-level="9.7" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html#verificação-da-consistência-interna-do-fluxo-atuarial"><i class="fa fa-check"></i><b>9.7</b> Verificação da consistência interna do fluxo atuarial</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="msc-matriz-de-saldos-contábeis.html"><a href="msc-matriz-de-saldos-contábeis.html"><i class="fa fa-check"></i><b>10</b> MSC - Matriz de Saldos Contábeis</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Feito com o pacote bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Análise de Dados Previdenciários - ADPrev</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="isp---indicador-de-situação-previdenciária" class="section level1">
+<h1><span class="header-section-number">Capítulo 8</span> ISP - Indicador de Situação Previdenciária</h1>
+<p>O objetivo deste capítulo é apresentar algumas possibilidades de análise da base de dados do <a href="https://www.gov.br/previdencia/pt-br/assuntos/previdencia-no-servico-publico/indicador-de-situacao-previdenciaria">Indicador de Situação Previdenciária - ISP</a>.</p>
+<p>A SPREV mantém uma <a href="https://www.gov.br/previdencia/pt-br/assuntos/previdencia-no-servico-publico/indicador-de-situacao-previdenciaria">página dedicada ao ISP</a>, na qual o leitor interessado encontrará todas as informações sobre esse indicador.</p>
+<p>O ISP foi criado pela Portaria MF n<sup>o</sup> 01 de 03/01/2017 e a primeira composição, metodologia de aferição e periodicidade do indicador foram aprovadas pela SPREV por meio da Portaria n<sup>o</sup> 10 de 08/09/2017 publicada como Nota Técnica SEI n<sup>o</sup> 01/2017/CODAE/CGACI/SRPPS/SPREV/MF de 06/09/2017 com a divulgação do ISP de 2017-01. Posteriormente foram divulgados os dados do ISP 2017-02 e do ISP 2018-01.</p>
+<p>A partir do ano de 2019 o ISP foi reformulado, passando a incorporar o perfil de risco atuarial e a utilizar a classificação do RPPS no <a href="https://www.gov.br/previdencia/pt-br/assuntos/previdencia-no-servico-publico/pro-gestao-rpps-certificacao-institucional">Pró-Gestão</a>, tendo sido sua periodicidade de divulgação alterada de semestral para anual.</p>
+<p>O arquivo contendo os dados do ISP de 2020 (correção de 16/12/2020) possui 9 planilhas, cada uma contendo os dados básicos para o cálculo dos 6 indicadores que compõem cada uma de suas 3 dimensões conforme tabela a seguir:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Dimensão</th>
+<th align="left">Indicador</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Gestão e Transperência</td>
+<td align="left">Regularidade</td>
+</tr>
+<tr class="even">
+<td align="left">Gestão e Transperência</td>
+<td align="left">Envio de Informações</td>
+</tr>
+<tr class="odd">
+<td align="left">Gestão e Transperência</td>
+<td align="left">Gestão</td>
+</tr>
+<tr class="even">
+<td align="left">Finanças e Liquidez</td>
+<td align="left">Suficiência Financeira</td>
+</tr>
+<tr class="odd">
+<td align="left">Finanças e Liquidez</td>
+<td align="left">Acumulação de Recursos</td>
+</tr>
+<tr class="even">
+<td align="left">Atuária</td>
+<td align="left">Conbertura Previdenciária</td>
+</tr>
+</tbody>
+</table>
+<p>A planilha <code>RESULTADO</code> contém a nota (<code>A</code>, <code>B</code>, <code>C</code> ou <code>D</code>) do ISP para cada RPPS além de outras informações.</p>
+<p>A maioria das variáveis na referida planilha são qualitativas referindo-se às notas obtidas pelos RPPS em cada indicador. À exceção do indicador de modernização da gestão, os demais possuem pontuação (variável quantitativa) a eles associados, a partir da qual as notas são definidas.</p>
+<p>Inicia-se a análise dos dados do ISP por essa planilha. Posteriormente os dados das demais planilhas (<code>GRUPOS</code>, <code>REGULARIDADE</code>, <code>CRITÉRIOS</code>, <code>ENVIOS</code>, <code>GESTÃO</code>, <code>SUFICIÊNCIA</code>, <code>ACUMULAÇÃO</code> e <code>COBERTURA</code>) serão incluídos nas análises realizadas neste capítulo.</p>
+<div id="importação-dos-dados-1" class="section level2">
+<h2><span class="header-section-number">8.1</span> Importação dos Dados</h2>
+<p>Faz-se, de início, a importação e limpeza inicial dos dados:</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="isp-indicador-de-situação-previdenciária.html#cb303-1"></a>isp20 &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;dados/ISP2020PLANILHADERESULTADOSREEDIO20201216.xlsx&quot;</span>,</span>
+<span id="cb303-2"><a href="isp-indicador-de-situação-previdenciária.html#cb303-2"></a>                  <span class="dt">na=</span><span class="st">&quot;-&quot;</span>, <span class="dt">range =</span> <span class="st">&#39;A2:U2155&#39;</span>,  <span class="dt">sheet=</span><span class="st">&quot;RESULTADO&quot;</span>,</span>
+<span id="cb303-3"><a href="isp-indicador-de-situação-previdenciária.html#cb303-3"></a>                  <span class="dt">col_names =</span> <span class="kw">c</span>(<span class="st">&#39;ente&#39;</span>, <span class="st">&#39;uf&#39;</span>, <span class="st">&#39;regiao&#39;</span>, <span class="st">&#39;grupo&#39;</span>, <span class="st">&#39;subgrupo&#39;</span>,</span>
+<span id="cb303-4"><a href="isp-indicador-de-situação-previdenciária.html#cb303-4"></a>                                <span class="st">&#39;ind_regul&#39;</span>, <span class="st">&#39;ind_envioinf&#39;</span>, <span class="st">&#39;ind_gestao&#39;</span>, <span class="st">&#39;nota_gt&#39;</span>,</span>
+<span id="cb303-5"><a href="isp-indicador-de-situação-previdenciária.html#cb303-5"></a>                                <span class="st">&#39;ind_sufin&#39;</span>, <span class="st">&#39;ind_acumrec&#39;</span>,  <span class="st">&#39;nota_fl&#39;</span>,</span>
+<span id="cb303-6"><a href="isp-indicador-de-situação-previdenciária.html#cb303-6"></a>                                <span class="st">&#39;ind_cobprev&#39;</span>, <span class="st">&#39;nota_at&#39;</span>,</span>
+<span id="cb303-7"><a href="isp-indicador-de-situação-previdenciária.html#cb303-7"></a>                                <span class="st">&#39;isp&#39;</span>, <span class="st">&#39;perfil_atuarial&#39;</span>,</span>
+<span id="cb303-8"><a href="isp-indicador-de-situação-previdenciária.html#cb303-8"></a>                                <span class="st">&#39;pt_regul&#39;</span>, <span class="st">&#39;pt_envioinf&#39;</span>, <span class="st">&#39;pt_sufin&#39;</span>, <span class="st">&#39;pt_acumrec&#39;</span>, <span class="st">&quot;pt_cobprev&quot;</span>))</span></code></pre></div>
+<p>Inspeção dos dados para verificar se a importação foi feita com sucesso:</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="isp-indicador-de-situação-previdenciária.html#cb304-1"></a><span class="kw">glimpse</span>(isp20)</span></code></pre></div>
+<pre><code>Rows: 2,154
+Columns: 21
+$ ente            &lt;chr&gt; &quot;ABADIA DE GOIÁS - GO&quot;, &quot;ABADIÂNIA - GO&quot;, &quot;ABAETETU...
+$ uf              &lt;chr&gt; &quot;GO&quot;, &quot;GO&quot;, &quot;PA&quot;, &quot;TO&quot;, &quot;MA&quot;, &quot;CE&quot;, &quot;CE&quot;, &quot;MT&quot;, &quot;GO...
+$ regiao          &lt;chr&gt; &quot;CO&quot;, &quot;CO&quot;, &quot;N&quot;, &quot;N&quot;, &quot;NE&quot;, &quot;NE&quot;, &quot;NE&quot;, &quot;CO&quot;, &quot;CO&quot;,...
+$ grupo           &lt;chr&gt; &quot;PEQUENO PORTE&quot;, &quot;PEQUENO PORTE&quot;, &quot;MÉDIO PORTE&quot;, &quot;P...
+$ subgrupo        &lt;chr&gt; &quot;MENOR MATURIDADE&quot;, &quot;MENOR MATURIDADE&quot;, &quot;MENOR MATU...
+$ ind_regul       &lt;chr&gt; &quot;C&quot;, &quot;B&quot;, &quot;C&quot;, &quot;B&quot;, &quot;B&quot;, &quot;C&quot;, &quot;B&quot;, &quot;C&quot;, &quot;A&quot;, &quot;B&quot;, &quot;...
+$ ind_envioinf    &lt;chr&gt; &quot;A&quot;, &quot;A&quot;, &quot;C&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;A&quot;, &quot;C&quot;, &quot;A&quot;, &quot;A&quot;, &quot;...
+$ ind_gestao      &lt;chr&gt; &quot;C&quot;, &quot;C&quot;, &quot;C&quot;, &quot;C&quot;, &quot;C&quot;, &quot;C&quot;, &quot;C&quot;, &quot;C&quot;, &quot;C&quot;, &quot;C&quot;, &quot;...
+$ nota_gt         &lt;chr&gt; &quot;C&quot;, &quot;B&quot;, &quot;C&quot;, &quot;B&quot;, &quot;B&quot;, &quot;C&quot;, &quot;B&quot;, &quot;C&quot;, &quot;B&quot;, &quot;B&quot;, &quot;...
+$ ind_sufin       &lt;chr&gt; &quot;B&quot;, &quot;C&quot;, &quot;C&quot;, &quot;B&quot;, &quot;C&quot;, &quot;C&quot;, &quot;A&quot;, &quot;C&quot;, &quot;A&quot;, &quot;C&quot;, &quot;...
+$ ind_acumrec     &lt;chr&gt; &quot;B&quot;, &quot;C&quot;, &quot;C&quot;, &quot;C&quot;, &quot;C&quot;, &quot;C&quot;, &quot;B&quot;, &quot;C&quot;, &quot;A&quot;, &quot;C&quot;, &quot;...
+$ nota_fl         &lt;chr&gt; &quot;B&quot;, &quot;C&quot;, &quot;C&quot;, &quot;B&quot;, &quot;C&quot;, &quot;C&quot;, &quot;A&quot;, &quot;C&quot;, &quot;A&quot;, &quot;C&quot;, &quot;...
+$ ind_cobprev     &lt;chr&gt; &quot;B&quot;, &quot;C&quot;, &quot;C&quot;, &quot;C&quot;, &quot;B&quot;, &quot;C&quot;, &quot;B&quot;, &quot;C&quot;, &quot;B&quot;, &quot;B&quot;, &quot;...
+$ nota_at         &lt;chr&gt; &quot;B&quot;, &quot;C&quot;, &quot;C&quot;, &quot;C&quot;, &quot;B&quot;, &quot;C&quot;, &quot;B&quot;, &quot;C&quot;, &quot;B&quot;, &quot;B&quot;, &quot;...
+$ isp             &lt;chr&gt; &quot;C&quot;, &quot;D&quot;, &quot;D&quot;, &quot;C&quot;, &quot;C&quot;, &quot;D&quot;, &quot;B&quot;, &quot;D&quot;, &quot;B&quot;, &quot;C&quot;, &quot;...
+$ perfil_atuarial &lt;chr&gt; &quot;II&quot;, &quot;I&quot;, &quot;I&quot;, &quot;II&quot;, &quot;II&quot;, &quot;I&quot;, &quot;III&quot;, &quot;I&quot;, &quot;III&quot;,...
+$ pt_regul        &lt;dbl&gt; 0.00000000, 0.75111111, 0.00000000, 0.89315068, 0.7...
+$ pt_envioinf     &lt;dbl&gt; 1.00, 0.80, 0.75, 0.80, 0.80, 0.80, 1.00, 0.20, 1.0...
+$ pt_sufin        &lt;dbl&gt; 1.6648401, 0.5252145, NA, 1.5831008, NA, 0.8395472,...
+$ pt_acumrec      &lt;dbl&gt; 1.721548843, -0.059724152, NA, 0.575596577, NA, -0....
+$ pt_cobprev      &lt;dbl&gt; 0.3337950715, NA, NA, 0.2050398757, 0.4221532346, 0...</code></pre>
+<p>Aparentemente a importação foi bem sucedida. Tem-se 2.154 RPPS e 21 colunas/variáveis.</p>
+<p>A primeira questão que pode ser levantada é: a base de dados contempla todos os RPPS? Voltando ao Capítulo 1 é possível ver que existem 2.156 RPPS ativos. Estão faltando 2 RPPS.</p>
+</div>
+<div id="análise-exploratória-preliminar-2" class="section level2">
+<h2><span class="header-section-number">8.2</span> Análise Exploratória Preliminar</h2>
+<p>Nessa etapa, o objetivo é avaliar se os dados não contém valores discrepantes e obter mais informações sobre os mesmos.</p>
+<p>Pode-se iniciar obtendo a distribuição de frequência da variável <code>isp</code>, a nota final do RPPS no ISP.</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="isp-indicador-de-situação-previdenciária.html#cb306-1"></a>isp20 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb306-2"><a href="isp-indicador-de-situação-previdenciária.html#cb306-2"></a><span class="st">  </span><span class="kw">tabyl</span>(isp) <span class="op">%&gt;%</span><span class="st">  </span></span>
+<span id="cb306-3"><a href="isp-indicador-de-situação-previdenciária.html#cb306-3"></a><span class="st">  </span><span class="kw">adorn_pct_formatting</span>(<span class="dt">digits =</span> <span class="dv">2</span>) </span></code></pre></div>
+<pre><code> isp   n percent
+   A  12   0.56%
+   B 601  27.90%
+   C 665  30.87%
+   D 876  40.67%</code></pre>
+<p>Pela distribuição pode-se ver que é raro um RPPS possuir nota <code>A</code> no ISP. Apenas 12 RPPS em 2.154 conseguiram esse feito. Os demais RPPS estão distribuídos quase que igualmente entre as notas <code>B</code>, <code>C</code> e <code>D</code>.</p>
+<p>Muito se ouve falar que municípios pequenos tem mais dificuldades na gestão dos RPPS e por isso talvez não consigam boas notas no indicador. Assim, uma questão que pode surgir é: como o porte do RPPS, indicado na variável <code>grupo</code>, se relaciona com o <code>isp</code>?</p>
+<p>Uma tabela de dupla entrada pode ajudar a entender essa relação.</p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="isp-indicador-de-situação-previdenciária.html#cb308-1"></a>isp20 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb308-2"><a href="isp-indicador-de-situação-previdenciária.html#cb308-2"></a><span class="st">  </span><span class="kw">tabyl</span>(grupo, isp)</span></code></pre></div>
+<pre><code>            grupo A   B   C   D
+        ESTADO/DF 1   9  10   7
+     GRANDE PORTE 4  34  33  36
+      MÉDIO PORTE 6 270 294 388
+ NÃO CLASSIFICADO 0   0   0  40
+    PEQUENO PORTE 1 288 328 405</code></pre>
+<p>As raras notas <code>A</code> não estão concentradas nos RPPS estaduais, nem nos RPPS de grande porte. A concentração está nos RPPS de médio porte.</p>
+<p>Existe um conjunto de 40 RPPS que não estão classificados quanto ao porte e todos tiveram nota <code>D</code> no ISP.</p>
+<p>Uma possibilidade de visualização da tabela acima, excluindo-se os RPPS que pertencem ao grupo <code>NÃO CLASSIFICADO</code> é apresentada a seguir:</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="isp-indicador-de-situação-previdenciária.html#cb310-1"></a><span class="kw">with</span>(isp20[isp20<span class="op">$</span>grupo <span class="op">!=</span><span class="st"> &quot;NÃO CLASSIFICADO&quot;</span>,],</span>
+<span id="cb310-2"><a href="isp-indicador-de-situação-previdenciária.html#cb310-2"></a>     <span class="kw">table</span>(isp, grupo)) <span class="op">%&gt;%</span></span>
+<span id="cb310-3"><a href="isp-indicador-de-situação-previdenciária.html#cb310-3"></a><span class="st">     </span><span class="kw">mosaicplot</span>(<span class="dt">color =</span> <span class="kw">palette</span>(), <span class="dt">las =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-218-1.png" width="672" /></p>
+<p>O gráfico mostra que ser um RPPS de pequeno porte não parece ser um impeditivo para que a proporção deles com nota <code>B</code> seja parecida com a proporção dos RPPS de médio porte com <code>B</code>. A proporão de RPPS de grande porte com nota <code>B</code> é bem inferior.</p>
+<p>Se ser um RPPS de grande porte “facilita” as coisas por ter, em tese, mais estrutura, era de se esperar que estivessem concentrados nas notas <code>A</code> e <code>B</code>, o que definitivamente não ocorre. Deve-se considerar que quanto maior o RPPS, maiores e mais complexos os problemas.</p>
+<p>Os RPPS de grande porte estão com a mesma participação percentual nas notas <code>B</code>, <code>C</code> e <code>D</code>. O gráfico sugere não existir dependência entre a nota no ISP e o porte do RPPS; conclusão que deve ser confirmada estatisticamente de uma maneira mais formal.</p>
+<p>Os valores da variável <code>perfil_atuarial</code> são dados pela nota do <code>isp</code>.</p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="isp-indicador-de-situação-previdenciária.html#cb311-1"></a>isp20 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb311-2"><a href="isp-indicador-de-situação-previdenciária.html#cb311-2"></a><span class="st">  </span><span class="kw">tabyl</span>(isp, perfil_atuarial)</span></code></pre></div>
+<pre><code> isp   I  II III IV
+   A   0   0   0 12
+   B   0   0 601  0
+   C   0 665   0  0
+   D 876   0   0  0</code></pre>
+<p>RPPS com nota <code>D</code>, as piores, estão no perfil I, e por aí vai conforme mostra o resultado.</p>
+<p>Verificações parecidas podem ser feitas para as demais variáveis qualitativas.</p>
+<p>Em relação às variáveis quantitativas, pode-se estar interessado em como elas se distribuem, na relação existente entre elas, se existem valores atípicos, etc.</p>
+<p>Para a verificação de valores faltantes ou valores atípicos, um resumo estatístico das variáveis pode revelar informações interessantes sobre os dados:</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="isp-indicador-de-situação-previdenciária.html#cb313-1"></a>isp20 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb313-2"><a href="isp-indicador-de-situação-previdenciária.html#cb313-2"></a><span class="st"> </span><span class="kw">select</span>(<span class="kw">starts_with</span>(<span class="st">&quot;pt&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb313-3"><a href="isp-indicador-de-situação-previdenciária.html#cb313-3"></a><span class="st"> </span><span class="kw">map</span>(summary)</span></code></pre></div>
+<pre><code>$pt_regul
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.4444  0.7511  0.6507  0.9507  1.0000 
+
+$pt_envioinf
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.7667  0.8000  0.7713  1.0000  1.2000 
+
+$pt_sufin
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+ 0.0000  0.8068  1.2728  1.8839  2.1206 79.6843     386 
+
+$pt_acumrec
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+-1.5289  0.1670  0.7612  1.2757  1.7006 36.7115     563 
+
+$pt_cobprev
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+-0.0887  0.1179  0.2990  0.3492  0.5304  2.2584     444 </code></pre>
+<p>Das cinco variáveis, 3 apresentam uma grande quantidade de valores faltantes, ou seja, não possuem informação sobre a variável. Também é possível ver valores negativos nas variáveis <code>pt_acumrec</code>e <code>pt_cobprev</code>, assim como valores máximos muito maiores que os demais valores da variável, sendo possivelmente <em>outliers</em>.</p>
+<p>Um histograma pode ser uma boa opção para examinar como os valores de uma variável quantitativa se distribui. Por exemplo, a variável <code>pt_regul</code>:</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="isp-indicador-de-situação-previdenciária.html#cb315-1"></a><span class="kw">ggplot</span>(isp20, <span class="kw">aes</span>(<span class="dt">x=</span>pt_regul)) <span class="op">+</span></span>
+<span id="cb315-2"><a href="isp-indicador-de-situação-previdenciária.html#cb315-2"></a><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color=</span><span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
+<span id="cb315-3"><a href="isp-indicador-de-situação-previdenciária.html#cb315-3"></a><span class="st">  </span>ggthemes<span class="op">::</span><span class="kw">theme_economist</span>() <span class="op">+</span></span>
+<span id="cb315-4"><a href="isp-indicador-de-situação-previdenciária.html#cb315-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title=</span><span class="st">&quot;Distribuição da variável pt_regul&quot;</span>,</span>
+<span id="cb315-5"><a href="isp-indicador-de-situação-previdenciária.html#cb315-5"></a>       <span class="dt">x=</span><span class="st">&quot;&quot;</span>, <span class="dt">y=</span><span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-221-1.png" width="672" /></p>
+<p>O mesmo pode ser feito com as demais variáveis quantitativas.</p>
+<p>Também pode ser útil ver a distribuição de uma variável quantitativa em função dos valores de uma variável qualitativa. Por exemplo, como a variável <code>pt_cobprev</code> se distribui de acordo com a região geográfica a que pertence o RPPS?</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="isp-indicador-de-situação-previdenciária.html#cb316-1"></a><span class="kw">ggplot</span>(isp20, <span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">as_factor</span>(regiao), <span class="dt">y=</span>pt_cobprev)) <span class="op">+</span></span>
+<span id="cb316-2"><a href="isp-indicador-de-situação-previdenciária.html#cb316-2"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">fill=</span><span class="st">&quot;lightblue&quot;</span>) <span class="op">+</span></span>
+<span id="cb316-3"><a href="isp-indicador-de-situação-previdenciária.html#cb316-3"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb316-4"><a href="isp-indicador-de-situação-previdenciária.html#cb316-4"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Distribuição da Pontuação em Cobertura Previdenciária por Região&quot;</span>,</span>
+<span id="cb316-5"><a href="isp-indicador-de-situação-previdenciária.html#cb316-5"></a>       <span class="dt">x=</span><span class="st">&quot;&quot;</span>, <span class="dt">y=</span><span class="st">&quot;Pontuação do Indicador de Cob. Prev.&quot;</span>)</span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-222-1.png" width="672" /></p>
+<p>O gráfico mostra que os RPPS da região nordeste (<code>NE</code>) possuem os menores valores para a varável em questão e estes valores tem menor dispersão que nas demais regiões. A região sul (<code>S</code>) tende a ter os melhores valores da variável.</p>
+<p>A relação existente entre variáveis quantitativas pode ser avaliada também mediante a utilização de gráficos. Exemplo: qual a relação existente entre as variáveis <code>pt_regul</code> e <code>pt_sufin</code>?</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="isp-indicador-de-situação-previdenciária.html#cb317-1"></a><span class="kw">ggplot</span>(isp20, <span class="kw">aes</span>(<span class="dt">x=</span>pt_regul, <span class="dt">y=</span>pt_sufin)) <span class="op">+</span></span>
+<span id="cb317-2"><a href="isp-indicador-de-situação-previdenciária.html#cb317-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
+<span id="cb317-3"><a href="isp-indicador-de-situação-previdenciária.html#cb317-3"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-223-1.png" width="672" /></p>
+<p>O que o gráfico diz? Que não existe relação entre as variáveis <code>pt_regul</code> e <code>pt_sufin</code>. Que a variável <code>pt_sufin</code> assume valores no intervalo [0, 1] enquanto a variável <code>pt_sufin</code> assume valores aparentemente no intervalo [0, 80]. A variável <code>pt_sufin</code> parece ter alguns <em>outliers</em>, sendo o mais extremo no valor de aproximadamente 80.</p>
+<p>E como seria a relação entre as variáveis <code>pt_sufin</code> e <code>pt_acumrec</code>?</p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="isp-indicador-de-situação-previdenciária.html#cb318-1"></a><span class="kw">ggplot</span>(isp20, <span class="kw">aes</span>(<span class="dt">x=</span>pt_sufin, <span class="dt">y=</span>pt_acumrec)) <span class="op">+</span></span>
+<span id="cb318-2"><a href="isp-indicador-de-situação-previdenciária.html#cb318-2"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">color=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
+<span id="cb318-3"><a href="isp-indicador-de-situação-previdenciária.html#cb318-3"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-224-1.png" width="672" /></p>
+<p>Aqui parece existir uma clara relação entre as variáveis. Valores altos na variável <code>pt_sufin</code>, estão em geral associados a valores altos da variável <code>pt_acumrec</code>. Mas existem 3 RPPS que parecem se destacar dos demais. Apesar de possuirem boa pontuação na suficiência financeira não estão conseguindo acumular. Casos interessantes para uma análise mais detalhada.</p>
+<p>Pode ser interessante comparar, por exemplo, a pontuação de um determinado RPPS em relação aos demais RPPS de uma mesma UF ou de mesmo porte, ou ainda, em relação aos RPPS de uma determinada região.</p>
+<p>Como um exemplo, suponha que se queira avaliar como o RPPS do município de Queimados no ERJ se compara com os demais RPPS do Estado do RJ com relação à variável <code>pt_acumrec</code>.</p>
+<p>Uma forma de fazer isso graficamente é a seguinte:</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="isp-indicador-de-situação-previdenciária.html#cb319-1"></a>RPPS &lt;-<span class="st"> &quot;QUEIMADOS - RJ&quot;</span></span>
+<span id="cb319-2"><a href="isp-indicador-de-situação-previdenciária.html#cb319-2"></a></span>
+<span id="cb319-3"><a href="isp-indicador-de-situação-previdenciária.html#cb319-3"></a>isp20 <span class="op">%&gt;%</span></span>
+<span id="cb319-4"><a href="isp-indicador-de-situação-previdenciária.html#cb319-4"></a><span class="st">  </span><span class="kw">filter</span>(uf <span class="op">==</span><span class="st"> &quot;RJ&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb319-5"><a href="isp-indicador-de-situação-previdenciária.html#cb319-5"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span><span class="kw">as_factor</span>(uf), <span class="dt">y=</span>pt_acumrec)) <span class="op">+</span></span>
+<span id="cb319-6"><a href="isp-indicador-de-situação-previdenciária.html#cb319-6"></a><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">na.rm=</span><span class="ot">TRUE</span>, <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
+<span id="cb319-7"><a href="isp-indicador-de-situação-previdenciária.html#cb319-7"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Acumulação de Recursos&quot;</span>) <span class="op">+</span></span>
+<span id="cb319-8"><a href="isp-indicador-de-situação-previdenciária.html#cb319-8"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">y=</span><span class="kw">filter</span>(isp20, ente <span class="op">==</span><span class="st"> </span>RPPS)<span class="op">$</span>pt_acumrec, </span>
+<span id="cb319-9"><a href="isp-indicador-de-situação-previdenciária.html#cb319-9"></a>             <span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">size=</span><span class="dv">3</span>, <span class="dt">na.rm=</span><span class="ot">TRUE</span>) <span class="op">+</span></span>
+<span id="cb319-10"><a href="isp-indicador-de-situação-previdenciária.html#cb319-10"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-225-1.png" width="288" style="display: block; margin: auto;" />
+O gráfico mostra que o RPPS em questão possui o valor da variável <code>pt_acumrec</code> próximo à mediana. O valor da variável está indicado no gráfico pelo ponto vermelho. Essa metodologia informa em que quartil da distribuição o RPPS possui o valor da variável em análise. Nesse exemplo, o RPPS tem o valor entre o 1<sup>o</sup> e o 2<sup>o</sup> quartil. Isso indica que possui o valor da variável em análise superior ao de 25% dos RPPS do ERJ mas inferior ao de outros 50% dos RPPS do ERJ. Aqui, naturalmente, considera-se apenas os RPPS do ERJ que possuem valores para a variável em questão.</p>
+<p>Uma outra forma de se fazer essa comparação é com a utilização de decis e vez de quartis. Exemplo:</p>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="isp-indicador-de-situação-previdenciária.html#cb320-1"></a>decis_pt_acumrec &lt;-<span class="st"> </span><span class="kw">with</span>(isp20, <span class="kw">quantile</span>(pt_acumrec, <span class="dt">probs=</span><span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.1</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span>
+<span id="cb320-2"><a href="isp-indicador-de-situação-previdenciária.html#cb320-2"></a>decis_pt_acumrec</span></code></pre></div>
+<pre><code>         0%         10%         20%         30%         40%         50% 
+-1.52890427 -0.01867873  0.07118640  0.27262624  0.50022900  0.76118435 
+        60%         70%         80%         90%        100% 
+ 1.07716965  1.46587593  1.98980060  3.07705690 36.71148457 </code></pre>
+<p>Obtidos os decis, verifica-se em qual deles está o valor da variável para o RPPS em análise. O RPPS em questão possui o seguinte valor para a variável <code>pt_acumrec</code>:</p>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="isp-indicador-de-situação-previdenciária.html#cb322-1"></a><span class="kw">filter</span>(isp20, ente <span class="op">==</span><span class="st"> </span>RPPS)<span class="op">$</span>pt_acumrec</span></code></pre></div>
+<pre><code>[1] 0.4211735</code></pre>
+<p>Pode-se ver que este valor situa-se no 4<sup>o</sup> decil. Isto significa que possui o indicador maior do que o de 30% dos RPPS que possuem dados na base mas inferior a ao de 60% dos RPPS.</p>
+<p>Um RPPS com indicador no último decil (<code>pt_acumrec</code> &gt; 3.07) está entre os 10% dos RPPS com maior indicador.</p>
+<p>A seguir, faz-se uma tentativa inicial de “visualizar” o que foi apresentado acima. O “gráfico” é feito de forma artesanal e precisa ainda de algum polimento.</p>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="isp-indicador-de-situação-previdenciária.html#cb324-1"></a>pct &lt;-<span class="st"> </span><span class="kw">names</span>(<span class="kw">which</span>(<span class="kw">filter</span>(isp20, ente <span class="op">==</span><span class="st"> </span>RPPS)<span class="op">$</span>pt_acumrec <span class="op">&lt;=</span><span class="st"> </span>decis_pt_acumrec))[<span class="dv">1</span>]</span>
+<span id="cb324-2"><a href="isp-indicador-de-situação-previdenciária.html#cb324-2"></a>pct &lt;-<span class="st"> </span><span class="kw">as.integer</span>(<span class="kw">gsub</span>(<span class="st">&quot;0%$&quot;</span>, <span class="st">&quot;&quot;</span>, pct))</span>
+<span id="cb324-3"><a href="isp-indicador-de-situação-previdenciária.html#cb324-3"></a></span>
+<span id="cb324-4"><a href="isp-indicador-de-situação-previdenciária.html#cb324-4"></a></span>
+<span id="cb324-5"><a href="isp-indicador-de-situação-previdenciária.html#cb324-5"></a>dados &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">dmin=</span><span class="dv">0</span><span class="op">:</span><span class="dv">9</span>,</span>
+<span id="cb324-6"><a href="isp-indicador-de-situação-previdenciária.html#cb324-6"></a>                    <span class="dt">dmax=</span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</span>
+<span id="cb324-7"><a href="isp-indicador-de-situação-previdenciária.html#cb324-7"></a>                    <span class="dt">dmeio =</span> <span class="kw">seq</span>(<span class="fl">0.5</span>, <span class="fl">9.5</span>, <span class="dv">1</span>))</span>
+<span id="cb324-8"><a href="isp-indicador-de-situação-previdenciária.html#cb324-8"></a> </span>
+<span id="cb324-9"><a href="isp-indicador-de-situação-previdenciária.html#cb324-9"></a><span class="kw">ggplot</span>(dados, <span class="kw">aes</span>(<span class="dt">xmin=</span>dmin, <span class="dt">xmax =</span> dmax, <span class="dt">ymin=</span><span class="dv">0</span>, <span class="dt">ymax=</span><span class="dv">1</span>)) <span class="op">+</span><span class="st">  </span></span>
+<span id="cb324-10"><a href="isp-indicador-de-situação-previdenciária.html#cb324-10"></a><span class="st">        </span><span class="kw">geom_rect</span>(<span class="dt">color=</span><span class="st">&quot;blue&quot;</span>, <span class="dt">fill=</span><span class="st">&quot;white&quot;</span>) <span class="op">+</span></span>
+<span id="cb324-11"><a href="isp-indicador-de-situação-previdenciária.html#cb324-11"></a><span class="st">        </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x=</span>dmeio[pct], <span class="dt">y=</span><span class="fl">0.5</span>), <span class="dt">color=</span><span class="st">&quot;red&quot;</span>, <span class="dt">size=</span><span class="dv">4</span>) <span class="op">+</span></span>
+<span id="cb324-12"><a href="isp-indicador-de-situação-previdenciária.html#cb324-12"></a><span class="st">        </span><span class="kw">theme_void</span>() <span class="op">+</span></span>
+<span id="cb324-13"><a href="isp-indicador-de-situação-previdenciária.html#cb324-13"></a><span class="st">        </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">10</span>, <span class="dt">y =</span> <span class="dv">0</span>, <span class="dt">label =</span> <span class="kw">names</span>(decis_pt_acumrec)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb324-14"><a href="isp-indicador-de-situação-previdenciária.html#cb324-14"></a><span class="st">        </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="fl">0.5</span>, <span class="dt">label =</span> <span class="st">&quot;2020&quot;</span>)</span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-228-1.png" width="672" /></p>
+<p>O ponto em vermelho sinaliza o decil em que o RPPS está em relação ao indicador em análise. O gráfico ainda está bem ruim mas será melhorado com o tempo.</p>
+<p>Caso se disponha do valor de alguma dessas variáveis para mais de um ano, é possível acompanhar como um RPPS em particular evoluiu em relação aos demais RPPS da UF considerada observando se ele avança ou recua nos decis de ano para ano.</p>
+<p>Seria possível, dessa forma, com os dados do ISP de 2019 indicar no gráfico mais um ponto indicando o decil da variável em 2019. Assim, observando os pontos em 2019 e 2020 pode-se ver a evolução do RPPS em <strong>relação aos demais RPPS</strong> para a variável em análsie.</p>
+<p>Acredita-se que os exemplos apresentados neste capítulo podem fornecer algumas ideias iniciais de análise dos dados do ISP. Em revisões posteriores deste documento, serão acrescidos os dados contidos nas demais planihas do arquivo de dados do ISP 2020.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="parcelamento-de-débitos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="fluxo-atuarial.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["ADPrevBook.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

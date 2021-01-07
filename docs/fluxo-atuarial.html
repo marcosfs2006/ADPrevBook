@@ -24,13 +24,14 @@
 <meta name="author" content="Marcos Ferreira da Silva" />
 
 
+<meta name="date" content="2021-06-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="isp-indicador-de-situação-previdenticária.html"/>
+<link rel="prev" href="isp-indicador-de-situação-previdenciária.html"/>
 <link rel="next" href="msc-matriz-de-saldos-contábeis.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -54,6 +55,8 @@
 <script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <link href="libs/tabwid-1.0.0/tabwid.css" rel="stylesheet" />
 <script src="libs/tabwid-1.0.0/tabwid.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
@@ -140,9 +143,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Nota</a></li>
 <li class="chapter" data-level="" data-path="prefácio.html"><a href="prefácio.html"><i class="fa fa-check"></i>Prefácio</a></li>
 <li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html"><i class="fa fa-check"></i>Introdução</a><ul>
-<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#estrutura-do-documento"><i class="fa fa-check"></i>Estrutura do documento</a></li>
-<li><a href="introdução.html#projeto-labdadosprevrpps">Projeto <strong>LabDadosPrev(“RPPS”)</strong></a></li>
-<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#bases-de-dados-utilizadas"><i class="fa fa-check"></i>Bases de dados utilizadas</a></li>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#estrutura-do-documento"><i class="fa fa-check"></i>Estrutura do Documento</a></li>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#projeto-labdadosprevrpps"><i class="fa fa-check"></i>Projeto LabDadosPrev(“RPPS”)</a></li>
+<li class="chapter" data-level="" data-path="introdução.html"><a href="introdução.html#bases-de-dados-utilizadas"><i class="fa fa-check"></i>Bases de Dados Utilizadas</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="regime-previdenciário-atual-dos-entes-federativos.html"><a href="regime-previdenciário-atual-dos-entes-federativos.html"><i class="fa fa-check"></i><b>1</b> Regime Previdenciário Atual dos Entes Federativos</a></li>
 <li class="chapter" data-level="2" data-path="alíquotas-de-contribuição-praticadas.html"><a href="alíquotas-de-contribuição-praticadas.html"><i class="fa fa-check"></i><b>2</b> Alíquotas de Contribuição Praticadas</a><ul>
@@ -153,14 +156,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html"><i class="fa fa-check"></i><b>3</b> CRP - Certificado de Regularidade Previdenciária</a><ul>
 <li class="chapter" data-level="3.1" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#análise-exploratória-preliminar"><i class="fa fa-check"></i><b>3.1</b> Análise exploratória preliminar</a></li>
-<li class="chapter" data-level="3.2" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#análise-restrita-aos-rpps"><i class="fa fa-check"></i><b>3.2</b> Análise restrita aos RPPS</a></li>
+<li class="chapter" data-level="3.2" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#análise-dos-rpps"><i class="fa fa-check"></i><b>3.2</b> Análise dos RPPS</a></li>
 <li class="chapter" data-level="3.3" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#análise-segundo-a-quantidade-de-dias-vencidos"><i class="fa fa-check"></i><b>3.3</b> Análise segundo a quantidade de dias vencidos</a></li>
 <li class="chapter" data-level="3.4" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#efeito-da-constitucionalização-do-crp"><i class="fa fa-check"></i><b>3.4</b> Efeito da constitucionalização do CRP</a></li>
 <li class="chapter" data-level="3.5" data-path="crp-certificado-de-regularidade-previdenciária.html"><a href="crp-certificado-de-regularidade-previdenciária.html#mapas-com-dados-dos-crp"><i class="fa fa-check"></i><b>3.5</b> Mapas com dados dos CRP</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="dair-demonstrativo-das-aplicações-e-investimentos-dos-recursos.html"><a href="dair-demonstrativo-das-aplicações-e-investimentos-dos-recursos.html"><i class="fa fa-check"></i><b>4</b> DAIR - Demonstrativo das Aplicações e Investimentos dos Recursos</a></li>
+<li class="chapter" data-level="4" data-path="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html"><a href="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html"><i class="fa fa-check"></i><b>4</b> DAIR - Demonstrativo das Aplicações e Investimento de Recursos</a><ul>
+<li class="chapter" data-level="4.1" data-path="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html"><a href="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html#importação-e-pré-processamento-dos-dados"><i class="fa fa-check"></i><b>4.1</b> Importação e Pré-Processamento dos Dados</a></li>
+<li class="chapter" data-level="4.2" data-path="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html"><a href="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html#análise-exploratória-preliminar-1"><i class="fa fa-check"></i><b>4.2</b> Análise Exploratória Preliminar</a></li>
+<li class="chapter" data-level="4.3" data-path="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html"><a href="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html#evolução-da-carteira-de-um-rpps"><i class="fa fa-check"></i><b>4.3</b> Evolução da Carteira de um RPPS</a></li>
+<li class="chapter" data-level="4.4" data-path="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html"><a href="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html#aplicações-em-fundos-vedados"><i class="fa fa-check"></i><b>4.4</b> Aplicações em Fundos Vedados</a></li>
+<li class="chapter" data-level="4.5" data-path="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html"><a href="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html#enquadramento-de-fundos-de-investimentos"><i class="fa fa-check"></i><b>4.5</b> Enquadramento de Fundos de Investimentos</a></li>
+<li class="chapter" data-level="4.6" data-path="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html"><a href="dair-demonstrativo-das-aplicações-e-investimento-de-recursos.html#encaminhamento-do-dair-à-sprev"><i class="fa fa-check"></i><b>4.6</b> Encaminhamento do DAIR à SPREV</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><i class="fa fa-check"></i><b>5</b> DIPR - Demonstrativo de Informações Previdenciárias e Repasses</a><ul>
-<li class="chapter" data-level="5.1" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html#importação-e-pré-processamento-dos-dados"><i class="fa fa-check"></i><b>5.1</b> Importação e pré-processamento dos dados</a></li>
+<li class="chapter" data-level="5.1" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html#importação-e-pré-processamento-dos-dados-1"><i class="fa fa-check"></i><b>5.1</b> Importação e pré-processamento dos dados</a></li>
 <li class="chapter" data-level="5.2" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html#seleção-do-rpps-para-análise"><i class="fa fa-check"></i><b>5.2</b> Seleção do RPPS para análise</a></li>
 <li class="chapter" data-level="5.3" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html#quantidade-de-beneficiários"><i class="fa fa-check"></i><b>5.3</b> Quantidade de Beneficiários</a></li>
 <li class="chapter" data-level="5.4" data-path="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html"><a href="dipr-demonstrativo-de-informações-previdenciárias-e-repasses.html#manutenção-dos-pagamentos-dos-auxílios"><i class="fa fa-check"></i><b>5.4</b> Manutenção dos pagamentos dos auxílios</a></li>
@@ -182,10 +192,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.5" data-path="parcelamento-de-débitos.html"><a href="parcelamento-de-débitos.html#cobrança-de-juros-simples"><i class="fa fa-check"></i><b>7.5</b> Cobrança de juros simples</a></li>
 <li class="chapter" data-level="7.6" data-path="parcelamento-de-débitos.html"><a href="parcelamento-de-débitos.html#adimplência-dos-parcelamentos"><i class="fa fa-check"></i><b>7.6</b> Adimplência dos parcelamentos</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="isp-indicador-de-situação-previdenticária.html"><a href="isp-indicador-de-situação-previdenticária.html"><i class="fa fa-check"></i><b>8</b> ISP - Indicador de Situação Previdenticária</a></li>
+<li class="chapter" data-level="8" data-path="isp-indicador-de-situação-previdenciária.html"><a href="isp-indicador-de-situação-previdenciária.html"><i class="fa fa-check"></i><b>8</b> ISP - Indicador de Situação Previdenciária</a><ul>
+<li class="chapter" data-level="8.1" data-path="isp-indicador-de-situação-previdenciária.html"><a href="isp-indicador-de-situação-previdenciária.html#importação-dos-dados-1"><i class="fa fa-check"></i><b>8.1</b> Importação dos Dados</a></li>
+<li class="chapter" data-level="8.2" data-path="isp-indicador-de-situação-previdenciária.html"><a href="isp-indicador-de-situação-previdenciária.html#análise-exploratória-preliminar-2"><i class="fa fa-check"></i><b>8.2</b> Análise Exploratória Preliminar</a></li>
+</ul></li>
 <li class="chapter" data-level="9" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html"><i class="fa fa-check"></i><b>9</b> Fluxo Atuarial</a><ul>
 <li class="chapter" data-level="9.1" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html#fluxo-atuarial-utilizado-no-capítulo"><i class="fa fa-check"></i><b>9.1</b> Fluxo atuarial utilizado no capítulo</a></li>
-<li class="chapter" data-level="9.2" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html#importação-e-pré-processamento-dos-dados-1"><i class="fa fa-check"></i><b>9.2</b> Importação e pré-processamento dos dados</a></li>
+<li class="chapter" data-level="9.2" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html#importação-e-pré-processamento-dos-dados-2"><i class="fa fa-check"></i><b>9.2</b> Importação e pré-processamento dos dados</a></li>
 <li class="chapter" data-level="9.3" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html#dicionário-de-variáveis"><i class="fa fa-check"></i><b>9.3</b> Dicionário de variáveis</a></li>
 <li class="chapter" data-level="9.4" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html#análise-gráfica-das-variáveis-do-fluxo-atuarial"><i class="fa fa-check"></i><b>9.4</b> Análise gráfica das variáveis do fluxo atuarial</a></li>
 <li class="chapter" data-level="9.5" data-path="fluxo-atuarial.html"><a href="fluxo-atuarial.html#cálculo-dos-principais-números-da-avaliação-atuarial"><i class="fa fa-check"></i><b>9.5</b> Cálculo dos principais números da avaliação atuarial</a></li>
@@ -242,102 +255,137 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>O nome dos arquivos dos fluxos atuariais seguem um padrão que informa o ano do fluxo atuarial, se diz o mesmo refere-se ao pessoal civil ou militar, se o fluxo é do regime previdenciário, financeiro ou mantidos diretamente pelo tesouro, se é geração atual ou geração futura e o número do cnpj do ente.</p>
 <p>Olhando o nome do arquivo a ser objeto de análise, vê-se tratar do fluxo atuarial de 2019, do pessoal civil do fundo em capitalização do ente CNPJ. Omitiu-se o número do cnpj para não se identificar o ente em razão da SPREV <strong>ainda</strong> não disponibiliar essa informação publicamente no site.</p>
 </div>
-<div id="importação-e-pré-processamento-dos-dados-1" class="section level2">
+<div id="importação-e-pré-processamento-dos-dados-2" class="section level2">
 <h2><span class="header-section-number">9.2</span> Importação e pré-processamento dos dados</h2>
 <p>A importação dos dados contidos no arquivo do fluxo atuarial pode ser feita da seguinte forma:</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="fluxo-atuarial.html#cb231-1"></a>fluxo_atuarial &lt;-<span class="st"> </span><span class="kw">read_csv2</span>(<span class="st">&quot;dados/2019_FLX_CIVIL_PREV_GA_CNPJ.csv&quot;</span>,</span>
-<span id="cb231-2"><a href="fluxo-atuarial.html#cb231-2"></a>                            <span class="dt">skip =</span> <span class="dv">5</span>,</span>
-<span id="cb231-3"><a href="fluxo-atuarial.html#cb231-3"></a>                            <span class="dt">col_names =</span> <span class="ot">FALSE</span>)</span>
-<span id="cb231-4"><a href="fluxo-atuarial.html#cb231-4"></a></span>
-<span id="cb231-5"><a href="fluxo-atuarial.html#cb231-5"></a><span class="kw">head</span>(fluxo_atuarial)</span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="fluxo-atuarial.html#cb325-1"></a>fluxo_atuarial &lt;-<span class="st"> </span><span class="kw">read_csv2</span>(<span class="st">&quot;dados/2019_FLX_CIVIL_PREV_GA_CNPJ.csv&quot;</span>,</span>
+<span id="cb325-2"><a href="fluxo-atuarial.html#cb325-2"></a>                            <span class="dt">skip =</span> <span class="dv">5</span>,</span>
+<span id="cb325-3"><a href="fluxo-atuarial.html#cb325-3"></a>                            <span class="dt">col_names =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb325-4"><a href="fluxo-atuarial.html#cb325-4"></a></span>
+<span id="cb325-5"><a href="fluxo-atuarial.html#cb325-5"></a><span class="kw">head</span>(fluxo_atuarial)</span></code></pre></div>
 <pre><code># A tibble: 6 x 67
-  X1       X2    X3    X4     X5    X6    X7    X8    X9   X10   X11   X12    X13    X14    X15   X16    X17    X18    X19    X20    X21    X22    X23   X24    X25    X26    X27
-  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-1 0      2019     6 1     9.76e6     0     0     0     0     0     0 1638. 1.83e6 1.08e6 4.69e5     0 64434. 76895. 1.23e5 16203. 9.25e5 5.46e5 2.38e5     0 32602. 38907. 62180.
-2 1      2020     6 0.943 8.95e6     0     0     0     0     0     0 2135. 1.68e6 9.88e5 4.30e5     0 59057. 70478. 1.13e5 14851. 8.48e5 5.00e5 2.18e5     0 29882. 35661. 56991.
-3 2      2021     6 0.89  8.95e6     0     0     0     0     0     0 3100. 1.68e6 9.89e5 4.31e5     0 59097. 70526. 1.13e5 14861. 8.49e5 5.01e5 2.18e5     0 29902. 35685. 57030.
-4 3      2022     6 0.840 8.84e6     0     0     0     0     0     0 3763. 1.65e6 9.76e5 4.25e5     0 58322. 69602. 1.11e5 14666. 8.38e5 4.94e5 2.15e5     0 29510. 35217. 56282.
-5 4      2023     6 0.792 8.79e6     0     0     0     0     0     0 4385. 1.65e6 9.71e5 4.23e5     0 58012. 69231. 1.11e5 14588. 8.34e5 4.92e5 2.14e5     0 29353. 35029. 55982.
-6 5      2024     6 0.747 8.75e6     0     0     0     0     0     0 5651. 1.64e6 9.66e5 4.21e5     0 57731. 68895. 1.10e5 14518. 8.30e5 4.89e5 2.13e5     0 29211. 34860. 55711.
-# ... with 40 more variables: X28 &lt;dbl&gt;, X29 &lt;dbl&gt;, X30 &lt;dbl&gt;, X31 &lt;dbl&gt;, X32 &lt;dbl&gt;, X33 &lt;dbl&gt;, X34 &lt;dbl&gt;, X35 &lt;dbl&gt;, X36 &lt;dbl&gt;, X37 &lt;dbl&gt;, X38 &lt;dbl&gt;, X39 &lt;dbl&gt;, X40 &lt;dbl&gt;,
-#   X41 &lt;dbl&gt;, X42 &lt;dbl&gt;, X43 &lt;dbl&gt;, X44 &lt;dbl&gt;, X45 &lt;dbl&gt;, X46 &lt;dbl&gt;, X47 &lt;dbl&gt;, X48 &lt;dbl&gt;, X49 &lt;dbl&gt;, X50 &lt;dbl&gt;, X51 &lt;dbl&gt;, X52 &lt;dbl&gt;, X53 &lt;dbl&gt;, X54 &lt;dbl&gt;, X55 &lt;dbl&gt;, X56 &lt;dbl&gt;,
-#   X57 &lt;dbl&gt;, X58 &lt;dbl&gt;, X59 &lt;dbl&gt;, X60 &lt;dbl&gt;, X61 &lt;dbl&gt;, X62 &lt;dbl&gt;, X63 &lt;dbl&gt;, X64 &lt;chr&gt;, X65 &lt;dbl&gt;, X66 &lt;dbl&gt;, X67 &lt;dbl&gt;</code></pre>
+  X1       X2    X3    X4     X5    X6    X7    X8    X9   X10   X11   X12
+  &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 0      2019     6 1     9.76e6     0     0     0     0     0     0 1638.
+2 1      2020     6 0.943 8.95e6     0     0     0     0     0     0 2135.
+3 2      2021     6 0.89  8.95e6     0     0     0     0     0     0 3100.
+4 3      2022     6 0.840 8.84e6     0     0     0     0     0     0 3763.
+5 4      2023     6 0.792 8.79e6     0     0     0     0     0     0 4385.
+6 5      2024     6 0.747 8.75e6     0     0     0     0     0     0 5651.
+# ... with 55 more variables: X13 &lt;dbl&gt;, X14 &lt;dbl&gt;, X15 &lt;dbl&gt;, X16 &lt;dbl&gt;,
+#   X17 &lt;dbl&gt;, X18 &lt;dbl&gt;, X19 &lt;dbl&gt;, X20 &lt;dbl&gt;, X21 &lt;dbl&gt;, X22 &lt;dbl&gt;,
+#   X23 &lt;dbl&gt;, X24 &lt;dbl&gt;, X25 &lt;dbl&gt;, X26 &lt;dbl&gt;, X27 &lt;dbl&gt;, X28 &lt;dbl&gt;,
+#   X29 &lt;dbl&gt;, X30 &lt;dbl&gt;, X31 &lt;dbl&gt;, X32 &lt;dbl&gt;, X33 &lt;dbl&gt;, X34 &lt;dbl&gt;,
+#   X35 &lt;dbl&gt;, X36 &lt;dbl&gt;, X37 &lt;dbl&gt;, X38 &lt;dbl&gt;, X39 &lt;dbl&gt;, X40 &lt;dbl&gt;,
+#   X41 &lt;dbl&gt;, X42 &lt;dbl&gt;, X43 &lt;dbl&gt;, X44 &lt;dbl&gt;, X45 &lt;dbl&gt;, X46 &lt;dbl&gt;,
+#   X47 &lt;dbl&gt;, X48 &lt;dbl&gt;, X49 &lt;dbl&gt;, X50 &lt;dbl&gt;, X51 &lt;dbl&gt;, X52 &lt;dbl&gt;,
+#   X53 &lt;dbl&gt;, X54 &lt;dbl&gt;, X55 &lt;dbl&gt;, X56 &lt;dbl&gt;, X57 &lt;dbl&gt;, X58 &lt;dbl&gt;,
+#   X59 &lt;dbl&gt;, X60 &lt;dbl&gt;, X61 &lt;dbl&gt;, X62 &lt;dbl&gt;, X63 &lt;dbl&gt;, X64 &lt;chr&gt;,
+#   X65 &lt;dbl&gt;, X66 &lt;dbl&gt;, X67 &lt;dbl&gt;</code></pre>
 <p>A base de dados contém 67 colunas. Para adicionar nomes às colunas pode-se fazer:</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="fluxo-atuarial.html#cb233-1"></a>colfluxo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">100101</span>, <span class="dv">100201</span>, <span class="dv">100301</span>, <span class="dv">100401</span>, <span class="dv">109001</span>,   <span class="dv">111000</span>, <span class="dv">111101</span>, <span class="dv">111201</span>, <span class="dv">111301</span>,</span>
-<span id="cb233-2"><a href="fluxo-atuarial.html#cb233-2"></a>              <span class="dv">111401</span>,   <span class="dv">112000</span>, <span class="dv">119900</span>, <span class="dv">121000</span>, <span class="dv">121100</span>, <span class="dv">121200</span>, <span class="dv">121300</span>, <span class="dv">121400</span>, <span class="dv">121500</span>,</span>
-<span id="cb233-3"><a href="fluxo-atuarial.html#cb233-3"></a>              <span class="dv">121600</span>,   <span class="dv">121700</span>, <span class="dv">122000</span>, <span class="dv">122100</span>, <span class="dv">122200</span>, <span class="dv">122300</span>, <span class="dv">122400</span>, <span class="dv">122500</span>, <span class="dv">122600</span>,</span>
-<span id="cb233-4"><a href="fluxo-atuarial.html#cb233-4"></a>              <span class="dv">122700</span>,   <span class="dv">123000</span>, <span class="dv">123100</span>, <span class="dv">123200</span>, <span class="dv">123300</span>, <span class="dv">123400</span>, <span class="dv">124000</span>, <span class="dv">124100</span>, <span class="dv">124200</span>,</span>
-<span id="cb233-5"><a href="fluxo-atuarial.html#cb233-5"></a>              <span class="dv">124300</span>,   <span class="dv">124400</span>, <span class="dv">124500</span>, <span class="dv">129000</span>, <span class="dv">130101</span>, <span class="dv">130201</span>, <span class="dv">139901</span>, <span class="dv">190000</span>, <span class="dv">210000</span>,</span>
-<span id="cb233-6"><a href="fluxo-atuarial.html#cb233-6"></a>              <span class="dv">211001</span>,   <span class="dv">212001</span>, <span class="dv">213001</span>, <span class="dv">214001</span>, <span class="dv">215001</span>, <span class="dv">219901</span>, <span class="dv">220000</span>, <span class="dv">221000</span>, <span class="dv">222000</span>,</span>
-<span id="cb233-7"><a href="fluxo-atuarial.html#cb233-7"></a>              <span class="dv">223000</span>,   <span class="dv">224000</span>, <span class="dv">225000</span>, <span class="dv">226000</span>, <span class="dv">227000</span>, <span class="dv">229000</span>, <span class="dv">239901</span>, <span class="dv">240000</span>, <span class="dv">250001</span>,</span>
-<span id="cb233-8"><a href="fluxo-atuarial.html#cb233-8"></a>              <span class="dv">260001</span>,   <span class="dv">270001</span>, <span class="dv">280001</span>, <span class="dv">290001</span>)</span>
-<span id="cb233-9"><a href="fluxo-atuarial.html#cb233-9"></a></span>
-<span id="cb233-10"><a href="fluxo-atuarial.html#cb233-10"></a><span class="kw">names</span>(fluxo_atuarial) &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;V&quot;</span>, colfluxo, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span>
-<span id="cb233-11"><a href="fluxo-atuarial.html#cb233-11"></a></span>
-<span id="cb233-12"><a href="fluxo-atuarial.html#cb233-12"></a><span class="kw">head</span>(fluxo_atuarial)</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="fluxo-atuarial.html#cb327-1"></a>colfluxo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">100101</span>, <span class="dv">100201</span>, <span class="dv">100301</span>, <span class="dv">100401</span>, <span class="dv">109001</span>,   <span class="dv">111000</span>, <span class="dv">111101</span>, <span class="dv">111201</span>, <span class="dv">111301</span>,</span>
+<span id="cb327-2"><a href="fluxo-atuarial.html#cb327-2"></a>              <span class="dv">111401</span>,   <span class="dv">112000</span>, <span class="dv">119900</span>, <span class="dv">121000</span>, <span class="dv">121100</span>, <span class="dv">121200</span>, <span class="dv">121300</span>, <span class="dv">121400</span>, <span class="dv">121500</span>,</span>
+<span id="cb327-3"><a href="fluxo-atuarial.html#cb327-3"></a>              <span class="dv">121600</span>,   <span class="dv">121700</span>, <span class="dv">122000</span>, <span class="dv">122100</span>, <span class="dv">122200</span>, <span class="dv">122300</span>, <span class="dv">122400</span>, <span class="dv">122500</span>, <span class="dv">122600</span>,</span>
+<span id="cb327-4"><a href="fluxo-atuarial.html#cb327-4"></a>              <span class="dv">122700</span>,   <span class="dv">123000</span>, <span class="dv">123100</span>, <span class="dv">123200</span>, <span class="dv">123300</span>, <span class="dv">123400</span>, <span class="dv">124000</span>, <span class="dv">124100</span>, <span class="dv">124200</span>,</span>
+<span id="cb327-5"><a href="fluxo-atuarial.html#cb327-5"></a>              <span class="dv">124300</span>,   <span class="dv">124400</span>, <span class="dv">124500</span>, <span class="dv">129000</span>, <span class="dv">130101</span>, <span class="dv">130201</span>, <span class="dv">139901</span>, <span class="dv">190000</span>, <span class="dv">210000</span>,</span>
+<span id="cb327-6"><a href="fluxo-atuarial.html#cb327-6"></a>              <span class="dv">211001</span>,   <span class="dv">212001</span>, <span class="dv">213001</span>, <span class="dv">214001</span>, <span class="dv">215001</span>, <span class="dv">219901</span>, <span class="dv">220000</span>, <span class="dv">221000</span>, <span class="dv">222000</span>,</span>
+<span id="cb327-7"><a href="fluxo-atuarial.html#cb327-7"></a>              <span class="dv">223000</span>,   <span class="dv">224000</span>, <span class="dv">225000</span>, <span class="dv">226000</span>, <span class="dv">227000</span>, <span class="dv">229000</span>, <span class="dv">239901</span>, <span class="dv">240000</span>, <span class="dv">250001</span>,</span>
+<span id="cb327-8"><a href="fluxo-atuarial.html#cb327-8"></a>              <span class="dv">260001</span>,   <span class="dv">270001</span>, <span class="dv">280001</span>, <span class="dv">290001</span>)</span>
+<span id="cb327-9"><a href="fluxo-atuarial.html#cb327-9"></a></span>
+<span id="cb327-10"><a href="fluxo-atuarial.html#cb327-10"></a><span class="kw">names</span>(fluxo_atuarial) &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&quot;V&quot;</span>, colfluxo, <span class="dt">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb327-11"><a href="fluxo-atuarial.html#cb327-11"></a></span>
+<span id="cb327-12"><a href="fluxo-atuarial.html#cb327-12"></a><span class="kw">head</span>(fluxo_atuarial)</span></code></pre></div>
 <pre><code># A tibble: 6 x 67
-  V100101 V100201 V100301 V100401 V109001 V111000 V111101 V111201 V111301 V111401 V112000 V119900 V121000 V121100 V121200 V121300 V121400 V121500 V121600 V121700 V122000 V122100
-  &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 0          2019       6   1      9.76e6       0       0       0       0       0       0   1638.  1.83e6  1.08e6 469462.       0  64434.  76895. 122891.  16203. 925103. 545590.
-2 1          2020       6   0.943  8.95e6       0       0       0       0       0       0   2135.  1.68e6  9.88e5 430287.       0  59057.  70478. 112636.  14851. 848009. 500080.
-3 2          2021       6   0.89   8.95e6       0       0       0       0       0       0   3100.  1.68e6  9.89e5 430579.       0  59097.  70526. 112712.  14861. 848823. 500586.
-4 3          2022       6   0.840  8.84e6       0       0       0       0       0       0   3763.  1.65e6  9.76e5 424934.       0  58322.  69602. 111235.  14666. 837864. 494068.
-5 4          2023       6   0.792  8.79e6       0       0       0       0       0       0   4385.  1.65e6  9.71e5 422669.       0  58012.  69231. 110642.  14588. 833583. 491506.
-6 5          2024       6   0.747  8.75e6       0       0       0       0       0       0   5651.  1.64e6  9.66e5 420622.       0  57731.  68895. 110106.  14518. 829978. 489487.
-# ... with 45 more variables: V122200 &lt;dbl&gt;, V122300 &lt;dbl&gt;, V122400 &lt;dbl&gt;, V122500 &lt;dbl&gt;, V122600 &lt;dbl&gt;, V122700 &lt;dbl&gt;, V123000 &lt;dbl&gt;, V123100 &lt;dbl&gt;, V123200 &lt;dbl&gt;, V123300 &lt;dbl&gt;,
-#   V123400 &lt;dbl&gt;, V124000 &lt;dbl&gt;, V124100 &lt;dbl&gt;, V124200 &lt;dbl&gt;, V124300 &lt;dbl&gt;, V124400 &lt;dbl&gt;, V124500 &lt;dbl&gt;, V129000 &lt;dbl&gt;, V130101 &lt;dbl&gt;, V130201 &lt;dbl&gt;, V139901 &lt;dbl&gt;,
-#   V190000 &lt;dbl&gt;, V210000 &lt;dbl&gt;, V211001 &lt;dbl&gt;, V212001 &lt;dbl&gt;, V213001 &lt;dbl&gt;, V214001 &lt;dbl&gt;, V215001 &lt;dbl&gt;, V219901 &lt;dbl&gt;, V220000 &lt;dbl&gt;, V221000 &lt;dbl&gt;, V222000 &lt;dbl&gt;,
-#   V223000 &lt;dbl&gt;, V224000 &lt;dbl&gt;, V225000 &lt;dbl&gt;, V226000 &lt;dbl&gt;, V227000 &lt;dbl&gt;, V229000 &lt;dbl&gt;, V239901 &lt;dbl&gt;, V240000 &lt;dbl&gt;, V250001 &lt;dbl&gt;, V260001 &lt;chr&gt;, V270001 &lt;dbl&gt;,
-#   V280001 &lt;dbl&gt;, V290001 &lt;dbl&gt;</code></pre>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="fluxo-atuarial.html#cb235-1"></a><span class="kw">tail</span>(fluxo_atuarial)</span></code></pre></div>
+  V100101 V100201 V100301 V100401 V109001 V111000 V111101 V111201 V111301
+  &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 0          2019       6   1      9.76e6       0       0       0       0
+2 1          2020       6   0.943  8.95e6       0       0       0       0
+3 2          2021       6   0.89   8.95e6       0       0       0       0
+4 3          2022       6   0.840  8.84e6       0       0       0       0
+5 4          2023       6   0.792  8.79e6       0       0       0       0
+6 5          2024       6   0.747  8.75e6       0       0       0       0
+# ... with 58 more variables: V111401 &lt;dbl&gt;, V112000 &lt;dbl&gt;, V119900 &lt;dbl&gt;,
+#   V121000 &lt;dbl&gt;, V121100 &lt;dbl&gt;, V121200 &lt;dbl&gt;, V121300 &lt;dbl&gt;, V121400 &lt;dbl&gt;,
+#   V121500 &lt;dbl&gt;, V121600 &lt;dbl&gt;, V121700 &lt;dbl&gt;, V122000 &lt;dbl&gt;, V122100 &lt;dbl&gt;,
+#   V122200 &lt;dbl&gt;, V122300 &lt;dbl&gt;, V122400 &lt;dbl&gt;, V122500 &lt;dbl&gt;, V122600 &lt;dbl&gt;,
+#   V122700 &lt;dbl&gt;, V123000 &lt;dbl&gt;, V123100 &lt;dbl&gt;, V123200 &lt;dbl&gt;, V123300 &lt;dbl&gt;,
+#   V123400 &lt;dbl&gt;, V124000 &lt;dbl&gt;, V124100 &lt;dbl&gt;, V124200 &lt;dbl&gt;, V124300 &lt;dbl&gt;,
+#   V124400 &lt;dbl&gt;, V124500 &lt;dbl&gt;, V129000 &lt;dbl&gt;, V130101 &lt;dbl&gt;, V130201 &lt;dbl&gt;,
+#   V139901 &lt;dbl&gt;, V190000 &lt;dbl&gt;, V210000 &lt;dbl&gt;, V211001 &lt;dbl&gt;, V212001 &lt;dbl&gt;,
+#   V213001 &lt;dbl&gt;, V214001 &lt;dbl&gt;, V215001 &lt;dbl&gt;, V219901 &lt;dbl&gt;, V220000 &lt;dbl&gt;,
+#   V221000 &lt;dbl&gt;, V222000 &lt;dbl&gt;, V223000 &lt;dbl&gt;, V224000 &lt;dbl&gt;, V225000 &lt;dbl&gt;,
+#   V226000 &lt;dbl&gt;, V227000 &lt;dbl&gt;, V229000 &lt;dbl&gt;, V239901 &lt;dbl&gt;, V240000 &lt;dbl&gt;,
+#   V250001 &lt;dbl&gt;, V260001 &lt;chr&gt;, V270001 &lt;dbl&gt;, V280001 &lt;dbl&gt;, V290001 &lt;dbl&gt;</code></pre>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="fluxo-atuarial.html#cb329-1"></a><span class="kw">tail</span>(fluxo_atuarial)</span></code></pre></div>
 <pre><code># A tibble: 6 x 67
-  V100101 V100201 V100301  V100401 V109001 V111000 V111101 V111201 V111301 V111401 V112000 V119900 V121000 V121100 V121200 V121300 V121400 V121500 V121600 V121700 V122000 V122100
-  &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 146        2165       6  0.00021  0.           0       0       0       0       0       0      0   0.      0.      0.           0  0.      0.      0.          0   0.      0.    
-2 147        2166       6  0.0002   0.           0       0       0       0       0       0      0   0.      0.      0.           0  0.      0.      0.          0   0.      0.    
-3 148        2167       6  0.00019  0.           0       0       0       0       0       0      0   0.      0.      0.           0  0.      0.      0.          0   0.      0.    
-4 149        2168       6  0.00018  0.           0       0       0       0       0       0      0   0.      0.      0.           0  0.      0.      0.          0   0.      0.    
-5 Totais~      NA      NA NA        1.72e8       0       0       0       0       0       0 977533.  3.22e7  1.90e7  8.27e6       0  1.14e6  1.36e6  2.17e6 285544.  1.77e7  1.07e7
-6 Totais~      NA      NA NA        1.03e8       0       0       0       0       0       0 229839.  1.92e7  1.13e7  4.93e6       0  6.77e5  8.08e5  1.29e6 170182.  9.91e6  5.86e6
-# ... with 45 more variables: V122200 &lt;dbl&gt;, V122300 &lt;dbl&gt;, V122400 &lt;dbl&gt;, V122500 &lt;dbl&gt;, V122600 &lt;dbl&gt;, V122700 &lt;dbl&gt;, V123000 &lt;dbl&gt;, V123100 &lt;dbl&gt;, V123200 &lt;dbl&gt;, V123300 &lt;dbl&gt;,
-#   V123400 &lt;dbl&gt;, V124000 &lt;dbl&gt;, V124100 &lt;dbl&gt;, V124200 &lt;dbl&gt;, V124300 &lt;dbl&gt;, V124400 &lt;dbl&gt;, V124500 &lt;dbl&gt;, V129000 &lt;dbl&gt;, V130101 &lt;dbl&gt;, V130201 &lt;dbl&gt;, V139901 &lt;dbl&gt;,
-#   V190000 &lt;dbl&gt;, V210000 &lt;dbl&gt;, V211001 &lt;dbl&gt;, V212001 &lt;dbl&gt;, V213001 &lt;dbl&gt;, V214001 &lt;dbl&gt;, V215001 &lt;dbl&gt;, V219901 &lt;dbl&gt;, V220000 &lt;dbl&gt;, V221000 &lt;dbl&gt;, V222000 &lt;dbl&gt;,
-#   V223000 &lt;dbl&gt;, V224000 &lt;dbl&gt;, V225000 &lt;dbl&gt;, V226000 &lt;dbl&gt;, V227000 &lt;dbl&gt;, V229000 &lt;dbl&gt;, V239901 &lt;dbl&gt;, V240000 &lt;dbl&gt;, V250001 &lt;dbl&gt;, V260001 &lt;chr&gt;, V270001 &lt;dbl&gt;,
-#   V280001 &lt;dbl&gt;, V290001 &lt;dbl&gt;</code></pre>
+  V100101 V100201 V100301  V100401 V109001 V111000 V111101 V111201 V111301
+  &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 146        2165       6  0.00021  0.           0       0       0       0
+2 147        2166       6  0.0002   0.           0       0       0       0
+3 148        2167       6  0.00019  0.           0       0       0       0
+4 149        2168       6  0.00018  0.           0       0       0       0
+5 Totais~      NA      NA NA        1.72e8       0       0       0       0
+6 Totais~      NA      NA NA        1.03e8       0       0       0       0
+# ... with 58 more variables: V111401 &lt;dbl&gt;, V112000 &lt;dbl&gt;, V119900 &lt;dbl&gt;,
+#   V121000 &lt;dbl&gt;, V121100 &lt;dbl&gt;, V121200 &lt;dbl&gt;, V121300 &lt;dbl&gt;, V121400 &lt;dbl&gt;,
+#   V121500 &lt;dbl&gt;, V121600 &lt;dbl&gt;, V121700 &lt;dbl&gt;, V122000 &lt;dbl&gt;, V122100 &lt;dbl&gt;,
+#   V122200 &lt;dbl&gt;, V122300 &lt;dbl&gt;, V122400 &lt;dbl&gt;, V122500 &lt;dbl&gt;, V122600 &lt;dbl&gt;,
+#   V122700 &lt;dbl&gt;, V123000 &lt;dbl&gt;, V123100 &lt;dbl&gt;, V123200 &lt;dbl&gt;, V123300 &lt;dbl&gt;,
+#   V123400 &lt;dbl&gt;, V124000 &lt;dbl&gt;, V124100 &lt;dbl&gt;, V124200 &lt;dbl&gt;, V124300 &lt;dbl&gt;,
+#   V124400 &lt;dbl&gt;, V124500 &lt;dbl&gt;, V129000 &lt;dbl&gt;, V130101 &lt;dbl&gt;, V130201 &lt;dbl&gt;,
+#   V139901 &lt;dbl&gt;, V190000 &lt;dbl&gt;, V210000 &lt;dbl&gt;, V211001 &lt;dbl&gt;, V212001 &lt;dbl&gt;,
+#   V213001 &lt;dbl&gt;, V214001 &lt;dbl&gt;, V215001 &lt;dbl&gt;, V219901 &lt;dbl&gt;, V220000 &lt;dbl&gt;,
+#   V221000 &lt;dbl&gt;, V222000 &lt;dbl&gt;, V223000 &lt;dbl&gt;, V224000 &lt;dbl&gt;, V225000 &lt;dbl&gt;,
+#   V226000 &lt;dbl&gt;, V227000 &lt;dbl&gt;, V229000 &lt;dbl&gt;, V239901 &lt;dbl&gt;, V240000 &lt;dbl&gt;,
+#   V250001 &lt;dbl&gt;, V260001 &lt;chr&gt;, V270001 &lt;dbl&gt;, V280001 &lt;dbl&gt;, V290001 &lt;dbl&gt;</code></pre>
 <p>Para facilitar o trabalho posterior com essa base de dados será feita a “exclusão” das linhas de controle (últimas duas linhas) do conjunto de dados. Na realidade os dados serão guardados em um outro objeto.</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="fluxo-atuarial.html#cb237-1"></a><span class="co"># Reter as linhas de controle &quot;Totais de Controle&quot; e &quot;Totais de Controle a Valor Atual&quot;</span></span>
-<span id="cb237-2"><a href="fluxo-atuarial.html#cb237-2"></a>linhas_controle &lt;-<span class="st"> </span><span class="kw">filter</span>(fluxo_atuarial, <span class="op">!</span><span class="kw">grepl</span>(<span class="st">&quot;^</span><span class="ch">\\</span><span class="st">d+&quot;</span>, V100101))</span>
-<span id="cb237-3"><a href="fluxo-atuarial.html#cb237-3"></a></span>
-<span id="cb237-4"><a href="fluxo-atuarial.html#cb237-4"></a><span class="co"># e excluí-las da base de dados</span></span>
-<span id="cb237-5"><a href="fluxo-atuarial.html#cb237-5"></a>fluxo_atuarial &lt;-<span class="st"> </span><span class="kw">filter</span>(fluxo_atuarial, <span class="kw">grepl</span>(<span class="st">&quot;^</span><span class="ch">\\</span><span class="st">d+&quot;</span>, V100101))</span>
-<span id="cb237-6"><a href="fluxo-atuarial.html#cb237-6"></a></span>
-<span id="cb237-7"><a href="fluxo-atuarial.html#cb237-7"></a><span class="kw">tail</span>(fluxo_atuarial)</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="fluxo-atuarial.html#cb331-1"></a><span class="co"># Reter as linhas de controle &quot;Totais de Controle&quot; e &quot;Totais de Controle a Valor Atual&quot;</span></span>
+<span id="cb331-2"><a href="fluxo-atuarial.html#cb331-2"></a>linhas_controle &lt;-<span class="st"> </span><span class="kw">filter</span>(fluxo_atuarial, <span class="op">!</span><span class="kw">grepl</span>(<span class="st">&quot;^</span><span class="ch">\\</span><span class="st">d+&quot;</span>, V100101))</span>
+<span id="cb331-3"><a href="fluxo-atuarial.html#cb331-3"></a></span>
+<span id="cb331-4"><a href="fluxo-atuarial.html#cb331-4"></a><span class="co"># e excluí-las da base de dados</span></span>
+<span id="cb331-5"><a href="fluxo-atuarial.html#cb331-5"></a>fluxo_atuarial &lt;-<span class="st"> </span><span class="kw">filter</span>(fluxo_atuarial, <span class="kw">grepl</span>(<span class="st">&quot;^</span><span class="ch">\\</span><span class="st">d+&quot;</span>, V100101))</span>
+<span id="cb331-6"><a href="fluxo-atuarial.html#cb331-6"></a></span>
+<span id="cb331-7"><a href="fluxo-atuarial.html#cb331-7"></a><span class="kw">tail</span>(fluxo_atuarial)</span></code></pre></div>
 <pre><code># A tibble: 6 x 67
-  V100101 V100201 V100301 V100401 V109001 V111000 V111101 V111201 V111301 V111401 V112000 V119900 V121000 V121100 V121200 V121300 V121400 V121500 V121600 V121700 V122000 V122100
-  &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 144        2163       6 0.00023       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-2 145        2164       6 0.00022       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-3 146        2165       6 0.00021       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-4 147        2166       6 0.0002        0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-5 148        2167       6 0.00019       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-6 149        2168       6 0.00018       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0       0
-# ... with 45 more variables: V122200 &lt;dbl&gt;, V122300 &lt;dbl&gt;, V122400 &lt;dbl&gt;, V122500 &lt;dbl&gt;, V122600 &lt;dbl&gt;, V122700 &lt;dbl&gt;, V123000 &lt;dbl&gt;, V123100 &lt;dbl&gt;, V123200 &lt;dbl&gt;, V123300 &lt;dbl&gt;,
-#   V123400 &lt;dbl&gt;, V124000 &lt;dbl&gt;, V124100 &lt;dbl&gt;, V124200 &lt;dbl&gt;, V124300 &lt;dbl&gt;, V124400 &lt;dbl&gt;, V124500 &lt;dbl&gt;, V129000 &lt;dbl&gt;, V130101 &lt;dbl&gt;, V130201 &lt;dbl&gt;, V139901 &lt;dbl&gt;,
-#   V190000 &lt;dbl&gt;, V210000 &lt;dbl&gt;, V211001 &lt;dbl&gt;, V212001 &lt;dbl&gt;, V213001 &lt;dbl&gt;, V214001 &lt;dbl&gt;, V215001 &lt;dbl&gt;, V219901 &lt;dbl&gt;, V220000 &lt;dbl&gt;, V221000 &lt;dbl&gt;, V222000 &lt;dbl&gt;,
-#   V223000 &lt;dbl&gt;, V224000 &lt;dbl&gt;, V225000 &lt;dbl&gt;, V226000 &lt;dbl&gt;, V227000 &lt;dbl&gt;, V229000 &lt;dbl&gt;, V239901 &lt;dbl&gt;, V240000 &lt;dbl&gt;, V250001 &lt;dbl&gt;, V260001 &lt;chr&gt;, V270001 &lt;dbl&gt;,
-#   V280001 &lt;dbl&gt;, V290001 &lt;dbl&gt;</code></pre>
+  V100101 V100201 V100301 V100401 V109001 V111000 V111101 V111201 V111301
+  &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 144        2163       6 0.00023       0       0       0       0       0
+2 145        2164       6 0.00022       0       0       0       0       0
+3 146        2165       6 0.00021       0       0       0       0       0
+4 147        2166       6 0.0002        0       0       0       0       0
+5 148        2167       6 0.00019       0       0       0       0       0
+6 149        2168       6 0.00018       0       0       0       0       0
+# ... with 58 more variables: V111401 &lt;dbl&gt;, V112000 &lt;dbl&gt;, V119900 &lt;dbl&gt;,
+#   V121000 &lt;dbl&gt;, V121100 &lt;dbl&gt;, V121200 &lt;dbl&gt;, V121300 &lt;dbl&gt;, V121400 &lt;dbl&gt;,
+#   V121500 &lt;dbl&gt;, V121600 &lt;dbl&gt;, V121700 &lt;dbl&gt;, V122000 &lt;dbl&gt;, V122100 &lt;dbl&gt;,
+#   V122200 &lt;dbl&gt;, V122300 &lt;dbl&gt;, V122400 &lt;dbl&gt;, V122500 &lt;dbl&gt;, V122600 &lt;dbl&gt;,
+#   V122700 &lt;dbl&gt;, V123000 &lt;dbl&gt;, V123100 &lt;dbl&gt;, V123200 &lt;dbl&gt;, V123300 &lt;dbl&gt;,
+#   V123400 &lt;dbl&gt;, V124000 &lt;dbl&gt;, V124100 &lt;dbl&gt;, V124200 &lt;dbl&gt;, V124300 &lt;dbl&gt;,
+#   V124400 &lt;dbl&gt;, V124500 &lt;dbl&gt;, V129000 &lt;dbl&gt;, V130101 &lt;dbl&gt;, V130201 &lt;dbl&gt;,
+#   V139901 &lt;dbl&gt;, V190000 &lt;dbl&gt;, V210000 &lt;dbl&gt;, V211001 &lt;dbl&gt;, V212001 &lt;dbl&gt;,
+#   V213001 &lt;dbl&gt;, V214001 &lt;dbl&gt;, V215001 &lt;dbl&gt;, V219901 &lt;dbl&gt;, V220000 &lt;dbl&gt;,
+#   V221000 &lt;dbl&gt;, V222000 &lt;dbl&gt;, V223000 &lt;dbl&gt;, V224000 &lt;dbl&gt;, V225000 &lt;dbl&gt;,
+#   V226000 &lt;dbl&gt;, V227000 &lt;dbl&gt;, V229000 &lt;dbl&gt;, V239901 &lt;dbl&gt;, V240000 &lt;dbl&gt;,
+#   V250001 &lt;dbl&gt;, V260001 &lt;chr&gt;, V270001 &lt;dbl&gt;, V280001 &lt;dbl&gt;, V290001 &lt;dbl&gt;</code></pre>
 <p>As linhas de controle foram removidas da base.</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="fluxo-atuarial.html#cb239-1"></a>linhas_controle</span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="fluxo-atuarial.html#cb333-1"></a>linhas_controle</span></code></pre></div>
 <pre><code># A tibble: 2 x 67
-  V100101 V100201 V100301 V100401 V109001 V111000 V111101 V111201 V111301 V111401 V112000 V119900 V121000 V121100 V121200 V121300 V121400 V121500 V121600 V121700 V122000 V122100
-  &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-1 Totais~      NA      NA      NA  1.72e8       0       0       0       0       0       0 977533.  3.22e7  1.90e7  8.27e6       0  1.14e6  1.36e6  2.17e6 285544.  1.77e7  1.07e7
-2 Totais~      NA      NA      NA  1.03e8       0       0       0       0       0       0 229839.  1.92e7  1.13e7  4.93e6       0  6.77e5  8.08e5  1.29e6 170182.  9.91e6  5.86e6
-# ... with 45 more variables: V122200 &lt;dbl&gt;, V122300 &lt;dbl&gt;, V122400 &lt;dbl&gt;, V122500 &lt;dbl&gt;, V122600 &lt;dbl&gt;, V122700 &lt;dbl&gt;, V123000 &lt;dbl&gt;, V123100 &lt;dbl&gt;, V123200 &lt;dbl&gt;, V123300 &lt;dbl&gt;,
-#   V123400 &lt;dbl&gt;, V124000 &lt;dbl&gt;, V124100 &lt;dbl&gt;, V124200 &lt;dbl&gt;, V124300 &lt;dbl&gt;, V124400 &lt;dbl&gt;, V124500 &lt;dbl&gt;, V129000 &lt;dbl&gt;, V130101 &lt;dbl&gt;, V130201 &lt;dbl&gt;, V139901 &lt;dbl&gt;,
-#   V190000 &lt;dbl&gt;, V210000 &lt;dbl&gt;, V211001 &lt;dbl&gt;, V212001 &lt;dbl&gt;, V213001 &lt;dbl&gt;, V214001 &lt;dbl&gt;, V215001 &lt;dbl&gt;, V219901 &lt;dbl&gt;, V220000 &lt;dbl&gt;, V221000 &lt;dbl&gt;, V222000 &lt;dbl&gt;,
-#   V223000 &lt;dbl&gt;, V224000 &lt;dbl&gt;, V225000 &lt;dbl&gt;, V226000 &lt;dbl&gt;, V227000 &lt;dbl&gt;, V229000 &lt;dbl&gt;, V239901 &lt;dbl&gt;, V240000 &lt;dbl&gt;, V250001 &lt;dbl&gt;, V260001 &lt;chr&gt;, V270001 &lt;dbl&gt;,
-#   V280001 &lt;dbl&gt;, V290001 &lt;dbl&gt;</code></pre>
+  V100101 V100201 V100301 V100401 V109001 V111000 V111101 V111201 V111301
+  &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+1 Totais~      NA      NA      NA  1.72e8       0       0       0       0
+2 Totais~      NA      NA      NA  1.03e8       0       0       0       0
+# ... with 58 more variables: V111401 &lt;dbl&gt;, V112000 &lt;dbl&gt;, V119900 &lt;dbl&gt;,
+#   V121000 &lt;dbl&gt;, V121100 &lt;dbl&gt;, V121200 &lt;dbl&gt;, V121300 &lt;dbl&gt;, V121400 &lt;dbl&gt;,
+#   V121500 &lt;dbl&gt;, V121600 &lt;dbl&gt;, V121700 &lt;dbl&gt;, V122000 &lt;dbl&gt;, V122100 &lt;dbl&gt;,
+#   V122200 &lt;dbl&gt;, V122300 &lt;dbl&gt;, V122400 &lt;dbl&gt;, V122500 &lt;dbl&gt;, V122600 &lt;dbl&gt;,
+#   V122700 &lt;dbl&gt;, V123000 &lt;dbl&gt;, V123100 &lt;dbl&gt;, V123200 &lt;dbl&gt;, V123300 &lt;dbl&gt;,
+#   V123400 &lt;dbl&gt;, V124000 &lt;dbl&gt;, V124100 &lt;dbl&gt;, V124200 &lt;dbl&gt;, V124300 &lt;dbl&gt;,
+#   V124400 &lt;dbl&gt;, V124500 &lt;dbl&gt;, V129000 &lt;dbl&gt;, V130101 &lt;dbl&gt;, V130201 &lt;dbl&gt;,
+#   V139901 &lt;dbl&gt;, V190000 &lt;dbl&gt;, V210000 &lt;dbl&gt;, V211001 &lt;dbl&gt;, V212001 &lt;dbl&gt;,
+#   V213001 &lt;dbl&gt;, V214001 &lt;dbl&gt;, V215001 &lt;dbl&gt;, V219901 &lt;dbl&gt;, V220000 &lt;dbl&gt;,
+#   V221000 &lt;dbl&gt;, V222000 &lt;dbl&gt;, V223000 &lt;dbl&gt;, V224000 &lt;dbl&gt;, V225000 &lt;dbl&gt;,
+#   V226000 &lt;dbl&gt;, V227000 &lt;dbl&gt;, V229000 &lt;dbl&gt;, V239901 &lt;dbl&gt;, V240000 &lt;dbl&gt;,
+#   V250001 &lt;dbl&gt;, V260001 &lt;chr&gt;, V270001 &lt;dbl&gt;, V280001 &lt;dbl&gt;, V290001 &lt;dbl&gt;</code></pre>
 <p>E agora estão contidas no objeto <code>linhas_controle</code>. Esses dados serão úteis mais adiante.</p>
 </div>
 <div id="dicionário-de-variáveis" class="section level2">
@@ -640,58 +688,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Uma primeira análise que pode ser feita com o fluxo atuarial é a elaboração de gráficos de linha de uma ou mais variáveis, ou mesmo da soma de duas ou mais variáveis para se observar a evolução da variável ao longo do horizonte temporal do fluxo atuarial.</p>
 <p>É importante destacar que algumas dessas variáveis possuem um comportamento “esperado” e uma boa análise preliminar de razoabilidade do fluxo atuarial é examinar se essas variáveis se comportam conforme o padrão esperado.</p>
 <p>Por exemplo, o gráfico da variável <code>V109001 -Base de Cálculo da Contribuição Normal</code>. No eixo dos ‘x’ vai sempre entrar o ano (<code>V100201</code>) e no eixo dos ‘y’ a varíável escolhida para visualizar, que neste exemplo será <code>V109001</code>.</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="fluxo-atuarial.html#cb241-1"></a><span class="kw">options</span>(<span class="dt">scipen=</span><span class="dv">999</span>)</span>
-<span id="cb241-2"><a href="fluxo-atuarial.html#cb241-2"></a></span>
-<span id="cb241-3"><a href="fluxo-atuarial.html#cb241-3"></a><span class="co"># Pegar apenas os primeiros 75 anos do fluxo.</span></span>
-<span id="cb241-4"><a href="fluxo-atuarial.html#cb241-4"></a>fluxo_atuarial[<span class="dv">1</span><span class="op">:</span><span class="dv">75</span>,] <span class="op">%&gt;%</span></span>
-<span id="cb241-5"><a href="fluxo-atuarial.html#cb241-5"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>V100201, <span class="dt">y=</span>V109001)) <span class="op">+</span></span>
-<span id="cb241-6"><a href="fluxo-atuarial.html#cb241-6"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">size=</span><span class="fl">1.3</span>, <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
-<span id="cb241-7"><a href="fluxo-atuarial.html#cb241-7"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Evolução da Base de Cálculo da Contribuição Normal&quot;</span>,</span>
-<span id="cb241-8"><a href="fluxo-atuarial.html#cb241-8"></a>         <span class="dt">y =</span> <span class="st">&quot;Valores em R$&quot;</span>,</span>
-<span id="cb241-9"><a href="fluxo-atuarial.html#cb241-9"></a>         <span class="dt">x =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
-<span id="cb241-10"><a href="fluxo-atuarial.html#cb241-10"></a><span class="st">    </span><span class="kw">theme_bw</span>() </span></code></pre></div>
-<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="fluxo-atuarial.html#cb335-1"></a><span class="kw">options</span>(<span class="dt">scipen=</span><span class="dv">999</span>)</span>
+<span id="cb335-2"><a href="fluxo-atuarial.html#cb335-2"></a></span>
+<span id="cb335-3"><a href="fluxo-atuarial.html#cb335-3"></a><span class="co"># Pegar apenas os primeiros 75 anos do fluxo.</span></span>
+<span id="cb335-4"><a href="fluxo-atuarial.html#cb335-4"></a>fluxo_atuarial[<span class="dv">1</span><span class="op">:</span><span class="dv">75</span>,] <span class="op">%&gt;%</span></span>
+<span id="cb335-5"><a href="fluxo-atuarial.html#cb335-5"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>V100201, <span class="dt">y=</span>V109001)) <span class="op">+</span></span>
+<span id="cb335-6"><a href="fluxo-atuarial.html#cb335-6"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">size=</span><span class="fl">1.3</span>, <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
+<span id="cb335-7"><a href="fluxo-atuarial.html#cb335-7"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Evolução da Base de Cálculo da Contribuição Normal&quot;</span>,</span>
+<span id="cb335-8"><a href="fluxo-atuarial.html#cb335-8"></a>         <span class="dt">y =</span> <span class="st">&quot;Valores em R$&quot;</span>,</span>
+<span id="cb335-9"><a href="fluxo-atuarial.html#cb335-9"></a>         <span class="dt">x =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
+<span id="cb335-10"><a href="fluxo-atuarial.html#cb335-10"></a><span class="st">    </span><span class="kw">theme_bw</span>() </span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-235-1.png" width="672" /></p>
 <p>Observa-se que o gráfico tem início num determinado valor e vai decrescendo continuamente à medida que os anos vão passando. Essa variável representa o valor anual da folha de contribuição dos servidores ativos.</p>
 <p>O esperado é que, não havendo ingresso de novos servidores (geração atual), a massa de servidores ativos vá decrescendo com o passar do tempo e com isso, o valor da folha, até que chegue um momento em que não haverá mais servidores em atividade, ocasião em que a curva no gráfico atinge o valor zero.</p>
 <p>Esse é o comportamento esperado para essa variável. Se um fluxo atuarial apresentar um padrão diferente para essa variável, provavelmente existe erro no fluxo que irá impactar os resultados obtidos.</p>
 <p>Naturalmente que cada RPPS tem suas peculiaridades, de forma que os gráficos não serão idênticos, mas esse padrão deverá ser observado.</p>
 <p>E como seria o gráfico da variável <code>V221000 - Encargos com Benefícios a Conceder de Aposentadorias Programadas</code>?</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="fluxo-atuarial.html#cb242-1"></a>fluxo_atuarial[<span class="dv">1</span><span class="op">:</span><span class="dv">75</span>,] <span class="op">%&gt;%</span></span>
-<span id="cb242-2"><a href="fluxo-atuarial.html#cb242-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>V100201, <span class="dt">y=</span>V221000)) <span class="op">+</span></span>
-<span id="cb242-3"><a href="fluxo-atuarial.html#cb242-3"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">size=</span><span class="fl">1.3</span>, <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
-<span id="cb242-4"><a href="fluxo-atuarial.html#cb242-4"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Evolução dos Encargos com Benefícios a Conceder de</span><span class="ch">\n</span><span class="st"> Aposentadorias Programadas &quot;</span>,</span>
-<span id="cb242-5"><a href="fluxo-atuarial.html#cb242-5"></a>         <span class="dt">y =</span> <span class="st">&quot;Valores em R$&quot;</span>,</span>
-<span id="cb242-6"><a href="fluxo-atuarial.html#cb242-6"></a>         <span class="dt">x =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
-<span id="cb242-7"><a href="fluxo-atuarial.html#cb242-7"></a><span class="st">    </span><span class="kw">theme_bw</span>() </span></code></pre></div>
-<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="fluxo-atuarial.html#cb336-1"></a>fluxo_atuarial[<span class="dv">1</span><span class="op">:</span><span class="dv">75</span>,] <span class="op">%&gt;%</span></span>
+<span id="cb336-2"><a href="fluxo-atuarial.html#cb336-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>V100201, <span class="dt">y=</span>V221000)) <span class="op">+</span></span>
+<span id="cb336-3"><a href="fluxo-atuarial.html#cb336-3"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">size=</span><span class="fl">1.3</span>, <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
+<span id="cb336-4"><a href="fluxo-atuarial.html#cb336-4"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Evolução dos Encargos com Benefícios a Conceder de</span><span class="ch">\n</span><span class="st"> Aposentadorias Programadas &quot;</span>,</span>
+<span id="cb336-5"><a href="fluxo-atuarial.html#cb336-5"></a>         <span class="dt">y =</span> <span class="st">&quot;Valores em R$&quot;</span>,</span>
+<span id="cb336-6"><a href="fluxo-atuarial.html#cb336-6"></a>         <span class="dt">x =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
+<span id="cb336-7"><a href="fluxo-atuarial.html#cb336-7"></a><span class="st">    </span><span class="kw">theme_bw</span>() </span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-236-1.png" width="672" /></p>
 <p>O padrão agora é bem diferente do gráfico anterior. Para essa váriável, e outras de mesma natureza, esse é o padrão que deve ser observado.</p>
 <p>Em se tratando dos benefícos <strong>a conceder</strong> espera-se que no ano da avaliação atuarial a previsão é de que não haja nenhum ou que haja poucos benefícios a serem concedidos. Porém, à medida que o tempo vai passando, os servidores ativos vão se aposentando e a despesa com os benefícios a conceder vai aumentando, até chegar a um limite máximo e começar a descrecer.</p>
 <p>Deve-se observar que esse limite máximo, no exemplo, ocorre por volta do ano 2050. Esse é também o ano por volta do qual a despesa com a folha de contribuição (primeiro gráfico) está praticamente zerada. Ou seja, a massa de ativos já extinguiu (se aposentaram, morreram, saíram do serviço público ou se invalidaram) e a massa dos aposentados passa então a se exinguir também, fazendo com que a curva comece a decrescer.</p>
 <p>Agora um exemplo com benefícios concedidos. Será apresentado o gráfico da projeção das variáveis <code>V211001</code> (Aposentadoria Programada) e <code>V214001</code> (Aposentadorias por Invalidez). Será feito o gráfico das duas variáveis somadas.</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="fluxo-atuarial.html#cb243-1"></a>fluxo_atuarial[<span class="dv">1</span><span class="op">:</span><span class="dv">75</span>,] <span class="op">%&gt;%</span></span>
-<span id="cb243-2"><a href="fluxo-atuarial.html#cb243-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>V100201, <span class="dt">y=</span>V211001 <span class="op">+</span><span class="st"> </span>V214001)) <span class="op">+</span></span>
-<span id="cb243-3"><a href="fluxo-atuarial.html#cb243-3"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">size=</span><span class="fl">1.3</span>, <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
-<span id="cb243-4"><a href="fluxo-atuarial.html#cb243-4"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Evolução das Aposentadorias Programadas e por Invalidez&quot;</span>,</span>
-<span id="cb243-5"><a href="fluxo-atuarial.html#cb243-5"></a>         <span class="dt">y =</span> <span class="st">&quot;Valores em R$&quot;</span>,</span>
-<span id="cb243-6"><a href="fluxo-atuarial.html#cb243-6"></a>         <span class="dt">x =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
-<span id="cb243-7"><a href="fluxo-atuarial.html#cb243-7"></a><span class="st">    </span><span class="kw">theme_bw</span>() </span></code></pre></div>
-<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-162-1.png" width="672" /></p>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="fluxo-atuarial.html#cb337-1"></a>fluxo_atuarial[<span class="dv">1</span><span class="op">:</span><span class="dv">75</span>,] <span class="op">%&gt;%</span></span>
+<span id="cb337-2"><a href="fluxo-atuarial.html#cb337-2"></a><span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>V100201, <span class="dt">y=</span>V211001 <span class="op">+</span><span class="st"> </span>V214001)) <span class="op">+</span></span>
+<span id="cb337-3"><a href="fluxo-atuarial.html#cb337-3"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">size=</span><span class="fl">1.3</span>, <span class="dt">color=</span><span class="st">&quot;blue&quot;</span>) <span class="op">+</span></span>
+<span id="cb337-4"><a href="fluxo-atuarial.html#cb337-4"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Evolução das Aposentadorias Programadas e por Invalidez&quot;</span>,</span>
+<span id="cb337-5"><a href="fluxo-atuarial.html#cb337-5"></a>         <span class="dt">y =</span> <span class="st">&quot;Valores em R$&quot;</span>,</span>
+<span id="cb337-6"><a href="fluxo-atuarial.html#cb337-6"></a>         <span class="dt">x =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
+<span id="cb337-7"><a href="fluxo-atuarial.html#cb337-7"></a><span class="st">    </span><span class="kw">theme_bw</span>() </span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-237-1.png" width="672" /></p>
 <p>O padrão é diferente dos dois anteriores. No ano inicial, a curva já inicia com um determinado valor que vai decrescendo com o passar do tempo.</p>
 <p>Esse padrão decorre do fato de que, na data da avaliação atuarial já existem pessoas aposentadas e com o passar do tempo, essas pessoas vão morrendo e as despesas decrescendo até zerar. Deve-se notar que as aposentadorias ocorridas no período não são acrescidas à esta variável.</p>
 <p>Não será possível aqui analisar o comportamenteo de todas as variáveis do fluxo atuarial, mas para quem tiver interesse em ver o comportamento de outras variáveis recomenda-se o vídeo disponível no seguinte link: <a href="https://vimeo.com/380302428/ee6308c54b" class="uri">https://vimeo.com/380302428/ee6308c54b</a></p>
 <p>Para finalizar esse tópico será apresentado o gráfico do COMPREV receber relativo a benefícos concedidos (<code>V119900</code>) e a conceder (<code>V129000</code>). A ideia é apresentar as duas variáveis no mesmo gráfico.</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="fluxo-atuarial.html#cb244-1"></a>fluxo_atuarial[<span class="dv">1</span><span class="op">:</span><span class="dv">75</span>,] <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb244-2"><a href="fluxo-atuarial.html#cb244-2"></a><span class="st">  </span><span class="kw">select</span>(V100201, V119900, V129000) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb244-3"><a href="fluxo-atuarial.html#cb244-3"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols=</span><span class="kw">c</span>(V119900, V129000),</span>
-<span id="cb244-4"><a href="fluxo-atuarial.html#cb244-4"></a>               <span class="dt">names_to =</span> <span class="st">&quot;tipo_comprev&quot;</span>,</span>
-<span id="cb244-5"><a href="fluxo-atuarial.html#cb244-5"></a>               <span class="dt">values_to =</span> <span class="st">&quot;vlr_comprev&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb244-6"><a href="fluxo-atuarial.html#cb244-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>V100201, <span class="dt">y=</span>vlr_comprev, <span class="dt">color=</span>tipo_comprev)) <span class="op">+</span></span>
-<span id="cb244-7"><a href="fluxo-atuarial.html#cb244-7"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size=</span><span class="fl">1.2</span>) <span class="op">+</span></span>
-<span id="cb244-8"><a href="fluxo-atuarial.html#cb244-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Evolução do COMPREV a Receber </span><span class="ch">\n</span><span class="st"> (Benefícios Concedidos e a Conceder)&quot;</span>,</span>
-<span id="cb244-9"><a href="fluxo-atuarial.html#cb244-9"></a>         <span class="dt">y =</span> <span class="st">&quot;Valores em R$&quot;</span>,</span>
-<span id="cb244-10"><a href="fluxo-atuarial.html#cb244-10"></a>         <span class="dt">x =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
-<span id="cb244-11"><a href="fluxo-atuarial.html#cb244-11"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
-<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-163-1.png" width="672" /></p>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="fluxo-atuarial.html#cb338-1"></a>fluxo_atuarial[<span class="dv">1</span><span class="op">:</span><span class="dv">75</span>,] <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb338-2"><a href="fluxo-atuarial.html#cb338-2"></a><span class="st">  </span><span class="kw">select</span>(V100201, V119900, V129000) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb338-3"><a href="fluxo-atuarial.html#cb338-3"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols=</span><span class="kw">c</span>(V119900, V129000),</span>
+<span id="cb338-4"><a href="fluxo-atuarial.html#cb338-4"></a>               <span class="dt">names_to =</span> <span class="st">&quot;tipo_comprev&quot;</span>,</span>
+<span id="cb338-5"><a href="fluxo-atuarial.html#cb338-5"></a>               <span class="dt">values_to =</span> <span class="st">&quot;vlr_comprev&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb338-6"><a href="fluxo-atuarial.html#cb338-6"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>V100201, <span class="dt">y=</span>vlr_comprev, <span class="dt">color=</span>tipo_comprev)) <span class="op">+</span></span>
+<span id="cb338-7"><a href="fluxo-atuarial.html#cb338-7"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size=</span><span class="fl">1.2</span>) <span class="op">+</span></span>
+<span id="cb338-8"><a href="fluxo-atuarial.html#cb338-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Evolução do COMPREV a Receber </span><span class="ch">\n</span><span class="st"> (Benefícios Concedidos e a Conceder)&quot;</span>,</span>
+<span id="cb338-9"><a href="fluxo-atuarial.html#cb338-9"></a>         <span class="dt">y =</span> <span class="st">&quot;Valores em R$&quot;</span>,</span>
+<span id="cb338-10"><a href="fluxo-atuarial.html#cb338-10"></a>         <span class="dt">x =</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
+<span id="cb338-11"><a href="fluxo-atuarial.html#cb338-11"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
+<p><img src="ADPrevBook_files/figure-html/unnamed-chunk-238-1.png" width="672" /></p>
 <p>O gráfico evidencia que os valores das projeções do COMPREV para os benefícios a conceder é <strong>muito</strong> superior à projeção dos valores do COMPREV relativo aos benefícios concedidos. A questão que se coloca é: essa projeção é realista?</p>
 </div>
 <div id="cálculo-dos-principais-números-da-avaliação-atuarial" class="section level2">
@@ -767,48 +815,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Passa-se, a seguir, ao cálculo dessas quantidades:</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="fluxo-atuarial.html#cb245-1"></a><span class="co"># VABF</span></span>
-<span id="cb245-2"><a href="fluxo-atuarial.html#cb245-2"></a>vabf &lt;-<span class="st"> </span><span class="kw">apply</span>(linhas_controle[<span class="dv">2</span>, <span class="kw">c</span>(<span class="st">&quot;V210000&quot;</span>, <span class="st">&quot;V220000&quot;</span>)], <span class="dv">1</span>, sum, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
-<span id="cb245-3"><a href="fluxo-atuarial.html#cb245-3"></a></span>
-<span id="cb245-4"><a href="fluxo-atuarial.html#cb245-4"></a><span class="co"># VACF</span></span>
-<span id="cb245-5"><a href="fluxo-atuarial.html#cb245-5"></a>vacf &lt;-<span class="st"> </span><span class="kw">apply</span>(linhas_controle[<span class="dv">2</span>, <span class="kw">c</span>(<span class="st">&quot;V111000&quot;</span>, <span class="st">&quot;V112000&quot;</span>, <span class="st">&quot;V119900&quot;</span>, <span class="st">&quot;V121000&quot;</span>, <span class="st">&quot;V122000&quot;</span>, <span class="st">&quot;V123000&quot;</span>, <span class="st">&quot;V124000&quot;</span>, <span class="st">&quot;V129000&quot;</span>, <span class="st">&quot;V130101&quot;</span>, <span class="st">&quot;V130201&quot;</span>, <span class="st">&quot;V139901&quot;</span>)], <span class="dv">1</span>, sum, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
-<span id="cb245-6"><a href="fluxo-atuarial.html#cb245-6"></a></span>
-<span id="cb245-7"><a href="fluxo-atuarial.html#cb245-7"></a><span class="co"># Ativos Garantidores</span></span>
-<span id="cb245-8"><a href="fluxo-atuarial.html#cb245-8"></a>ativos_garantidores &lt;-<span class="st">  </span>fluxo_atuarial<span class="op">$</span>V290001[<span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>fluxo_atuarial<span class="op">$</span>V250001[<span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>fluxo_atuarial<span class="op">$</span>V280001[<span class="dv">1</span>]</span>
-<span id="cb245-9"><a href="fluxo-atuarial.html#cb245-9"></a></span>
-<span id="cb245-10"><a href="fluxo-atuarial.html#cb245-10"></a><span class="co"># Reserva Matemática de Benefícios Concedidos</span></span>
-<span id="cb245-11"><a href="fluxo-atuarial.html#cb245-11"></a>rmbc &lt;-<span class="st"> </span>linhas_controle[<span class="dv">2</span>, <span class="st">&quot;V210000&quot;</span>] <span class="op">-</span><span class="st"> </span><span class="kw">apply</span>(linhas_controle[<span class="dv">2</span>, <span class="kw">c</span>(<span class="st">&quot;V111000&quot;</span>, <span class="st">&quot;V112000&quot;</span>, <span class="st">&quot;V119900&quot;</span>)], <span class="dv">1</span>, sum, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
-<span id="cb245-12"><a href="fluxo-atuarial.html#cb245-12"></a></span>
-<span id="cb245-13"><a href="fluxo-atuarial.html#cb245-13"></a><span class="co"># Reserva Matemática de Benefícios a Conceder</span></span>
-<span id="cb245-14"><a href="fluxo-atuarial.html#cb245-14"></a>rmbac &lt;-<span class="st"> </span>linhas_controle[<span class="dv">2</span>, <span class="st">&quot;V220000&quot;</span>] <span class="op">-</span><span class="st"> </span><span class="kw">apply</span>(linhas_controle[<span class="dv">2</span>, <span class="kw">c</span>(<span class="st">&quot;V121000&quot;</span>, <span class="st">&quot;V122000&quot;</span>, <span class="st">&quot;V123000&quot;</span>, <span class="st">&quot;V124000&quot;</span>, <span class="st">&quot;V129000&quot;</span>)], <span class="dv">1</span>, sum, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
-<span id="cb245-15"><a href="fluxo-atuarial.html#cb245-15"></a></span>
-<span id="cb245-16"><a href="fluxo-atuarial.html#cb245-16"></a><span class="co"># Parcelamentos</span></span>
-<span id="cb245-17"><a href="fluxo-atuarial.html#cb245-17"></a>parcelamentos &lt;-<span class="st"> </span>linhas_controle[<span class="dv">2</span>, <span class="st">&quot;V130201&quot;</span>]</span>
-<span id="cb245-18"><a href="fluxo-atuarial.html#cb245-18"></a></span>
-<span id="cb245-19"><a href="fluxo-atuarial.html#cb245-19"></a><span class="co"># Plano de Amortização</span></span>
-<span id="cb245-20"><a href="fluxo-atuarial.html#cb245-20"></a>plano_amortizacao &lt;-<span class="st"> </span>linhas_controle[<span class="dv">2</span>, <span class="st">&quot;V130101&quot;</span>]</span>
-<span id="cb245-21"><a href="fluxo-atuarial.html#cb245-21"></a></span>
-<span id="cb245-22"><a href="fluxo-atuarial.html#cb245-22"></a><span class="co"># Resultado Atuarial</span></span>
-<span id="cb245-23"><a href="fluxo-atuarial.html#cb245-23"></a>resultado_atuarial &lt;-<span class="st"> </span>vacf <span class="op">+</span><span class="st"> </span>ativos_garantidores <span class="op">-</span><span class="st"> </span>vabf</span></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="fluxo-atuarial.html#cb339-1"></a><span class="co"># VABF</span></span>
+<span id="cb339-2"><a href="fluxo-atuarial.html#cb339-2"></a>vabf &lt;-<span class="st"> </span><span class="kw">apply</span>(linhas_controle[<span class="dv">2</span>, <span class="kw">c</span>(<span class="st">&quot;V210000&quot;</span>, <span class="st">&quot;V220000&quot;</span>)], <span class="dv">1</span>, sum, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb339-3"><a href="fluxo-atuarial.html#cb339-3"></a></span>
+<span id="cb339-4"><a href="fluxo-atuarial.html#cb339-4"></a><span class="co"># VACF</span></span>
+<span id="cb339-5"><a href="fluxo-atuarial.html#cb339-5"></a>vacf &lt;-<span class="st"> </span><span class="kw">apply</span>(linhas_controle[<span class="dv">2</span>, <span class="kw">c</span>(<span class="st">&quot;V111000&quot;</span>, <span class="st">&quot;V112000&quot;</span>, <span class="st">&quot;V119900&quot;</span>, <span class="st">&quot;V121000&quot;</span>, <span class="st">&quot;V122000&quot;</span>, <span class="st">&quot;V123000&quot;</span>, <span class="st">&quot;V124000&quot;</span>, <span class="st">&quot;V129000&quot;</span>, <span class="st">&quot;V130101&quot;</span>, <span class="st">&quot;V130201&quot;</span>, <span class="st">&quot;V139901&quot;</span>)], <span class="dv">1</span>, sum, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb339-6"><a href="fluxo-atuarial.html#cb339-6"></a></span>
+<span id="cb339-7"><a href="fluxo-atuarial.html#cb339-7"></a><span class="co"># Ativos Garantidores</span></span>
+<span id="cb339-8"><a href="fluxo-atuarial.html#cb339-8"></a>ativos_garantidores &lt;-<span class="st">  </span>fluxo_atuarial<span class="op">$</span>V290001[<span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>fluxo_atuarial<span class="op">$</span>V250001[<span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>fluxo_atuarial<span class="op">$</span>V280001[<span class="dv">1</span>]</span>
+<span id="cb339-9"><a href="fluxo-atuarial.html#cb339-9"></a></span>
+<span id="cb339-10"><a href="fluxo-atuarial.html#cb339-10"></a><span class="co"># Reserva Matemática de Benefícios Concedidos</span></span>
+<span id="cb339-11"><a href="fluxo-atuarial.html#cb339-11"></a>rmbc &lt;-<span class="st"> </span>linhas_controle[<span class="dv">2</span>, <span class="st">&quot;V210000&quot;</span>] <span class="op">-</span><span class="st"> </span><span class="kw">apply</span>(linhas_controle[<span class="dv">2</span>, <span class="kw">c</span>(<span class="st">&quot;V111000&quot;</span>, <span class="st">&quot;V112000&quot;</span>, <span class="st">&quot;V119900&quot;</span>)], <span class="dv">1</span>, sum, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb339-12"><a href="fluxo-atuarial.html#cb339-12"></a></span>
+<span id="cb339-13"><a href="fluxo-atuarial.html#cb339-13"></a><span class="co"># Reserva Matemática de Benefícios a Conceder</span></span>
+<span id="cb339-14"><a href="fluxo-atuarial.html#cb339-14"></a>rmbac &lt;-<span class="st"> </span>linhas_controle[<span class="dv">2</span>, <span class="st">&quot;V220000&quot;</span>] <span class="op">-</span><span class="st"> </span><span class="kw">apply</span>(linhas_controle[<span class="dv">2</span>, <span class="kw">c</span>(<span class="st">&quot;V121000&quot;</span>, <span class="st">&quot;V122000&quot;</span>, <span class="st">&quot;V123000&quot;</span>, <span class="st">&quot;V124000&quot;</span>, <span class="st">&quot;V129000&quot;</span>)], <span class="dv">1</span>, sum, <span class="dt">na.rm=</span><span class="ot">TRUE</span>)</span>
+<span id="cb339-15"><a href="fluxo-atuarial.html#cb339-15"></a></span>
+<span id="cb339-16"><a href="fluxo-atuarial.html#cb339-16"></a><span class="co"># Parcelamentos</span></span>
+<span id="cb339-17"><a href="fluxo-atuarial.html#cb339-17"></a>parcelamentos &lt;-<span class="st"> </span>linhas_controle[<span class="dv">2</span>, <span class="st">&quot;V130201&quot;</span>]</span>
+<span id="cb339-18"><a href="fluxo-atuarial.html#cb339-18"></a></span>
+<span id="cb339-19"><a href="fluxo-atuarial.html#cb339-19"></a><span class="co"># Plano de Amortização</span></span>
+<span id="cb339-20"><a href="fluxo-atuarial.html#cb339-20"></a>plano_amortizacao &lt;-<span class="st"> </span>linhas_controle[<span class="dv">2</span>, <span class="st">&quot;V130101&quot;</span>]</span>
+<span id="cb339-21"><a href="fluxo-atuarial.html#cb339-21"></a></span>
+<span id="cb339-22"><a href="fluxo-atuarial.html#cb339-22"></a><span class="co"># Resultado Atuarial</span></span>
+<span id="cb339-23"><a href="fluxo-atuarial.html#cb339-23"></a>resultado_atuarial &lt;-<span class="st"> </span>vacf <span class="op">+</span><span class="st"> </span>ativos_garantidores <span class="op">-</span><span class="st"> </span>vabf</span></code></pre></div>
 <p>Agora é só apresentar os resultados, mas antes os valores calculados devem ser reunidos em uma tabela:</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="fluxo-atuarial.html#cb246-1"></a><span class="co"># Cria um data frame com os valores calculados</span></span>
-<span id="cb246-2"><a href="fluxo-atuarial.html#cb246-2"></a>avaliacao_atuarial &lt;-<span class="st"> </span><span class="kw">tribble</span>(</span>
-<span id="cb246-3"><a href="fluxo-atuarial.html#cb246-3"></a>   <span class="op">~</span>Variavel,                  <span class="op">~</span>Valor,</span>
-<span id="cb246-4"><a href="fluxo-atuarial.html#cb246-4"></a>   <span class="st">&quot;Ativos Garantidores&quot;</span>,      ativos_garantidores,</span>
-<span id="cb246-5"><a href="fluxo-atuarial.html#cb246-5"></a>   <span class="st">&quot;( + ) VACF&quot;</span>,               vacf, </span>
-<span id="cb246-6"><a href="fluxo-atuarial.html#cb246-6"></a>   <span class="st">&quot;( - ) VABF&quot;</span>,               vabf,</span>
-<span id="cb246-7"><a href="fluxo-atuarial.html#cb246-7"></a>   <span class="st">&quot;( = ) Resultado Atuarial&quot;</span>, resultado_atuarial,</span>
-<span id="cb246-8"><a href="fluxo-atuarial.html#cb246-8"></a>   <span class="st">&quot;RMBC&quot;</span>,                     rmbc,</span>
-<span id="cb246-9"><a href="fluxo-atuarial.html#cb246-9"></a>   <span class="st">&quot;RMBaC&quot;</span>,                    rmbac,</span>
-<span id="cb246-10"><a href="fluxo-atuarial.html#cb246-10"></a>   <span class="st">&quot;Parcelamentos&quot;</span>,            parcelamentos,</span>
-<span id="cb246-11"><a href="fluxo-atuarial.html#cb246-11"></a>   <span class="st">&quot;Plano de Amortização&quot;</span>,     plano_amortizacao</span>
-<span id="cb246-12"><a href="fluxo-atuarial.html#cb246-12"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="fluxo-atuarial.html#cb340-1"></a><span class="co"># Cria um data frame com os valores calculados</span></span>
+<span id="cb340-2"><a href="fluxo-atuarial.html#cb340-2"></a>avaliacao_atuarial &lt;-<span class="st"> </span><span class="kw">tribble</span>(</span>
+<span id="cb340-3"><a href="fluxo-atuarial.html#cb340-3"></a>   <span class="op">~</span>Variavel,                  <span class="op">~</span>Valor,</span>
+<span id="cb340-4"><a href="fluxo-atuarial.html#cb340-4"></a>   <span class="st">&quot;Ativos Garantidores&quot;</span>,      ativos_garantidores,</span>
+<span id="cb340-5"><a href="fluxo-atuarial.html#cb340-5"></a>   <span class="st">&quot;( + ) VACF&quot;</span>,               vacf, </span>
+<span id="cb340-6"><a href="fluxo-atuarial.html#cb340-6"></a>   <span class="st">&quot;( - ) VABF&quot;</span>,               vabf,</span>
+<span id="cb340-7"><a href="fluxo-atuarial.html#cb340-7"></a>   <span class="st">&quot;( = ) Resultado Atuarial&quot;</span>, resultado_atuarial,</span>
+<span id="cb340-8"><a href="fluxo-atuarial.html#cb340-8"></a>   <span class="st">&quot;RMBC&quot;</span>,                     rmbc,</span>
+<span id="cb340-9"><a href="fluxo-atuarial.html#cb340-9"></a>   <span class="st">&quot;RMBaC&quot;</span>,                    rmbac,</span>
+<span id="cb340-10"><a href="fluxo-atuarial.html#cb340-10"></a>   <span class="st">&quot;Parcelamentos&quot;</span>,            parcelamentos,</span>
+<span id="cb340-11"><a href="fluxo-atuarial.html#cb340-11"></a>   <span class="st">&quot;Plano de Amortização&quot;</span>,     plano_amortizacao</span>
+<span id="cb340-12"><a href="fluxo-atuarial.html#cb340-12"></a>)</span></code></pre></div>
 <p>Tabela com os valores calculados:</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="fluxo-atuarial.html#cb247-1"></a><span class="co"># Elabora uma tabela</span></span>
-<span id="cb247-2"><a href="fluxo-atuarial.html#cb247-2"></a>avaliacao_atuarial <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb247-3"><a href="fluxo-atuarial.html#cb247-3"></a><span class="st">  </span><span class="kw">qflextable</span>() </span></code></pre></div>
-<div class="tabwid"><style>.cl-05d0ccd2{border-collapse:collapse;}.cl-05b4b3e4{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 255, 1.00);background-color:transparent;}.cl-05b5293c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-05b5293d{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-05b5ecaa{width:128pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-05b5ecab{width:70pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-05b5ecac{width:128pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-05b5ecad{width:70pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-05b5ecae{width:128pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-05b5ecaf{width:70pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-05b5ecb0{width:70pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-05b5ecb1{width:128pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-05b5ecb2{width:70pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-05b5ecb3{width:128pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-05d0ccd2'>
-<thead><tr style="overflow-wrap:break-word;"><td class="cl-05b5ecb3"><p class="cl-05b5293c"><span class="cl-05b4b3e4">Variavel</span></p></td><td class="cl-05b5ecb2"><p class="cl-05b5293d"><span class="cl-05b4b3e4">Valor</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-05b5ecaa"><p class="cl-05b5293c"><span class="cl-05b4b3e4">Ativos Garantidores</span></p></td><td class="cl-05b5ecab"><p class="cl-05b5293d"><span class="cl-05b4b3e4">31.843.876</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-05b5ecac"><p class="cl-05b5293c"><span class="cl-05b4b3e4">( + ) VACF</span></p></td><td class="cl-05b5ecad"><p class="cl-05b5293d"><span class="cl-05b4b3e4">39.028.227</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-05b5ecac"><p class="cl-05b5293c"><span class="cl-05b4b3e4">( - ) VABF</span></p></td><td class="cl-05b5ecad"><p class="cl-05b5293d"><span class="cl-05b4b3e4">65.487.866</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-05b5ecac"><p class="cl-05b5293c"><span class="cl-05b4b3e4">( = ) Resultado Atuarial</span></p></td><td class="cl-05b5ecad"><p class="cl-05b5293d"><span class="cl-05b4b3e4">5.384.238</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-05b5ecaa"><p class="cl-05b5293c"><span class="cl-05b4b3e4">RMBC</span></p></td><td class="cl-05b5ecab"><p class="cl-05b5293d"><span class="cl-05b4b3e4">1.101.680</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-05b5ecaa"><p class="cl-05b5293c"><span class="cl-05b4b3e4">RMBaC</span></p></td><td class="cl-05b5ecab"><p class="cl-05b5293d"><span class="cl-05b4b3e4">28.844.875</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-05b5ecae"><p class="cl-05b5293c"><span class="cl-05b4b3e4">Parcelamentos</span></p></td><td class="cl-05b5ecaf"><p class="cl-05b5293d"><span class="cl-05b4b3e4">1.613</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-05b5ecb1"><p class="cl-05b5293c"><span class="cl-05b4b3e4">Plano de Amortização</span></p></td><td class="cl-05b5ecb0"><p class="cl-05b5293d"><span class="cl-05b4b3e4">3.485.304</span></p></td></tr></tbody></table></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="fluxo-atuarial.html#cb341-1"></a><span class="co"># Elabora uma tabela</span></span>
+<span id="cb341-2"><a href="fluxo-atuarial.html#cb341-2"></a>avaliacao_atuarial <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb341-3"><a href="fluxo-atuarial.html#cb341-3"></a><span class="st">  </span><span class="kw">qflextable</span>() </span></code></pre></div>
+<div class="tabwid"><style>.cl-0f8fbfb4{border-collapse:collapse;}.cl-0f6acbd2{font-family:'Arial';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 255, 1.00);background-color:transparent;}.cl-0f6b1a06{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-0f6b1a07{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:3pt;padding-right:3pt;line-height: 1;background-color:transparent;}.cl-0f6ca0f6{width:128pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0f6ca0f7{width:70pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0f6ca0f8{width:128pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0f6ca0f9{width:70pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0f6ca0fa{width:128pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0f6ca0fb{width:70pt;background-color:transparent;vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0f6ca0fc{width:70pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0f6ca0fd{width:128pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0f6ca0fe{width:70pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-0f6ca0ff{width:128pt;background-color:transparent;vertical-align: middle;border-bottom: 2pt solid rgba(0, 0, 0, 1.00);border-top: 2pt solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style><table class='cl-0f8fbfb4'>
+<thead><tr style="overflow-wrap:break-word;"><td class="cl-0f6ca0ff"><p class="cl-0f6b1a06"><span class="cl-0f6acbd2">Variavel</span></p></td><td class="cl-0f6ca0fe"><p class="cl-0f6b1a07"><span class="cl-0f6acbd2">Valor</span></p></td></tr></thead><tbody><tr style="overflow-wrap:break-word;"><td class="cl-0f6ca0f6"><p class="cl-0f6b1a06"><span class="cl-0f6acbd2">Ativos Garantidores</span></p></td><td class="cl-0f6ca0f7"><p class="cl-0f6b1a07"><span class="cl-0f6acbd2">31.843.876</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-0f6ca0f8"><p class="cl-0f6b1a06"><span class="cl-0f6acbd2">( + ) VACF</span></p></td><td class="cl-0f6ca0f9"><p class="cl-0f6b1a07"><span class="cl-0f6acbd2">39.028.227</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-0f6ca0f8"><p class="cl-0f6b1a06"><span class="cl-0f6acbd2">( - ) VABF</span></p></td><td class="cl-0f6ca0f9"><p class="cl-0f6b1a07"><span class="cl-0f6acbd2">65.487.866</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-0f6ca0f8"><p class="cl-0f6b1a06"><span class="cl-0f6acbd2">( = ) Resultado Atuarial</span></p></td><td class="cl-0f6ca0f9"><p class="cl-0f6b1a07"><span class="cl-0f6acbd2">5.384.238</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-0f6ca0f6"><p class="cl-0f6b1a06"><span class="cl-0f6acbd2">RMBC</span></p></td><td class="cl-0f6ca0f7"><p class="cl-0f6b1a07"><span class="cl-0f6acbd2">1.101.680</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-0f6ca0f6"><p class="cl-0f6b1a06"><span class="cl-0f6acbd2">RMBaC</span></p></td><td class="cl-0f6ca0f7"><p class="cl-0f6b1a07"><span class="cl-0f6acbd2">28.844.875</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-0f6ca0fa"><p class="cl-0f6b1a06"><span class="cl-0f6acbd2">Parcelamentos</span></p></td><td class="cl-0f6ca0fb"><p class="cl-0f6b1a07"><span class="cl-0f6acbd2">1.613</span></p></td></tr><tr style="overflow-wrap:break-word;"><td class="cl-0f6ca0fd"><p class="cl-0f6b1a06"><span class="cl-0f6acbd2">Plano de Amortização</span></p></td><td class="cl-0f6ca0fc"><p class="cl-0f6b1a07"><span class="cl-0f6acbd2">3.485.304</span></p></td></tr></tbody></table></div>
 <p>Pode-se agora comparar os valores calculados, mostrados no quadro acima, com os que constam do relatório de avaliação atuarial.</p>
 </div>
 <div id="anexo-10-do-rreo" class="section level2">
@@ -889,22 +937,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 <p>Como já visto anteriormente, algumas rubricas são simples totalizações de outras. Assim, por exemplo, o valor contido na rubrica <code>V111000</code> é resultado da soma dos valores contidos nas seguintes rubricas: <code>V111101</code>, <code>V111201</code>, <code>V111301</code> e <code>V111401</code>.</p>
 <p>Para efeito de elaboração do anexo serão utilizadas as “rubricas parcelas” ou “elementares” em vez de utilizar as rubricas totalizadoras.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="fluxo-atuarial.html#cb248-1"></a>anexo10_rreo &lt;-<span class="st"> </span>fluxo_atuarial <span class="op">%&gt;%</span></span>
-<span id="cb248-2"><a href="fluxo-atuarial.html#cb248-2"></a><span class="st">                 </span><span class="kw">transmute</span>(<span class="dt">exercicio =</span> V100201,</span>
-<span id="cb248-3"><a href="fluxo-atuarial.html#cb248-3"></a>                           <span class="dt">receitas =</span> V111101 <span class="op">+</span><span class="st"> </span>V111201 <span class="op">+</span><span class="st"> </span>V111301 <span class="op">+</span><span class="st"> </span>V111401 <span class="op">+</span><span class="st">                               </span><span class="co"># V111.000</span></span>
-<span id="cb248-4"><a href="fluxo-atuarial.html#cb248-4"></a><span class="st">                                      </span>V112000 <span class="op">+</span></span>
-<span id="cb248-5"><a href="fluxo-atuarial.html#cb248-5"></a><span class="st">                                      </span>V119900 <span class="op">+</span></span>
-<span id="cb248-6"><a href="fluxo-atuarial.html#cb248-6"></a><span class="st">                                      </span>V121100 <span class="op">+</span><span class="st"> </span>V121200 <span class="op">+</span><span class="st"> </span>V121300 <span class="op">+</span><span class="st"> </span>V121400 <span class="op">+</span><span class="st"> </span>V121500 <span class="op">+</span><span class="st"> </span>V121600 <span class="op">+</span><span class="st"> </span>V121700 <span class="op">+</span><span class="st"> </span><span class="co"># V121000</span></span>
-<span id="cb248-7"><a href="fluxo-atuarial.html#cb248-7"></a><span class="st">                                      </span>V122100 <span class="op">+</span><span class="st"> </span>V122200 <span class="op">+</span><span class="st"> </span>V122300 <span class="op">+</span><span class="st"> </span>V122400 <span class="op">+</span><span class="st"> </span>V122500 <span class="op">+</span><span class="st"> </span>V122600 <span class="op">+</span><span class="st"> </span>V122700 <span class="op">+</span><span class="st"> </span><span class="co"># V122000</span></span>
-<span id="cb248-8"><a href="fluxo-atuarial.html#cb248-8"></a><span class="st">                                      </span>V123100 <span class="op">+</span><span class="st"> </span>V123200 <span class="op">+</span><span class="st"> </span>V123300 <span class="op">+</span><span class="st"> </span>V123400 <span class="op">+</span><span class="st">                               </span><span class="co"># V123000</span></span>
-<span id="cb248-9"><a href="fluxo-atuarial.html#cb248-9"></a><span class="st">                                      </span>V124100 <span class="op">+</span><span class="st"> </span>V124200 <span class="op">+</span><span class="st"> </span>V124300 <span class="op">+</span><span class="st"> </span>V124400 <span class="op">+</span><span class="st"> </span>V124500 <span class="op">+</span><span class="st">                     </span><span class="co"># V124000</span></span>
-<span id="cb248-10"><a href="fluxo-atuarial.html#cb248-10"></a><span class="st">                                      </span>V129000 <span class="op">+</span></span>
-<span id="cb248-11"><a href="fluxo-atuarial.html#cb248-11"></a><span class="st">                                      </span>V130101 <span class="op">+</span></span>
-<span id="cb248-12"><a href="fluxo-atuarial.html#cb248-12"></a><span class="st">                                      </span>V130201 <span class="op">+</span></span>
-<span id="cb248-13"><a href="fluxo-atuarial.html#cb248-13"></a><span class="st">                                      </span>V139901, <span class="co"># + V280001 (Rentabilidade dos Ativos Garantidores???)</span></span>
-<span id="cb248-14"><a href="fluxo-atuarial.html#cb248-14"></a>                          <span class="dt">despesas =</span>  V211001 <span class="op">+</span><span class="st"> </span>V212001 <span class="op">+</span><span class="st"> </span>V213001 <span class="op">+</span><span class="st"> </span>V214001 <span class="op">+</span><span class="st"> </span>V215001 <span class="op">+</span><span class="st"> </span>V219901 <span class="op">+</span><span class="st">                                 </span><span class="co"># V210000</span></span>
-<span id="cb248-15"><a href="fluxo-atuarial.html#cb248-15"></a><span class="st">                                      </span>V221000 <span class="op">+</span><span class="st"> </span>V222000 <span class="op">+</span><span class="st"> </span>V223000 <span class="op">+</span><span class="st"> </span>V224000 <span class="op">+</span><span class="st"> </span>V225000 <span class="op">+</span><span class="st"> </span>V226000 <span class="op">+</span><span class="st"> </span>V227000 <span class="op">+</span><span class="st"> </span>V229000 <span class="op">+</span><span class="st"> </span>V239901)    <span class="co"># V220000</span></span></code></pre></div>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="fluxo-atuarial.html#cb249-1"></a><span class="kw">head</span>(anexo10_rreo)</span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="fluxo-atuarial.html#cb342-1"></a>anexo10_rreo &lt;-<span class="st"> </span>fluxo_atuarial <span class="op">%&gt;%</span></span>
+<span id="cb342-2"><a href="fluxo-atuarial.html#cb342-2"></a><span class="st">                 </span><span class="kw">transmute</span>(<span class="dt">exercicio =</span> V100201,</span>
+<span id="cb342-3"><a href="fluxo-atuarial.html#cb342-3"></a>                           <span class="dt">receitas =</span> V111101 <span class="op">+</span><span class="st"> </span>V111201 <span class="op">+</span><span class="st"> </span>V111301 <span class="op">+</span><span class="st"> </span>V111401 <span class="op">+</span><span class="st">                               </span><span class="co"># V111.000</span></span>
+<span id="cb342-4"><a href="fluxo-atuarial.html#cb342-4"></a><span class="st">                                      </span>V112000 <span class="op">+</span></span>
+<span id="cb342-5"><a href="fluxo-atuarial.html#cb342-5"></a><span class="st">                                      </span>V119900 <span class="op">+</span></span>
+<span id="cb342-6"><a href="fluxo-atuarial.html#cb342-6"></a><span class="st">                                      </span>V121100 <span class="op">+</span><span class="st"> </span>V121200 <span class="op">+</span><span class="st"> </span>V121300 <span class="op">+</span><span class="st"> </span>V121400 <span class="op">+</span><span class="st"> </span>V121500 <span class="op">+</span><span class="st"> </span>V121600 <span class="op">+</span><span class="st"> </span>V121700 <span class="op">+</span><span class="st"> </span><span class="co"># V121000</span></span>
+<span id="cb342-7"><a href="fluxo-atuarial.html#cb342-7"></a><span class="st">                                      </span>V122100 <span class="op">+</span><span class="st"> </span>V122200 <span class="op">+</span><span class="st"> </span>V122300 <span class="op">+</span><span class="st"> </span>V122400 <span class="op">+</span><span class="st"> </span>V122500 <span class="op">+</span><span class="st"> </span>V122600 <span class="op">+</span><span class="st"> </span>V122700 <span class="op">+</span><span class="st"> </span><span class="co"># V122000</span></span>
+<span id="cb342-8"><a href="fluxo-atuarial.html#cb342-8"></a><span class="st">                                      </span>V123100 <span class="op">+</span><span class="st"> </span>V123200 <span class="op">+</span><span class="st"> </span>V123300 <span class="op">+</span><span class="st"> </span>V123400 <span class="op">+</span><span class="st">                               </span><span class="co"># V123000</span></span>
+<span id="cb342-9"><a href="fluxo-atuarial.html#cb342-9"></a><span class="st">                                      </span>V124100 <span class="op">+</span><span class="st"> </span>V124200 <span class="op">+</span><span class="st"> </span>V124300 <span class="op">+</span><span class="st"> </span>V124400 <span class="op">+</span><span class="st"> </span>V124500 <span class="op">+</span><span class="st">                     </span><span class="co"># V124000</span></span>
+<span id="cb342-10"><a href="fluxo-atuarial.html#cb342-10"></a><span class="st">                                      </span>V129000 <span class="op">+</span></span>
+<span id="cb342-11"><a href="fluxo-atuarial.html#cb342-11"></a><span class="st">                                      </span>V130101 <span class="op">+</span></span>
+<span id="cb342-12"><a href="fluxo-atuarial.html#cb342-12"></a><span class="st">                                      </span>V130201 <span class="op">+</span></span>
+<span id="cb342-13"><a href="fluxo-atuarial.html#cb342-13"></a><span class="st">                                      </span>V139901, <span class="co"># + V280001 (Rentabilidade dos Ativos Garantidores???)</span></span>
+<span id="cb342-14"><a href="fluxo-atuarial.html#cb342-14"></a>                          <span class="dt">despesas =</span>  V211001 <span class="op">+</span><span class="st"> </span>V212001 <span class="op">+</span><span class="st"> </span>V213001 <span class="op">+</span><span class="st"> </span>V214001 <span class="op">+</span><span class="st"> </span>V215001 <span class="op">+</span><span class="st"> </span>V219901 <span class="op">+</span><span class="st">                                 </span><span class="co"># V210000</span></span>
+<span id="cb342-15"><a href="fluxo-atuarial.html#cb342-15"></a><span class="st">                                      </span>V221000 <span class="op">+</span><span class="st"> </span>V222000 <span class="op">+</span><span class="st"> </span>V223000 <span class="op">+</span><span class="st"> </span>V224000 <span class="op">+</span><span class="st"> </span>V225000 <span class="op">+</span><span class="st"> </span>V226000 <span class="op">+</span><span class="st"> </span>V227000 <span class="op">+</span><span class="st"> </span>V229000 <span class="op">+</span><span class="st"> </span>V239901)    <span class="co"># V220000</span></span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="fluxo-atuarial.html#cb343-1"></a><span class="kw">head</span>(anexo10_rreo)</span></code></pre></div>
 <pre><code># A tibble: 6 x 3
   exercicio receitas despesas
       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
@@ -916,10 +964,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 6      2024 2836927. 1540593.</code></pre>
 <p>Os valores das colunas <code>Resultado Previdenciário</code> e <code>Saldo Financeiro do Exercício</code> podem agora ser calculados. A coluna do resultado previdenciário é obtida pela diferença entre a receita e despesa. Já o saldo financeiro de cada exercício é obtido somando-se o resultado financeiro do exercício com o saldo financeiro do exercício anterior.</p>
 <p>Um ponto em que o Anexo 10 do RREO vai diferir do Anexo 10 elaborado a partir do Fluxo Atuarial, é que o Anexo 10 do RREO deve conter informações sobre o ano anterior ao do fluxo atuarial.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="fluxo-atuarial.html#cb251-1"></a>anexo10_rreo &lt;-<span class="st"> </span>anexo10_rreo <span class="op">%&gt;%</span></span>
-<span id="cb251-2"><a href="fluxo-atuarial.html#cb251-2"></a><span class="st">                    </span><span class="kw">mutate</span>(<span class="dt">resultado_previd =</span> <span class="kw">round</span>(receitas <span class="op">-</span><span class="st"> </span>despesas, <span class="dv">2</span>))</span>
-<span id="cb251-3"><a href="fluxo-atuarial.html#cb251-3"></a></span>
-<span id="cb251-4"><a href="fluxo-atuarial.html#cb251-4"></a><span class="kw">head</span>(anexo10_rreo)</span></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="fluxo-atuarial.html#cb345-1"></a>anexo10_rreo &lt;-<span class="st"> </span>anexo10_rreo <span class="op">%&gt;%</span></span>
+<span id="cb345-2"><a href="fluxo-atuarial.html#cb345-2"></a><span class="st">                    </span><span class="kw">mutate</span>(<span class="dt">resultado_previd =</span> <span class="kw">round</span>(receitas <span class="op">-</span><span class="st"> </span>despesas, <span class="dv">2</span>))</span>
+<span id="cb345-3"><a href="fluxo-atuarial.html#cb345-3"></a></span>
+<span id="cb345-4"><a href="fluxo-atuarial.html#cb345-4"></a><span class="kw">head</span>(anexo10_rreo)</span></code></pre></div>
 <pre><code># A tibble: 6 x 4
   exercicio receitas despesas resultado_previd
       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;            &lt;dbl&gt;
@@ -930,13 +978,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 5      2023 2782771. 1189099.         1593673.
 6      2024 2836927. 1540593.         1296334.</code></pre>
 <p>Para o cálculo da última coluna é necessário dispor do saldo financeiro do exercício de 2018. Apenas para efeito de ilustar como realizar o cálculo dos valores desta coluna, será assumido que esse saldo seja de R$ 578.942,76.</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="fluxo-atuarial.html#cb253-1"></a><span class="co"># Saldo financeiro do exercício anterior</span></span>
-<span id="cb253-2"><a href="fluxo-atuarial.html#cb253-2"></a>sd_exerc_ant &lt;-<span class="st"> </span><span class="fl">578942.76</span></span>
-<span id="cb253-3"><a href="fluxo-atuarial.html#cb253-3"></a></span>
-<span id="cb253-4"><a href="fluxo-atuarial.html#cb253-4"></a>anexo10_rreo &lt;-<span class="st"> </span>anexo10_rreo <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb253-5"><a href="fluxo-atuarial.html#cb253-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_financeiro =</span> resultado_previd <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(sd_exerc_ant, resultado_previd[<span class="op">-</span><span class="kw">length</span>(resultado_previd)]))</span>
-<span id="cb253-6"><a href="fluxo-atuarial.html#cb253-6"></a></span>
-<span id="cb253-7"><a href="fluxo-atuarial.html#cb253-7"></a><span class="kw">head</span>(anexo10_rreo)</span></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="fluxo-atuarial.html#cb347-1"></a><span class="co"># Saldo financeiro do exercício anterior</span></span>
+<span id="cb347-2"><a href="fluxo-atuarial.html#cb347-2"></a>sd_exerc_ant &lt;-<span class="st"> </span><span class="fl">578942.76</span></span>
+<span id="cb347-3"><a href="fluxo-atuarial.html#cb347-3"></a></span>
+<span id="cb347-4"><a href="fluxo-atuarial.html#cb347-4"></a>anexo10_rreo &lt;-<span class="st"> </span>anexo10_rreo <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb347-5"><a href="fluxo-atuarial.html#cb347-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_financeiro =</span> resultado_previd <span class="op">+</span><span class="st"> </span><span class="kw">c</span>(sd_exerc_ant, resultado_previd[<span class="op">-</span><span class="kw">length</span>(resultado_previd)]))</span>
+<span id="cb347-6"><a href="fluxo-atuarial.html#cb347-6"></a></span>
+<span id="cb347-7"><a href="fluxo-atuarial.html#cb347-7"></a><span class="kw">head</span>(anexo10_rreo)</span></code></pre></div>
 <pre><code># A tibble: 6 x 5
   exercicio receitas despesas resultado_previd sd_financeiro
       &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;
@@ -954,115 +1002,149 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A análise da consistência do fluxo atuarial consiste simplesmente em <strong>recalcular</strong> as variáveis que são a soma de outras e trazer a valor presente com o objetivo de comparar com os valores informados na linha <code>Totais de Controle  a Valor Atual</code> do fluxo atuarial.</p>
 <p>O objetivo dessa análise é verificar se não houve qualquer tipo de manipulação no fluxo atuarial. O passo a passo irá deixar claro o processo.</p>
 <p>Antes de iniciar o recálculo das variáveis, será definida uma pequena função para o cálculo do <strong>Fator de Desconto</strong> (<code>V100401</code>) a partir das <strong>Taxas de Juros</strong> (<code>V100301</code>) informadas no fluxo atuarial.</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="fluxo-atuarial.html#cb255-1"></a><span class="co"># Define uma função auxiliar para calcular as taxas de desconto</span></span>
-<span id="cb255-2"><a href="fluxo-atuarial.html#cb255-2"></a>calcula_tx_desconto &lt;-<span class="st"> </span><span class="cf">function</span>(i, <span class="dt">postecipado =</span> <span class="ot">TRUE</span>){</span>
-<span id="cb255-3"><a href="fluxo-atuarial.html#cb255-3"></a>  <span class="co"># i: Variável V100301</span></span>
-<span id="cb255-4"><a href="fluxo-atuarial.html#cb255-4"></a>  i &lt;-<span class="st"> </span>i <span class="op">/</span><span class="st"> </span><span class="dv">100</span></span>
-<span id="cb255-5"><a href="fluxo-atuarial.html#cb255-5"></a>  <span class="cf">if</span>(postecipado){</span>
-<span id="cb255-6"><a href="fluxo-atuarial.html#cb255-6"></a>    desconto &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>i)</span>
-<span id="cb255-7"><a href="fluxo-atuarial.html#cb255-7"></a>  } <span class="cf">else</span> {</span>
-<span id="cb255-8"><a href="fluxo-atuarial.html#cb255-8"></a>    desconto &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span> <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>i[<span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(i)])) </span>
-<span id="cb255-9"><a href="fluxo-atuarial.html#cb255-9"></a>  }</span>
-<span id="cb255-10"><a href="fluxo-atuarial.html#cb255-10"></a>  <span class="kw">round</span>(<span class="kw">cumprod</span>(desconto), <span class="dv">5</span>)</span>
-<span id="cb255-11"><a href="fluxo-atuarial.html#cb255-11"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="fluxo-atuarial.html#cb349-1"></a><span class="co"># Define uma função auxiliar para calcular as taxas de desconto</span></span>
+<span id="cb349-2"><a href="fluxo-atuarial.html#cb349-2"></a>calcula_tx_desconto &lt;-<span class="st"> </span><span class="cf">function</span>(i, <span class="dt">postecipado =</span> <span class="ot">TRUE</span>){</span>
+<span id="cb349-3"><a href="fluxo-atuarial.html#cb349-3"></a>  <span class="co"># i: Variável V100301</span></span>
+<span id="cb349-4"><a href="fluxo-atuarial.html#cb349-4"></a>  i &lt;-<span class="st"> </span>i <span class="op">/</span><span class="st"> </span><span class="dv">100</span></span>
+<span id="cb349-5"><a href="fluxo-atuarial.html#cb349-5"></a>  <span class="cf">if</span>(postecipado){</span>
+<span id="cb349-6"><a href="fluxo-atuarial.html#cb349-6"></a>    desconto &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>i)</span>
+<span id="cb349-7"><a href="fluxo-atuarial.html#cb349-7"></a>  } <span class="cf">else</span> {</span>
+<span id="cb349-8"><a href="fluxo-atuarial.html#cb349-8"></a>    desconto &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span> <span class="op">/</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>i[<span class="dv">2</span><span class="op">:</span><span class="kw">length</span>(i)])) </span>
+<span id="cb349-9"><a href="fluxo-atuarial.html#cb349-9"></a>  }</span>
+<span id="cb349-10"><a href="fluxo-atuarial.html#cb349-10"></a>  <span class="kw">round</span>(<span class="kw">cumprod</span>(desconto), <span class="dv">5</span>)</span>
+<span id="cb349-11"><a href="fluxo-atuarial.html#cb349-11"></a>}</span></code></pre></div>
 <blockquote>
 <p><strong>Nota:</strong> Com a edição da Portaria 464/18 os fluxos atuariais deverão ser postecipados. A função acima contempla as duas possibilidades para permitir seu uso em fluxos atuariais elaborados antes da edição do referido normativo.</p>
 </blockquote>
 <p>Um pequeno teste para avaliar a função. Apresenta-se a seguir os 15 primeiros valores da taxa de desconto conforme apresentado no fluxo atuarial.</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="fluxo-atuarial.html#cb256-1"></a>fluxo_atuarial<span class="op">$</span>V100401[<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>]</span></code></pre></div>
-<pre><code> [1] 1.00000 0.94340 0.89000 0.83962 0.79209 0.74725 0.70495 0.66505 0.62741 0.59190 0.55840 0.52679 0.49697 0.46884 0.44230</code></pre>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="fluxo-atuarial.html#cb350-1"></a>fluxo_atuarial<span class="op">$</span>V100401[<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>]</span></code></pre></div>
+<pre><code> [1] 1.00000 0.94340 0.89000 0.83962 0.79209 0.74725 0.70495 0.66505 0.62741
+[10] 0.59190 0.55840 0.52679 0.49697 0.46884 0.44230</code></pre>
 <p>Utilizando a função definida acima será feito o cálculo a partir da taxa de juros informada no fluxo atuarial:</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="fluxo-atuarial.html#cb258-1"></a><span class="co"># Cálculo da taxa de desconto - fluxo antecipado</span></span>
-<span id="cb258-2"><a href="fluxo-atuarial.html#cb258-2"></a><span class="kw">calcula_tx_desconto</span>(<span class="dt">i =</span> fluxo_atuarial<span class="op">$</span>V100301, <span class="dt">postecipado =</span> <span class="ot">FALSE</span>)[<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>] </span></code></pre></div>
-<pre><code> [1] 1.00000 0.94340 0.89000 0.83962 0.79209 0.74726 0.70496 0.66506 0.62741 0.59190 0.55839 0.52679 0.49697 0.46884 0.44230</code></pre>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="fluxo-atuarial.html#cb352-1"></a><span class="co"># Cálculo da taxa de desconto - fluxo antecipado</span></span>
+<span id="cb352-2"><a href="fluxo-atuarial.html#cb352-2"></a><span class="kw">calcula_tx_desconto</span>(<span class="dt">i =</span> fluxo_atuarial<span class="op">$</span>V100301, <span class="dt">postecipado =</span> <span class="ot">FALSE</span>)[<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>] </span></code></pre></div>
+<pre><code> [1] 1.00000 0.94340 0.89000 0.83962 0.79209 0.74726 0.70496 0.66506 0.62741
+[10] 0.59190 0.55839 0.52679 0.49697 0.46884 0.44230</code></pre>
 <p>O resultado indica que os valores da variável <code>V100301</code> recalculados com a função <code>calcula_tx_desconto()</code> está iqual ao valor constante do fluxo atuarial.</p>
 <p>No processo de importação dos dados, pode ocorrer que algumas variáveis não serem importadas com o formato numérico. O código abaixo identifica as variáveis não numéricas que eventualmente existam nos dados e faz a conversão dos mesmos para o formato numérico.</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="fluxo-atuarial.html#cb260-1"></a><span class="co"># Conversão de variáveis para o formato numérico</span></span>
-<span id="cb260-2"><a href="fluxo-atuarial.html#cb260-2"></a>fluxo_atuarial &lt;-<span class="st"> </span>fluxo_atuarial <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb260-3"><a href="fluxo-atuarial.html#cb260-3"></a><span class="st">     </span><span class="kw">map_if</span>(<span class="op">~</span><span class="st"> </span>(<span class="op">!</span><span class="kw">is.numeric</span>(.)), <span class="op">~</span><span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">gsub</span>(<span class="st">&quot;,&quot;</span>, <span class="st">&quot;.&quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>, <span class="st">&quot;&quot;</span>, .)))) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb260-4"><a href="fluxo-atuarial.html#cb260-4"></a><span class="st">     </span><span class="kw">as.data.frame</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="fluxo-atuarial.html#cb354-1"></a><span class="co"># Conversão de variáveis para o formato numérico</span></span>
+<span id="cb354-2"><a href="fluxo-atuarial.html#cb354-2"></a>fluxo_atuarial &lt;-<span class="st"> </span>fluxo_atuarial <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb354-3"><a href="fluxo-atuarial.html#cb354-3"></a><span class="st">     </span><span class="kw">map_if</span>(<span class="op">~</span><span class="st"> </span>(<span class="op">!</span><span class="kw">is.numeric</span>(.)), <span class="op">~</span><span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">gsub</span>(<span class="st">&quot;,&quot;</span>, <span class="st">&quot;.&quot;</span>, <span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>, <span class="st">&quot;&quot;</span>, .)))) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb354-4"><a href="fluxo-atuarial.html#cb354-4"></a><span class="st">     </span><span class="kw">as.data.frame</span>()</span></code></pre></div>
 <p>Agora será feito o “recálculo” de algumas variáveis conforme fórmulas contidas na planilha modelo disponibilizada pela SPREV:</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="fluxo-atuarial.html#cb261-1"></a><span class="co"># Identifica se o fluxo é postecipado ou não.</span></span>
-<span id="cb261-2"><a href="fluxo-atuarial.html#cb261-2"></a>tipo &lt;-<span class="st"> </span><span class="kw">ifelse</span>(fluxo_atuarial<span class="op">$</span>V100101[<span class="dv">1</span>] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</span>
-<span id="cb261-3"><a href="fluxo-atuarial.html#cb261-3"></a></span>
-<span id="cb261-4"><a href="fluxo-atuarial.html#cb261-4"></a><span class="co"># Obtém o ano do fluxo (ano inicial do fluxo...)</span></span>
-<span id="cb261-5"><a href="fluxo-atuarial.html#cb261-5"></a>ano &lt;-<span class="st"> </span>fluxo_atuarial<span class="op">$</span>V100201[<span class="dv">1</span>]</span>
-<span id="cb261-6"><a href="fluxo-atuarial.html#cb261-6"></a></span>
-<span id="cb261-7"><a href="fluxo-atuarial.html#cb261-7"></a><span class="co"># Recálculo de algumas variáveis...</span></span>
-<span id="cb261-8"><a href="fluxo-atuarial.html#cb261-8"></a>fluxo_atuarial &lt;-<span class="st"> </span>fluxo_atuarial <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb261-9"><a href="fluxo-atuarial.html#cb261-9"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
-<span id="cb261-10"><a href="fluxo-atuarial.html#cb261-10"></a>    <span class="dt">V100401 =</span> <span class="kw">calcula_tx_desconto</span>(<span class="dt">i =</span> fluxo_atuarial<span class="op">$</span>V100301, <span class="dt">postecipado =</span> tipo), </span>
-<span id="cb261-11"><a href="fluxo-atuarial.html#cb261-11"></a>    <span class="dt">V111000 =</span> V111101 <span class="op">+</span><span class="st"> </span>V111201 <span class="op">+</span><span class="st"> </span>V111301 <span class="op">+</span><span class="st"> </span>V111401 ,</span>
-<span id="cb261-12"><a href="fluxo-atuarial.html#cb261-12"></a>    <span class="dt">V121000 =</span> V121100 <span class="op">+</span><span class="st"> </span>V121200 <span class="op">+</span><span class="st"> </span>V121300 <span class="op">+</span><span class="st"> </span>V121400 <span class="op">+</span><span class="st"> </span>V121500 <span class="op">+</span><span class="st"> </span>V121600 <span class="op">+</span><span class="st"> </span>V121700,</span>
-<span id="cb261-13"><a href="fluxo-atuarial.html#cb261-13"></a>    <span class="dt">V122000 =</span> V122100 <span class="op">+</span><span class="st"> </span>V122200 <span class="op">+</span><span class="st"> </span>V122300 <span class="op">+</span><span class="st"> </span>V122400 <span class="op">+</span><span class="st"> </span>V122500 <span class="op">+</span><span class="st"> </span>V122600 <span class="op">+</span><span class="st"> </span>V122700,</span>
-<span id="cb261-14"><a href="fluxo-atuarial.html#cb261-14"></a>    <span class="dt">V123000 =</span> V123100 <span class="op">+</span><span class="st"> </span>V123200 <span class="op">+</span><span class="st"> </span>V123300 <span class="op">+</span><span class="st"> </span>V123400,</span>
-<span id="cb261-15"><a href="fluxo-atuarial.html#cb261-15"></a>    <span class="dt">V124000 =</span> V124100 <span class="op">+</span><span class="st"> </span>V124200 <span class="op">+</span><span class="st"> </span>V124300 <span class="op">+</span><span class="st"> </span>V124400 <span class="op">+</span><span class="st"> </span>V124500,</span>
-<span id="cb261-16"><a href="fluxo-atuarial.html#cb261-16"></a>    <span class="dt">V190000 =</span> V111000 <span class="op">+</span><span class="st"> </span>V112000 <span class="op">+</span><span class="st"> </span>V119900 <span class="op">+</span><span class="st"> </span>V121000 <span class="op">+</span><span class="st"> </span>V122000 <span class="op">+</span><span class="st"> </span>V123000 <span class="op">+</span><span class="st"> </span>V124000 <span class="op">+</span><span class="st"> </span>V129000 <span class="op">+</span><span class="st"> </span>V130101 <span class="op">+</span><span class="st"> </span>V139901,</span>
-<span id="cb261-17"><a href="fluxo-atuarial.html#cb261-17"></a>    <span class="dt">V210000 =</span> V211001 <span class="op">+</span><span class="st"> </span>V212001 <span class="op">+</span><span class="st"> </span>V213001 <span class="op">+</span><span class="st"> </span>V214001 <span class="op">+</span><span class="st"> </span>V215001 <span class="op">+</span><span class="st"> </span>V219901,</span>
-<span id="cb261-18"><a href="fluxo-atuarial.html#cb261-18"></a>    <span class="dt">V220000 =</span> V221000 <span class="op">+</span><span class="st"> </span>V222000 <span class="op">+</span><span class="st"> </span>V223000 <span class="op">+</span><span class="st"> </span>V224000 <span class="op">+</span><span class="st"> </span>V225000 <span class="op">+</span><span class="st"> </span>V226000 <span class="op">+</span><span class="st"> </span>V227000 <span class="op">+</span><span class="st"> </span>V229000 <span class="op">+</span><span class="st"> </span>V239901,</span>
-<span id="cb261-19"><a href="fluxo-atuarial.html#cb261-19"></a>    <span class="dt">V240000 =</span> V210000 <span class="op">+</span><span class="st"> </span>V220000,</span>
-<span id="cb261-20"><a href="fluxo-atuarial.html#cb261-20"></a>    <span class="dt">V250001 =</span> V190000 <span class="op">-</span><span class="st"> </span>V240000)</span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="fluxo-atuarial.html#cb355-1"></a><span class="co"># Identifica se o fluxo é postecipado ou não.</span></span>
+<span id="cb355-2"><a href="fluxo-atuarial.html#cb355-2"></a>tipo &lt;-<span class="st"> </span><span class="kw">ifelse</span>(fluxo_atuarial<span class="op">$</span>V100101[<span class="dv">1</span>] <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>)</span>
+<span id="cb355-3"><a href="fluxo-atuarial.html#cb355-3"></a></span>
+<span id="cb355-4"><a href="fluxo-atuarial.html#cb355-4"></a><span class="co"># Obtém o ano do fluxo (ano inicial do fluxo...)</span></span>
+<span id="cb355-5"><a href="fluxo-atuarial.html#cb355-5"></a>ano &lt;-<span class="st"> </span>fluxo_atuarial<span class="op">$</span>V100201[<span class="dv">1</span>]</span>
+<span id="cb355-6"><a href="fluxo-atuarial.html#cb355-6"></a></span>
+<span id="cb355-7"><a href="fluxo-atuarial.html#cb355-7"></a><span class="co"># Recálculo de algumas variáveis...</span></span>
+<span id="cb355-8"><a href="fluxo-atuarial.html#cb355-8"></a>fluxo_atuarial &lt;-<span class="st"> </span>fluxo_atuarial <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb355-9"><a href="fluxo-atuarial.html#cb355-9"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb355-10"><a href="fluxo-atuarial.html#cb355-10"></a>    <span class="dt">V100401 =</span> <span class="kw">calcula_tx_desconto</span>(<span class="dt">i =</span> fluxo_atuarial<span class="op">$</span>V100301, <span class="dt">postecipado =</span> tipo), </span>
+<span id="cb355-11"><a href="fluxo-atuarial.html#cb355-11"></a>    <span class="dt">V111000 =</span> V111101 <span class="op">+</span><span class="st"> </span>V111201 <span class="op">+</span><span class="st"> </span>V111301 <span class="op">+</span><span class="st"> </span>V111401 ,</span>
+<span id="cb355-12"><a href="fluxo-atuarial.html#cb355-12"></a>    <span class="dt">V121000 =</span> V121100 <span class="op">+</span><span class="st"> </span>V121200 <span class="op">+</span><span class="st"> </span>V121300 <span class="op">+</span><span class="st"> </span>V121400 <span class="op">+</span><span class="st"> </span>V121500 <span class="op">+</span><span class="st"> </span>V121600 <span class="op">+</span><span class="st"> </span>V121700,</span>
+<span id="cb355-13"><a href="fluxo-atuarial.html#cb355-13"></a>    <span class="dt">V122000 =</span> V122100 <span class="op">+</span><span class="st"> </span>V122200 <span class="op">+</span><span class="st"> </span>V122300 <span class="op">+</span><span class="st"> </span>V122400 <span class="op">+</span><span class="st"> </span>V122500 <span class="op">+</span><span class="st"> </span>V122600 <span class="op">+</span><span class="st"> </span>V122700,</span>
+<span id="cb355-14"><a href="fluxo-atuarial.html#cb355-14"></a>    <span class="dt">V123000 =</span> V123100 <span class="op">+</span><span class="st"> </span>V123200 <span class="op">+</span><span class="st"> </span>V123300 <span class="op">+</span><span class="st"> </span>V123400,</span>
+<span id="cb355-15"><a href="fluxo-atuarial.html#cb355-15"></a>    <span class="dt">V124000 =</span> V124100 <span class="op">+</span><span class="st"> </span>V124200 <span class="op">+</span><span class="st"> </span>V124300 <span class="op">+</span><span class="st"> </span>V124400 <span class="op">+</span><span class="st"> </span>V124500,</span>
+<span id="cb355-16"><a href="fluxo-atuarial.html#cb355-16"></a>    <span class="dt">V190000 =</span> V111000 <span class="op">+</span><span class="st"> </span>V112000 <span class="op">+</span><span class="st"> </span>V119900 <span class="op">+</span><span class="st"> </span>V121000 <span class="op">+</span><span class="st"> </span>V122000 <span class="op">+</span><span class="st"> </span>V123000 <span class="op">+</span><span class="st"> </span>V124000 <span class="op">+</span><span class="st"> </span>V129000 <span class="op">+</span><span class="st"> </span>V130101 <span class="op">+</span><span class="st"> </span>V139901,</span>
+<span id="cb355-17"><a href="fluxo-atuarial.html#cb355-17"></a>    <span class="dt">V210000 =</span> V211001 <span class="op">+</span><span class="st"> </span>V212001 <span class="op">+</span><span class="st"> </span>V213001 <span class="op">+</span><span class="st"> </span>V214001 <span class="op">+</span><span class="st"> </span>V215001 <span class="op">+</span><span class="st"> </span>V219901,</span>
+<span id="cb355-18"><a href="fluxo-atuarial.html#cb355-18"></a>    <span class="dt">V220000 =</span> V221000 <span class="op">+</span><span class="st"> </span>V222000 <span class="op">+</span><span class="st"> </span>V223000 <span class="op">+</span><span class="st"> </span>V224000 <span class="op">+</span><span class="st"> </span>V225000 <span class="op">+</span><span class="st"> </span>V226000 <span class="op">+</span><span class="st"> </span>V227000 <span class="op">+</span><span class="st"> </span>V229000 <span class="op">+</span><span class="st"> </span>V239901,</span>
+<span id="cb355-19"><a href="fluxo-atuarial.html#cb355-19"></a>    <span class="dt">V240000 =</span> V210000 <span class="op">+</span><span class="st"> </span>V220000,</span>
+<span id="cb355-20"><a href="fluxo-atuarial.html#cb355-20"></a>    <span class="dt">V250001 =</span> V190000 <span class="op">-</span><span class="st"> </span>V240000)</span></code></pre></div>
 <p>Recalculadas as variáveis de interesse a partir dos dados informados no fluxo atuarial é necessário agora determinar o valor atual das mesmas e compará-las com os valores correspondentes contidos na linha <code>Totais de Controle a Valor Atual</code>.</p>
 <p>A primeira coisa é identificar as variáveis a serem objeto de conferência.</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="fluxo-atuarial.html#cb262-1"></a><span class="co"># Codigos a serem conferidos:</span></span>
-<span id="cb262-2"><a href="fluxo-atuarial.html#cb262-2"></a>codigos &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;V109001&quot;</span>, <span class="st">&quot;V111000&quot;</span>, <span class="st">&quot;V111101&quot;</span>, <span class="st">&quot;V111201&quot;</span>, <span class="st">&quot;V111301&quot;</span>, <span class="st">&quot;V111401&quot;</span>, <span class="st">&quot;V112000&quot;</span>,</span>
-<span id="cb262-3"><a href="fluxo-atuarial.html#cb262-3"></a>             <span class="st">&quot;V119900&quot;</span>, <span class="st">&quot;V121000&quot;</span>, <span class="st">&quot;V121100&quot;</span>, <span class="st">&quot;V121200&quot;</span>, <span class="st">&quot;V121300&quot;</span>, <span class="st">&quot;V121400&quot;</span>, <span class="st">&quot;V121500&quot;</span>,</span>
-<span id="cb262-4"><a href="fluxo-atuarial.html#cb262-4"></a>             <span class="st">&quot;V121600&quot;</span>, <span class="st">&quot;V121700&quot;</span>, <span class="st">&quot;V122000&quot;</span>, <span class="st">&quot;V122100&quot;</span>, <span class="st">&quot;V122200&quot;</span>, <span class="st">&quot;V122300&quot;</span>, <span class="st">&quot;V122400&quot;</span>,</span>
-<span id="cb262-5"><a href="fluxo-atuarial.html#cb262-5"></a>             <span class="st">&quot;V122500&quot;</span>, <span class="st">&quot;V122600&quot;</span>, <span class="st">&quot;V122700&quot;</span>, <span class="st">&quot;V123000&quot;</span>, <span class="st">&quot;V123100&quot;</span>, <span class="st">&quot;V123200&quot;</span>, <span class="st">&quot;V123300&quot;</span>,</span>
-<span id="cb262-6"><a href="fluxo-atuarial.html#cb262-6"></a>             <span class="st">&quot;V123400&quot;</span>, <span class="st">&quot;V124000&quot;</span>, <span class="st">&quot;V124100&quot;</span>, <span class="st">&quot;V124200&quot;</span>, <span class="st">&quot;V124300&quot;</span>, <span class="st">&quot;V124400&quot;</span>, <span class="st">&quot;V124500&quot;</span>,</span>
-<span id="cb262-7"><a href="fluxo-atuarial.html#cb262-7"></a>             <span class="st">&quot;V129000&quot;</span>, <span class="st">&quot;V130101&quot;</span>, <span class="st">&quot;V130201&quot;</span>, <span class="st">&quot;V139901&quot;</span>, <span class="st">&quot;V190000&quot;</span>, <span class="st">&quot;V210000&quot;</span>, <span class="st">&quot;V211001&quot;</span>,</span>
-<span id="cb262-8"><a href="fluxo-atuarial.html#cb262-8"></a>             <span class="st">&quot;V212001&quot;</span>, <span class="st">&quot;V213001&quot;</span>, <span class="st">&quot;V214001&quot;</span>, <span class="st">&quot;V215001&quot;</span>, <span class="st">&quot;V219901&quot;</span>, <span class="st">&quot;V220000&quot;</span>, <span class="st">&quot;V221000&quot;</span>,</span>
-<span id="cb262-9"><a href="fluxo-atuarial.html#cb262-9"></a>             <span class="st">&quot;V222000&quot;</span>, <span class="st">&quot;V223000&quot;</span>, <span class="st">&quot;V224000&quot;</span>, <span class="st">&quot;V225000&quot;</span>, <span class="st">&quot;V226000&quot;</span>, <span class="st">&quot;V227000&quot;</span>, <span class="st">&quot;V229000&quot;</span>,</span>
-<span id="cb262-10"><a href="fluxo-atuarial.html#cb262-10"></a>             <span class="st">&quot;V239901&quot;</span>, <span class="st">&quot;V240000&quot;</span>, <span class="st">&quot;V250001&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="fluxo-atuarial.html#cb356-1"></a><span class="co"># Codigos a serem conferidos:</span></span>
+<span id="cb356-2"><a href="fluxo-atuarial.html#cb356-2"></a>codigos &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;V109001&quot;</span>, <span class="st">&quot;V111000&quot;</span>, <span class="st">&quot;V111101&quot;</span>, <span class="st">&quot;V111201&quot;</span>, <span class="st">&quot;V111301&quot;</span>, <span class="st">&quot;V111401&quot;</span>, <span class="st">&quot;V112000&quot;</span>,</span>
+<span id="cb356-3"><a href="fluxo-atuarial.html#cb356-3"></a>             <span class="st">&quot;V119900&quot;</span>, <span class="st">&quot;V121000&quot;</span>, <span class="st">&quot;V121100&quot;</span>, <span class="st">&quot;V121200&quot;</span>, <span class="st">&quot;V121300&quot;</span>, <span class="st">&quot;V121400&quot;</span>, <span class="st">&quot;V121500&quot;</span>,</span>
+<span id="cb356-4"><a href="fluxo-atuarial.html#cb356-4"></a>             <span class="st">&quot;V121600&quot;</span>, <span class="st">&quot;V121700&quot;</span>, <span class="st">&quot;V122000&quot;</span>, <span class="st">&quot;V122100&quot;</span>, <span class="st">&quot;V122200&quot;</span>, <span class="st">&quot;V122300&quot;</span>, <span class="st">&quot;V122400&quot;</span>,</span>
+<span id="cb356-5"><a href="fluxo-atuarial.html#cb356-5"></a>             <span class="st">&quot;V122500&quot;</span>, <span class="st">&quot;V122600&quot;</span>, <span class="st">&quot;V122700&quot;</span>, <span class="st">&quot;V123000&quot;</span>, <span class="st">&quot;V123100&quot;</span>, <span class="st">&quot;V123200&quot;</span>, <span class="st">&quot;V123300&quot;</span>,</span>
+<span id="cb356-6"><a href="fluxo-atuarial.html#cb356-6"></a>             <span class="st">&quot;V123400&quot;</span>, <span class="st">&quot;V124000&quot;</span>, <span class="st">&quot;V124100&quot;</span>, <span class="st">&quot;V124200&quot;</span>, <span class="st">&quot;V124300&quot;</span>, <span class="st">&quot;V124400&quot;</span>, <span class="st">&quot;V124500&quot;</span>,</span>
+<span id="cb356-7"><a href="fluxo-atuarial.html#cb356-7"></a>             <span class="st">&quot;V129000&quot;</span>, <span class="st">&quot;V130101&quot;</span>, <span class="st">&quot;V130201&quot;</span>, <span class="st">&quot;V139901&quot;</span>, <span class="st">&quot;V190000&quot;</span>, <span class="st">&quot;V210000&quot;</span>, <span class="st">&quot;V211001&quot;</span>,</span>
+<span id="cb356-8"><a href="fluxo-atuarial.html#cb356-8"></a>             <span class="st">&quot;V212001&quot;</span>, <span class="st">&quot;V213001&quot;</span>, <span class="st">&quot;V214001&quot;</span>, <span class="st">&quot;V215001&quot;</span>, <span class="st">&quot;V219901&quot;</span>, <span class="st">&quot;V220000&quot;</span>, <span class="st">&quot;V221000&quot;</span>,</span>
+<span id="cb356-9"><a href="fluxo-atuarial.html#cb356-9"></a>             <span class="st">&quot;V222000&quot;</span>, <span class="st">&quot;V223000&quot;</span>, <span class="st">&quot;V224000&quot;</span>, <span class="st">&quot;V225000&quot;</span>, <span class="st">&quot;V226000&quot;</span>, <span class="st">&quot;V227000&quot;</span>, <span class="st">&quot;V229000&quot;</span>,</span>
+<span id="cb356-10"><a href="fluxo-atuarial.html#cb356-10"></a>             <span class="st">&quot;V239901&quot;</span>, <span class="st">&quot;V240000&quot;</span>, <span class="st">&quot;V250001&quot;</span>)</span></code></pre></div>
 <p>Agora passa-se ao cálculo dos valores presente das variáveis acima relacionadas.</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="fluxo-atuarial.html#cb263-1"></a><span class="co"># Cálculo do Valor Presente Atuarial (VPA) das rubricas selecionadas</span></span>
-<span id="cb263-2"><a href="fluxo-atuarial.html#cb263-2"></a>vpa_recalculado &lt;-<span class="st"> </span>fluxo_atuarial <span class="op">%&gt;%</span></span>
-<span id="cb263-3"><a href="fluxo-atuarial.html#cb263-3"></a><span class="st">    </span><span class="kw">select</span>(<span class="kw">all_of</span>(codigos)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb263-4"><a href="fluxo-atuarial.html#cb263-4"></a><span class="st">    </span><span class="kw">map</span>(<span class="op">~</span><span class="kw">sum</span>(.x <span class="op">*</span><span class="st"> </span>fluxo_atuarial<span class="op">$</span>V100401, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb263-5"><a href="fluxo-atuarial.html#cb263-5"></a><span class="st">    </span><span class="kw">unlist</span>()</span>
-<span id="cb263-6"><a href="fluxo-atuarial.html#cb263-6"></a></span>
-<span id="cb263-7"><a href="fluxo-atuarial.html#cb263-7"></a>vpa_recalculado</span></code></pre></div>
-<pre><code>     V109001      V111000      V111101      V111201      V111301      V111401      V112000      V119900      V121000      V121100      V121200      V121300      V121400 
-102526743.93         0.00         0.00         0.00         0.00         0.00         0.00    229841.11  19199591.41  11323615.50   4930717.44         0.00    676744.02 
-     V121500      V121600      V121700      V122000      V122100      V122200      V122300      V122400      V122500      V122600      V122700      V123000      V123100 
-   807622.14   1290709.99    170182.32   9908542.97   5864627.52   2553674.28         0.00    342418.78    408640.46    653073.13     86108.81         0.00         0.00 
-     V123200      V123300      V123400      V124000      V124100      V124200      V124300      V124400      V124500      V129000      V130101      V130201      V139901 
-        0.00         0.00         0.00         0.00         0.00         0.00         0.00         0.00         0.00   6203528.16   3485348.78      1613.04         0.00 
-     V190000      V210000      V211001      V212001      V213001      V214001      V215001      V219901      V220000      V221000      V222000      V223000      V224000 
- 39026852.43   1331527.92   1078066.63         0.00         0.00    192998.75     60462.54         0.00  64156893.39  30526723.42  23287782.34         0.00   2240554.53 
-     V225000      V226000      V227000      V229000      V239901      V240000      V250001 
-  2673855.76   4273171.95    256291.13    898514.25         0.00  65488421.31 -26461568.87 </code></pre>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="fluxo-atuarial.html#cb357-1"></a><span class="co"># Cálculo do Valor Presente Atuarial (VPA) das rubricas selecionadas</span></span>
+<span id="cb357-2"><a href="fluxo-atuarial.html#cb357-2"></a>vpa_recalculado &lt;-<span class="st"> </span>fluxo_atuarial <span class="op">%&gt;%</span></span>
+<span id="cb357-3"><a href="fluxo-atuarial.html#cb357-3"></a><span class="st">    </span><span class="kw">select</span>(<span class="kw">all_of</span>(codigos)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb357-4"><a href="fluxo-atuarial.html#cb357-4"></a><span class="st">    </span><span class="kw">map</span>(<span class="op">~</span><span class="kw">sum</span>(.x <span class="op">*</span><span class="st"> </span>fluxo_atuarial<span class="op">$</span>V100401, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb357-5"><a href="fluxo-atuarial.html#cb357-5"></a><span class="st">    </span><span class="kw">unlist</span>()</span>
+<span id="cb357-6"><a href="fluxo-atuarial.html#cb357-6"></a></span>
+<span id="cb357-7"><a href="fluxo-atuarial.html#cb357-7"></a>vpa_recalculado</span></code></pre></div>
+<pre><code>     V109001      V111000      V111101      V111201      V111301      V111401 
+102526743.93         0.00         0.00         0.00         0.00         0.00 
+     V112000      V119900      V121000      V121100      V121200      V121300 
+        0.00    229841.11  19199591.41  11323615.50   4930717.44         0.00 
+     V121400      V121500      V121600      V121700      V122000      V122100 
+   676744.02    807622.14   1290709.99    170182.32   9908542.97   5864627.52 
+     V122200      V122300      V122400      V122500      V122600      V122700 
+  2553674.28         0.00    342418.78    408640.46    653073.13     86108.81 
+     V123000      V123100      V123200      V123300      V123400      V124000 
+        0.00         0.00         0.00         0.00         0.00         0.00 
+     V124100      V124200      V124300      V124400      V124500      V129000 
+        0.00         0.00         0.00         0.00         0.00   6203528.16 
+     V130101      V130201      V139901      V190000      V210000      V211001 
+  3485348.78      1613.04         0.00  39026852.43   1331527.92   1078066.63 
+     V212001      V213001      V214001      V215001      V219901      V220000 
+        0.00         0.00    192998.75     60462.54         0.00  64156893.39 
+     V221000      V222000      V223000      V224000      V225000      V226000 
+ 30526723.42  23287782.34         0.00   2240554.53   2673855.76   4273171.95 
+     V227000      V229000      V239901      V240000      V250001 
+   256291.13    898514.25         0.00  65488421.31 -26461568.87 </code></pre>
 <p>Obtidos os valores recalculados estes devem ser comparados com os valores informados na avaliação atuarial. Os valores originais, como já mostrado estão contidos no objeto <code>linhas_controle</code>. A extração dos mesmos pode ser feita da seguinte forma:</p>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="fluxo-atuarial.html#cb265-1"></a><span class="co"># Obtenção das linhas contendo os valores da linha de controle da planilha de fluxo</span></span>
-<span id="cb265-2"><a href="fluxo-atuarial.html#cb265-2"></a>vpa_original &lt;-<span class="st"> </span><span class="kw">as_vector</span>(linhas_controle[<span class="dv">2</span>, codigos])</span>
-<span id="cb265-3"><a href="fluxo-atuarial.html#cb265-3"></a>vpa_original</span></code></pre></div>
-<pre><code>     V109001      V111000      V111101      V111201      V111301      V111401      V112000      V119900      V121000      V121100      V121200      V121300      V121400 
-102526271.37         0.00         0.00         0.00         0.00         0.00         0.00    229838.88  19199502.91  11323563.30   4930694.72         0.00    676740.90 
-     V121500      V121600      V121700      V122000      V122100      V122200      V122300      V122400      V122500      V122600      V122700      V123000      V123100 
-   807618.42   1290704.04    170181.53   9908500.68   5864603.11   2553663.26         0.00    342417.20    408638.58    653070.12     86108.41         0.00         0.00 
-     V123200      V123300      V123400      V124000      V124100      V124200      V124300      V124400      V124500      V129000      V130101      V130201      V139901 
-        0.00         0.00         0.00         0.00         0.00         0.00         0.00         0.00         0.00   6203468.14   3485303.50      1613.04         0.00 
-     V190000      V210000      V211001      V212001      V213001      V214001      V215001      V219901      V220000      V221000      V222000      V223000      V224000 
- 39028227.15   1331519.17   1078059.34         0.00         0.00    192997.35     60462.48         0.00  64156346.48  30526433.20  23287543.91         0.00   2240527.95 
-     V225000      V226000      V227000      V229000      V239901      V240000      V250001 
-  2673832.24   4273213.67    256289.95    898505.56         0.00  65487865.65 -26459638.50 </code></pre>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="fluxo-atuarial.html#cb359-1"></a><span class="co"># Obtenção das linhas contendo os valores da linha de controle da planilha de fluxo</span></span>
+<span id="cb359-2"><a href="fluxo-atuarial.html#cb359-2"></a>vpa_original &lt;-<span class="st"> </span><span class="kw">as_vector</span>(linhas_controle[<span class="dv">2</span>, codigos])</span>
+<span id="cb359-3"><a href="fluxo-atuarial.html#cb359-3"></a>vpa_original</span></code></pre></div>
+<pre><code>     V109001      V111000      V111101      V111201      V111301      V111401 
+102526271.37         0.00         0.00         0.00         0.00         0.00 
+     V112000      V119900      V121000      V121100      V121200      V121300 
+        0.00    229838.88  19199502.91  11323563.30   4930694.72         0.00 
+     V121400      V121500      V121600      V121700      V122000      V122100 
+   676740.90    807618.42   1290704.04    170181.53   9908500.68   5864603.11 
+     V122200      V122300      V122400      V122500      V122600      V122700 
+  2553663.26         0.00    342417.20    408638.58    653070.12     86108.41 
+     V123000      V123100      V123200      V123300      V123400      V124000 
+        0.00         0.00         0.00         0.00         0.00         0.00 
+     V124100      V124200      V124300      V124400      V124500      V129000 
+        0.00         0.00         0.00         0.00         0.00   6203468.14 
+     V130101      V130201      V139901      V190000      V210000      V211001 
+  3485303.50      1613.04         0.00  39028227.15   1331519.17   1078059.34 
+     V212001      V213001      V214001      V215001      V219901      V220000 
+        0.00         0.00    192997.35     60462.48         0.00  64156346.48 
+     V221000      V222000      V223000      V224000      V225000      V226000 
+ 30526433.20  23287543.91         0.00   2240527.95   2673832.24   4273213.67 
+     V227000      V229000      V239901      V240000      V250001 
+   256289.95    898505.56         0.00  65487865.65 -26459638.50 </code></pre>
 <p>Agora já é possível verificar se existe diferença em alguma rubrica fazendo a subtração dos valores.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="fluxo-atuarial.html#cb267-1"></a><span class="kw">round</span>(vpa_original <span class="op">-</span><span class="st"> </span>vpa_recalculado)</span></code></pre></div>
-<pre><code>V109001 V111000 V111101 V111201 V111301 V111401 V112000 V119900 V121000 V121100 V121200 V121300 V121400 V121500 V121600 V121700 V122000 V122100 V122200 V122300 V122400 V122500 
-   -473       0       0       0       0       0       0      -2     -88     -52     -23       0      -3      -4      -6      -1     -42     -24     -11       0      -2      -2 
-V122600 V122700 V123000 V123100 V123200 V123300 V123400 V124000 V124100 V124200 V124300 V124400 V124500 V129000 V130101 V130201 V139901 V190000 V210000 V211001 V212001 V213001 
-     -3       0       0       0       0       0       0       0       0       0       0       0       0     -60     -45       0       0    1375      -9      -7       0       0 
-V214001 V215001 V219901 V220000 V221000 V222000 V223000 V224000 V225000 V226000 V227000 V229000 V239901 V240000 V250001 
-     -1       0       0    -547    -290    -238       0     -27     -24      42      -1      -9       0    -556    1930 </code></pre>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="fluxo-atuarial.html#cb361-1"></a><span class="kw">round</span>(vpa_original <span class="op">-</span><span class="st"> </span>vpa_recalculado)</span></code></pre></div>
+<pre><code>V109001 V111000 V111101 V111201 V111301 V111401 V112000 V119900 V121000 V121100 
+   -473       0       0       0       0       0       0      -2     -88     -52 
+V121200 V121300 V121400 V121500 V121600 V121700 V122000 V122100 V122200 V122300 
+    -23       0      -3      -4      -6      -1     -42     -24     -11       0 
+V122400 V122500 V122600 V122700 V123000 V123100 V123200 V123300 V123400 V124000 
+     -2      -2      -3       0       0       0       0       0       0       0 
+V124100 V124200 V124300 V124400 V124500 V129000 V130101 V130201 V139901 V190000 
+      0       0       0       0       0     -60     -45       0       0    1375 
+V210000 V211001 V212001 V213001 V214001 V215001 V219901 V220000 V221000 V222000 
+     -9      -7       0       0      -1       0       0    -547    -290    -238 
+V223000 V224000 V225000 V226000 V227000 V229000 V239901 V240000 V250001 
+      0     -27     -24      42      -1      -9       0    -556    1930 </code></pre>
 <p>Como pode ser visto, existem algumas diferenças insignificantes entre os valores presente atuariais das variáveis contidas no fluxo atuarial (<code>vpa_original</code>) e os valores presentes atuariais obtidos com o recálculo das variáveis (<code>vpa_recalculado</code>).</p>
 <p>Talvez seja interessante avaliar o “grau de significância” das diferenças. Para tanto uma possibilidade é expressar as diferenças eventualmente encontradas como um percentual do <code>vpa_original</code>. O código a seguir faz isso.</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="fluxo-atuarial.html#cb269-1"></a><span class="kw">round</span>(<span class="kw">abs</span>(vpa_original <span class="op">-</span><span class="st"> </span>vpa_recalculado) <span class="op">/</span><span class="st"> </span><span class="kw">abs</span>(vpa_original <span class="op">+</span><span class="st"> </span><span class="fl">0.001</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dv">2</span>) </span></code></pre></div>
-<pre><code>V109001 V111000 V111101 V111201 V111301 V111401 V112000 V119900 V121000 V121100 V121200 V121300 V121400 V121500 V121600 V121700 V122000 V122100 V122200 V122300 V122400 V122500 
-   0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00 
-V122600 V122700 V123000 V123100 V123200 V123300 V123400 V124000 V124100 V124200 V124300 V124400 V124500 V129000 V130101 V130201 V139901 V190000 V210000 V211001 V212001 V213001 
-   0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00 
-V214001 V215001 V219901 V220000 V221000 V222000 V223000 V224000 V225000 V226000 V227000 V229000 V239901 V240000 V250001 
-   0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.01 </code></pre>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="fluxo-atuarial.html#cb363-1"></a><span class="kw">round</span>(<span class="kw">abs</span>(vpa_original <span class="op">-</span><span class="st"> </span>vpa_recalculado) <span class="op">/</span><span class="st"> </span><span class="kw">abs</span>(vpa_original <span class="op">+</span><span class="st"> </span><span class="fl">0.001</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>, <span class="dv">2</span>) </span></code></pre></div>
+<pre><code>V109001 V111000 V111101 V111201 V111301 V111401 V112000 V119900 V121000 V121100 
+   0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00 
+V121200 V121300 V121400 V121500 V121600 V121700 V122000 V122100 V122200 V122300 
+   0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00 
+V122400 V122500 V122600 V122700 V123000 V123100 V123200 V123300 V123400 V124000 
+   0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00 
+V124100 V124200 V124300 V124400 V124500 V129000 V130101 V130201 V139901 V190000 
+   0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00 
+V210000 V211001 V212001 V213001 V214001 V215001 V219901 V220000 V221000 V222000 
+   0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00 
+V223000 V224000 V225000 V226000 V227000 V229000 V239901 V240000 V250001 
+   0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.00    0.01 </code></pre>
 <p>Nenhuma diferença chega ao menos a 0,05% do valor presente atuarial original.</p>
 <p>É possível melhorar um pouco as saídas acima de forma a que apenas os valores com diferença superior a 0.5% sejam exibidas em um quadro.</p>
 
@@ -1073,7 +1155,7 @@ V214001 V215001 V219901 V220000 V221000 V222000 V223000 V224000 V225000 V226000 
           </div>
         </div>
       </div>
-<a href="isp-indicador-de-situação-previdenticária.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="isp-indicador-de-situação-previdenciária.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="msc-matriz-de-saldos-contábeis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
